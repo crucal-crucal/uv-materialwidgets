@@ -1,0 +1,18 @@
+﻿cmake_minimum_required(VERSION 3.16)
+project(uv_material_widgets)
+
+include(setup.cmake)
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+#set(CMAKE_BUILD_TYPE RelWithDebInfo)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install/)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+
+add_subdirectory(src)
