@@ -156,5 +156,5 @@ private:
 	CUVMaterialFlatButton* m_button{ nullptr };
 
 private:
-	int m_nLabelWidth{ 100 };
+	int m_nLabelWidth{ 140 };
 };
