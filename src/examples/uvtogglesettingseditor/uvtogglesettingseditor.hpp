@@ -82,5 +82,5 @@ private:
 	CUVMaterialToggle* const m_pToggle{ nullptr };
 
 private:
-	int m_nLabelWidth{ 120 };
+	int m_nLabelWidth{ 140 };
 };
