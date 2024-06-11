@@ -46,3 +46,26 @@
 |    ![appbar](resource/gif/uvmaterialtextfield.gif)     |    uvmaterialtextfield     | 1.0.0 |
 |      ![appbar](resource/gif/uvmaterialtoggle.gif)      |      uvmaterialtoggle      | 1.0.0 |
 |  ![appbar](resource/gif/uvmaterialwaitingwidget.gif)   |  uvmaterialwaitingwidget   | 1.0.0 |
+
+# 构建
+```
+Windows
+build type (Debug, Release, RelWithDebInfo ...)
+环境: 
+Qt 版本: 5.15.2
+CMake 最小版本: 3.16
+builder: MSVC 2019
+开发工具: Visual Studio 2022
+
+Linux
+build type (Debug, Release, RelWithDebInfo ...)
+环境:
+Qt 版本: 5.15.2
+CMake 最小版本: 3.16
+builder: default
+开发工具: Ubuntu 22.04.3 + CLion 2024.1
+```
+# 构建示例
+[Windows](build-win.md)
+
+[Linux](build-linux.md)
