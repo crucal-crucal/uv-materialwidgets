@@ -61,7 +61,7 @@ void CUVSwitchBtnSettingsEditor::initConnection() {
 }
 
 void CUVSwitchBtnSettingsEditor::setupForm() const {
-	m_pCbChecked->setChecked(m_pswitchBtn->status());
+	m_pCbChecked->setChecked(m_pswitchBtn->isChecked());
 	switch (m_pswitchBtn->textPosition()) {
 		case CUVSwitchButton::TextPosition::Center: {
 			m_pCbTextPosition->setCurrentIndex(0);

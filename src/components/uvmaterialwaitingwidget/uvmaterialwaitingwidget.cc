@@ -5,270 +5,28 @@
 #include <QPainter>
 #include <QTimer>
 
-CUVMaterialWatingWidget::CUVMaterialWatingWidget(QWidget* parent, const bool centerOnParent, const bool disableParentWhenSpinning)
-: QWidget(parent), m_centerOnParent(centerOnParent), m_disableParentWhenSpinning(disableParentWhenSpinning) {
-	initialize();
+#include "uvmaterialwaitingwidget_p.hpp"
+
+/*!
+ *  \CUVMaterialTabsPrivate
+ *  \internal
+ */
+CUVMaterialWatingWidgetPrivate::CUVMaterialWatingWidgetPrivate(CUVMaterialWatingWidget* q): q_ptr(q) {
 }
 
-CUVMaterialWatingWidget::CUVMaterialWatingWidget(const Qt::WindowModality modality, QWidget* parent, const bool centerOnParent,
-                                                 const bool disableParentWhenSpinning)
-: QWidget(parent, Qt::Dialog | Qt::FramelessWindowHint), m_centerOnParent(centerOnParent), m_disableParentWhenSpinning(disableParentWhenSpinning) {
-	initialize();
+CUVMaterialWatingWidgetPrivate::~CUVMaterialWatingWidgetPrivate() = default;
 
-	setWindowModality(modality);
-	setAttribute(Qt::WA_TranslucentBackground);
-}
+void CUVMaterialWatingWidgetPrivate::rotate() {
+	Q_Q(CUVMaterialWatingWidget);
 
-void CUVMaterialWatingWidget::initialize() {
-	m_color = Qt::black;
-	m_fontSize = 12;
-	m_textColor = Qt::black;
-	m_roundness = 100.0;
-	m_minimumTrailOpacity = 3.14159265358979323846;
-	m_trailFadePercentage = 80.0;
-	m_revolutionsPerSecond = 1.57079632679489661923;
-	m_numberOfLines = 20;
-	m_lineLength = 10;
-	m_lineWidth = 2;
-	m_innerRadius = 10;
-	m_currentCounter = 0;
-	m_isSpinning = false;
-	m_textPosition = TextPosition::Bottom;
-
-	m_timer = new QTimer(this);
-	connect(m_timer, &QTimer::timeout, this, &CUVMaterialWatingWidget::rotate);
-	updateSize();
-	updateTimer();
-	hide();
-}
-
-void CUVMaterialWatingWidget::paintEvent(QPaintEvent*) {
-	updatePosition();
-	QPainter painter(this);
-	painter.fillRect(this->rect(), Qt::transparent);
-	painter.setRenderHint(QPainter::Antialiasing, true);
-
-	if (m_currentCounter >= m_numberOfLines) {
-		m_currentCounter = 0;
+	++currentCounter;
+	if (currentCounter >= numberOfLines) {
+		currentCounter = 0;
 	}
-
-	const int centerX = width() / 2;
-	int centerY;
-	if (m_textPosition == TextPosition::Bottom) {
-		centerY = (height() - m_textHeight - 10) / 2;
-	} else { // TextPosition::Top
-		centerY = (height() + m_textHeight + 20) / 2;
-	}
-
-	painter.setPen(Qt::NoPen);
-	for (int i = 0; i < m_numberOfLines; ++i) {
-		painter.save();
-		painter.translate(centerX, centerY);
-		const qreal rotateAngle = static_cast<qreal>(360 * i) / static_cast<qreal>(m_numberOfLines);
-		painter.rotate(rotateAngle);
-		painter.translate(m_innerRadius, 0);
-		const int distance = lineCountDistanceFromPrimary(i, m_currentCounter, m_numberOfLines);
-		QColor color = currentLineColor(distance, m_numberOfLines, m_trailFadePercentage, m_minimumTrailOpacity, m_color);
-		painter.setBrush(color);
-		painter.drawRoundedRect(QRect(0, -m_lineWidth / 2, m_lineLength, m_lineWidth), m_roundness, m_roundness, Qt::RelativeSize);
-		painter.restore();
-	}
-
-	// draw text
-	if (!m_text.isEmpty()) {
-		QFont font = painter.font();
-		font.setPointSize(m_fontSize);
-		painter.setFont(font);
-		painter.setPen(m_textColor);
-
-		const int x = (width() - m_textWidth) / 2;
-		int y;
-		if (m_textPosition == TextPosition::Bottom) {
-			y = height() - 10;
-		} else { // TextPosition::Top
-			y = 10 + m_textHeight;
-		}
-
-		painter.drawText(x, y, m_text);
-	}
+	q->update();
 }
 
-void CUVMaterialWatingWidget::start() {
-	updatePosition();
-	m_isSpinning = true;
-	show();
-
-	if (parentWidget() && m_disableParentWhenSpinning) {
-		parentWidget()->setEnabled(false);
-	}
-
-	if (!m_timer->isActive()) {
-		m_timer->start();
-		m_currentCounter = 0;
-	}
-}
-
-void CUVMaterialWatingWidget::stop() {
-	m_isSpinning = false;
-	hide();
-
-	if (parentWidget() && m_disableParentWhenSpinning) {
-		parentWidget()->setEnabled(true);
-	}
-
-	if (m_timer->isActive()) {
-		m_timer->stop();
-		m_currentCounter = 0;
-	}
-}
-
-void CUVMaterialWatingWidget::setNumberOfLines(const int lines) {
-	m_numberOfLines = lines;
-	m_currentCounter = 0;
-	updateTimer();
-}
-
-void CUVMaterialWatingWidget::setLineLength(const int length) {
-	m_lineLength = length;
-	updateSize();
-}
-
-void CUVMaterialWatingWidget::setLineWidth(const int width) {
-	m_lineWidth = width;
-	updateSize();
-}
-
-void CUVMaterialWatingWidget::setInnerRadius(const int radius) {
-	m_innerRadius = radius;
-	updateSize();
-}
-
-void CUVMaterialWatingWidget::setText(const QString& text) {
-	m_text = text;
-	updateSize();
-}
-
-void CUVMaterialWatingWidget::setTextColor(const QColor& color) {
-	m_textColor = color;
-}
-
-void CUVMaterialWatingWidget::setFontSize(const int size) {
-	m_fontSize = size;
-	updateSize();
-}
-
-void CUVMaterialWatingWidget::setTextPosition(const TextPosition& position) {
-	m_textPosition = position;
-}
-
-QColor CUVMaterialWatingWidget::color() {
-	return m_color;
-}
-
-qreal CUVMaterialWatingWidget::roundness() const {
-	return m_roundness;
-}
-
-qreal CUVMaterialWatingWidget::minimumTrailOpacity() const {
-	return m_minimumTrailOpacity;
-}
-
-qreal CUVMaterialWatingWidget::trailFadePercentage() const {
-	return m_trailFadePercentage;
-}
-
-qreal CUVMaterialWatingWidget::revolutionsPersSecond() const {
-	return m_revolutionsPerSecond;
-}
-
-int CUVMaterialWatingWidget::numberOfLines() const {
-	return m_numberOfLines;
-}
-
-int CUVMaterialWatingWidget::lineLength() const {
-	return m_lineLength;
-}
-
-int CUVMaterialWatingWidget::lineWidth() const {
-	return m_lineWidth;
-}
-
-int CUVMaterialWatingWidget::innerRadius() const {
-	return m_innerRadius;
-}
-
-QString CUVMaterialWatingWidget::text() const {
-	return m_text;
-}
-
-QColor CUVMaterialWatingWidget::textColor() const {
-	return m_textColor;
-}
-
-int CUVMaterialWatingWidget::fontSize() const {
-	return m_fontSize;
-}
-
-bool CUVMaterialWatingWidget::isSpinning() const {
-	return m_isSpinning;
-}
-
-CUVMaterialWatingWidget::TextPosition CUVMaterialWatingWidget::textPosition() const {
-	return m_textPosition;
-}
-
-void CUVMaterialWatingWidget::setRoundness(const qreal roundness) {
-	m_roundness = std::max(0.0, std::min(100.0, roundness));
-}
-
-void CUVMaterialWatingWidget::setColor(const QColor& color) {
-	m_color = color;
-}
-
-void CUVMaterialWatingWidget::setRevolutionsPerSecond(const qreal revolutionsPerSecond) {
-	m_revolutionsPerSecond = revolutionsPerSecond;
-	updateTimer();
-}
-
-void CUVMaterialWatingWidget::setTrailFadePercentage(const qreal trail) {
-	m_trailFadePercentage = trail;
-}
-
-void CUVMaterialWatingWidget::setMinimumTrailOpacity(const qreal minimumTrailOpacity) {
-	m_minimumTrailOpacity = minimumTrailOpacity;
-}
-
-void CUVMaterialWatingWidget::rotate() {
-	++m_currentCounter;
-	if (m_currentCounter >= m_numberOfLines) {
-		m_currentCounter = 0;
-	}
-	update();
-}
-
-void CUVMaterialWatingWidget::updateSize() {
-	QFont font;
-	font.setPointSize(m_fontSize);
-	const QFontMetrics metrics(font);
-	m_textHeight = metrics.height();
-	m_textWidth = metrics.horizontalAdvance(m_text);
-	const int spinnerSize = (m_innerRadius + m_lineLength) * 2;
-	const int width = std::max(spinnerSize, m_textWidth + 20); // 确保窗口宽度足够
-	const int height = spinnerSize + m_textHeight + 20;        // 增加文本高度和10像素间距
-	setFixedSize(width, height);
-}
-
-void CUVMaterialWatingWidget::updateTimer() const {
-	m_timer->setInterval(1000 / (m_numberOfLines * m_revolutionsPerSecond)); // NOLINT
-}
-
-void CUVMaterialWatingWidget::updatePosition() {
-	if (parentWidget() && m_centerOnParent) {
-		move(parentWidget()->width() / 2 - width() / 2, parentWidget()->height() / 2 - height() / 2);
-	}
-}
-
-int CUVMaterialWatingWidget::lineCountDistanceFromPrimary(const int current, const int primary, const int totalNrOfLines) {
+int CUVMaterialWatingWidgetPrivate::lineCountDistanceFromPrimary(const int current, const int primary, const int totalNrOfLines) {
 	int distance = primary - current;
 	if (distance < 0) {
 		distance += totalNrOfLines;
@@ -276,8 +34,8 @@ int CUVMaterialWatingWidget::lineCountDistanceFromPrimary(const int current, con
 	return distance;
 }
 
-QColor CUVMaterialWatingWidget::currentLineColor(const int distance, const int totalNrOfLines, const qreal trailFadePerc,
-                                                 const qreal minOpacity, QColor color) {
+QColor CUVMaterialWatingWidgetPrivate::currentLineColor(const int distance, const int totalNrOfLines, const qreal trailFadePerc,
+                                                        const qreal minOpacity, QColor color) {
 	if (distance == 0) {
 		return color;
 	}
@@ -294,4 +52,335 @@ QColor CUVMaterialWatingWidget::currentLineColor(const int distance, const int t
 		color.setAlphaF(resultAlpha);
 	}
 	return color;
+}
+
+void CUVMaterialWatingWidgetPrivate::initialize() {
+	Q_Q(CUVMaterialWatingWidget);
+
+	color = Qt::black;
+	fontSize = 12;
+	textColor = Qt::black;
+	roundness = 100.0;
+	minimumTrailOpacity = 3.14159265358979323846;
+	trailFadePercentage = 80.0;
+	revolutionsPerSecond = 1.57079632679489661923;
+	numberOfLines = 20;
+	lineLength = 10;
+	lineWidth = 2;
+	innerRadius = 10;
+	currentCounter = 0;
+	isSpinning = false;
+	textPosition = CUVMaterialWatingWidget::Bottom;
+
+	timer = new QTimer(q);
+	QObject::connect(timer, &QTimer::timeout, this, &CUVMaterialWatingWidgetPrivate::rotate);
+	updateSize();
+	updateTimer();
+	q->hide();
+}
+
+void CUVMaterialWatingWidgetPrivate::updateSize() {
+	Q_Q(CUVMaterialWatingWidget);
+
+	QFont font;
+	font.setPointSize(fontSize);
+	const QFontMetrics metrics(font);
+	textHeight = metrics.height();
+	textWidth = metrics.horizontalAdvance(text);
+	const int spinnerSize = (innerRadius + lineLength) * 2;
+	const int width = std::max(spinnerSize, textWidth + 20); // 确保窗口宽度足够
+	const int height = spinnerSize + textHeight + 20;        // 增加文本高度和10像素间距
+	q->setFixedSize(width, height);
+}
+
+void CUVMaterialWatingWidgetPrivate::updateTimer() const {
+	timer->setInterval(1000 / (numberOfLines * revolutionsPerSecond)); // NOLINT
+}
+
+void CUVMaterialWatingWidgetPrivate::updatePosition() {
+	Q_Q(CUVMaterialWatingWidget);
+
+	if (q->parentWidget() && centerOnParent) {
+		q->move(q->parentWidget()->width() / 2 - q->width() / 2, q->parentWidget()->height() / 2 - q->height() / 2);
+	}
+}
+
+/*!
+ *  \CUVMaterialWatingWidget
+ */
+CUVMaterialWatingWidget::CUVMaterialWatingWidget(QWidget* parent, const bool centerOnParent, const bool disableParentWhenSpinning)
+: QWidget(parent), d_ptr(new CUVMaterialWatingWidgetPrivate(this)) {
+	d_func()->initialize();
+	d_ptr->centerOnParent = centerOnParent;
+	d_ptr->disableParentWhenSpinning = disableParentWhenSpinning;
+}
+
+CUVMaterialWatingWidget::CUVMaterialWatingWidget(const Qt::WindowModality modality, QWidget* parent, const bool centerOnParent,
+                                                 const bool disableParentWhenSpinning)
+: QWidget(parent, Qt::Dialog | Qt::FramelessWindowHint), d_ptr(new CUVMaterialWatingWidgetPrivate(this)) {
+	d_func()->initialize();
+	d_ptr->centerOnParent = centerOnParent;
+	d_ptr->disableParentWhenSpinning = disableParentWhenSpinning;
+
+	setWindowModality(modality);
+	setAttribute(Qt::WA_TranslucentBackground);
+}
+
+CUVMaterialWatingWidget::~CUVMaterialWatingWidget() = default;
+
+void CUVMaterialWatingWidget::paintEvent(QPaintEvent*) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->updatePosition();
+	QPainter painter(this);
+	painter.fillRect(this->rect(), Qt::transparent);
+	painter.setRenderHint(QPainter::Antialiasing, true);
+
+	if (d->currentCounter >= d->numberOfLines) {
+		d->currentCounter = 0;
+	}
+
+	const int centerX = width() / 2;
+	int centerY;
+	if (d->textPosition == TextPosition::Bottom) {
+		centerY = (height() - d->textHeight - 10) / 2;
+	} else { // TextPosition::Top
+		centerY = (height() + d->textHeight + 20) / 2;
+	}
+
+	painter.setPen(Qt::NoPen);
+	for (int i = 0; i < d->numberOfLines; ++i) {
+		painter.save();
+		painter.translate(centerX, centerY);
+		const qreal rotateAngle = static_cast<qreal>(360 * i) / static_cast<qreal>(d->numberOfLines);
+		painter.rotate(rotateAngle);
+		painter.translate(d->innerRadius, 0);
+		const int distance = CUVMaterialWatingWidgetPrivate::lineCountDistanceFromPrimary(i, d->currentCounter, d->numberOfLines);
+		QColor color = CUVMaterialWatingWidgetPrivate::currentLineColor(distance, d->numberOfLines, d->trailFadePercentage,
+		                                                                d->minimumTrailOpacity, d->color);
+		painter.setBrush(color);
+		painter.drawRoundedRect(QRect(0, -d->lineWidth / 2, d->lineLength, d->lineWidth), d->roundness, d->roundness, Qt::RelativeSize);
+		painter.restore();
+	}
+
+	// draw text
+	if (!d->text.isEmpty()) {
+		QFont font = painter.font();
+		font.setPointSize(d->fontSize);
+		painter.setFont(font);
+		painter.setPen(d->textColor);
+
+		const int x = (width() - d->textWidth) / 2;
+		int y;
+		if (d->textPosition == TextPosition::Bottom) {
+			y = height() - 10;
+		} else { // TextPosition::Top
+			y = 10 + d->textHeight;
+		}
+
+		painter.drawText(x, y, d->text);
+	}
+}
+
+void CUVMaterialWatingWidget::start() {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->updatePosition();
+	d->isSpinning = true;
+	show();
+
+	if (parentWidget() && d->disableParentWhenSpinning) {
+		parentWidget()->setEnabled(false);
+	}
+
+	if (!d->timer->isActive()) {
+		d->timer->start();
+		d->currentCounter = 0;
+	}
+}
+
+void CUVMaterialWatingWidget::stop() {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->isSpinning = false;
+	hide();
+
+	if (parentWidget() && d->disableParentWhenSpinning) {
+		parentWidget()->setEnabled(true);
+	}
+
+	if (d->timer->isActive()) {
+		d->timer->stop();
+		d->currentCounter = 0;
+	}
+}
+
+void CUVMaterialWatingWidget::setNumberOfLines(const int lines) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->numberOfLines = lines;
+	d->currentCounter = 0;
+	d->updateTimer();
+}
+
+void CUVMaterialWatingWidget::setLineLength(const int length) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->lineLength = length;
+	d->updateSize();
+}
+
+void CUVMaterialWatingWidget::setLineWidth(const int width) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->lineWidth = width;
+	d->updateSize();
+}
+
+void CUVMaterialWatingWidget::setInnerRadius(const int radius) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->innerRadius = radius;
+	d->updateSize();
+}
+
+void CUVMaterialWatingWidget::setText(const QString& text) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->text = text;
+	d->updateSize();
+}
+
+void CUVMaterialWatingWidget::setTextColor(const QColor& color) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->textColor = color;
+}
+
+void CUVMaterialWatingWidget::setFontSize(const int size) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->fontSize = size;
+	d->updateSize();
+}
+
+void CUVMaterialWatingWidget::setTextPosition(const TextPosition& position) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->textPosition = position;
+}
+
+QColor CUVMaterialWatingWidget::color() {
+	Q_D(CUVMaterialWatingWidget);
+
+	return d->color;
+}
+
+qreal CUVMaterialWatingWidget::roundness() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->roundness;
+}
+
+qreal CUVMaterialWatingWidget::minimumTrailOpacity() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->minimumTrailOpacity;
+}
+
+qreal CUVMaterialWatingWidget::trailFadePercentage() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->trailFadePercentage;
+}
+
+qreal CUVMaterialWatingWidget::revolutionsPersSecond() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->revolutionsPerSecond;
+}
+
+int CUVMaterialWatingWidget::numberOfLines() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->numberOfLines;
+}
+
+int CUVMaterialWatingWidget::lineLength() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->lineLength;
+}
+
+int CUVMaterialWatingWidget::lineWidth() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->lineWidth;
+}
+
+int CUVMaterialWatingWidget::innerRadius() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->innerRadius;
+}
+
+QString CUVMaterialWatingWidget::text() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->text;
+}
+
+QColor CUVMaterialWatingWidget::textColor() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->textColor;
+}
+
+int CUVMaterialWatingWidget::fontSize() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->fontSize;
+}
+
+bool CUVMaterialWatingWidget::isSpinning() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->isSpinning;
+}
+
+CUVMaterialWatingWidget::TextPosition CUVMaterialWatingWidget::textPosition() const {
+	Q_D(const CUVMaterialWatingWidget);
+
+	return d->textPosition;
+}
+
+void CUVMaterialWatingWidget::setRoundness(const qreal roundness) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->roundness = std::max(0.0, std::min(100.0, roundness));
+}
+
+void CUVMaterialWatingWidget::setColor(const QColor& color) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->color = color;
+}
+
+void CUVMaterialWatingWidget::setRevolutionsPerSecond(const qreal revolutionsPerSecond) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->revolutionsPerSecond = revolutionsPerSecond;
+	d->updateTimer();
+}
+
+void CUVMaterialWatingWidget::setTrailFadePercentage(const qreal trail) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->trailFadePercentage = trail;
+}
+
+void CUVMaterialWatingWidget::setMinimumTrailOpacity(const qreal minimumTrailOpacity) {
+	Q_D(CUVMaterialWatingWidget);
+
+	d->minimumTrailOpacity = minimumTrailOpacity;
 }

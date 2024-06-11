@@ -1,20 +1,66 @@
 ﻿#include "uvswitchbutton.hpp"
 
 #include <QDebug>
-#include <QPainter>
 #include <QPainterPath>
 #include <QTimer>
 
-CUVSwitchButton::CUVSwitchButton(QWidget* parent) : QWidget(parent) {
-	init();
+#include "uvswitchbutton_p.hpp"
+
+/*!
+ *  \CUVMaterialTabsPrivate
+ *  \internal
+ */
+CUVSwitchButtonPrivate::CUVSwitchButtonPrivate(CUVSwitchButton* q): q_ptr(q) {
 }
 
-void CUVSwitchButton::drawBackGround(QPainter* painter) const {
+CUVSwitchButtonPrivate::~CUVSwitchButtonPrivate() = default;
+
+void CUVSwitchButtonPrivate::init() {
+	Q_Q(CUVSwitchButton);
+
+	spaceSlider = 2;
+	radius = 5;
+	spaceText = 15;
+	checked = false;
+	showText = true;
+	animation = true;
+
+	bgColorOn = qRgb(82, 164, 255);
+	bgColorOff = qRgb(170, 170, 170);
+
+	sliderColorOn = Qt::white;
+	sliderColorOff = Qt::white;
+
+	textColorOn = qRgb(51, 145, 255);
+	textColorOff = qRgb(91, 91, 91);
+
+	textOn = QObject::tr("Open");
+	textOff = QObject::tr("Close");
+	fontSize = 10;
+	fontBold = false;
+
+	textPostion = CUVSwitchButton::TextPosition::Right;
+
+	step = 0;
+	startX = 0;
+	endX = 0;
+
+	timer = new QTimer(q);
+	timer->setInterval(30);
+	QObject::connect(timer, &QTimer::timeout, this, &CUVSwitchButtonPrivate::updateValue);
+
+	const int width = textPostion == CUVSwitchButton::TextPosition::Center ? 50 : 110;
+	q->resize(width, 25);
+}
+
+void CUVSwitchButtonPrivate::drawBackGround(QPainter* painter) const {
+	Q_Q(const CUVSwitchButton);
+
 	painter->save();
 	painter->setPen(Qt::NoPen);
 
-	QColor bgColor = m_checked ? m_bgColorOn : m_bgColorOff;
-	if (isEnabled()) {
+	QColor bgColor = checked ? bgColorOn : bgColorOff;
+	if (q->isEnabled()) {
 		bgColor.setAlpha(255);
 	}
 	painter->setBrush(bgColor);
@@ -25,11 +71,11 @@ void CUVSwitchButton::drawBackGround(QPainter* painter) const {
 	painter->restore();
 }
 
-void CUVSwitchButton::drawSlider(QPainter* painter) const {
+void CUVSwitchButtonPrivate::drawSlider(QPainter* painter) const {
 	painter->save();
 	painter->setPen(Qt::NoPen);
 
-	const QColor color = m_checked ? m_sliderColorOn : m_sliderColorOff;
+	const QColor color = checked ? sliderColorOn : sliderColorOff;
 
 	painter->setBrush(QBrush(color));
 
@@ -38,39 +84,52 @@ void CUVSwitchButton::drawSlider(QPainter* painter) const {
 	painter->restore();
 }
 
-void CUVSwitchButton::drawText(QPainter* painter) const {
+void CUVSwitchButtonPrivate::drawText(QPainter* painter) const {
 	painter->save();
 	painter->setPen(Qt::NoPen);
+
+	// 设置文字大小
+	QFont font = painter->font();
+	font.setPointSize(fontSize);
+	font.setBold(fontBold);
+	painter->setFont(font);
+
 	// 绘制文本
-	if (m_showText) {
-		painter->setPen(m_checked ? QPen(m_textColorOn) : QPen(m_textColorOff));
-		painter->drawText(getTextRect(m_textPostion, m_checked), Qt::AlignCenter, m_checked ? m_textOn : m_textOff);
+	if (showText) {
+		painter->setPen(checked ? QPen(textColorOn) : QPen(textColorOff));
+		painter->drawText(getTextRect(textPostion, checked), Qt::AlignCenter, checked ? textOn : textOff);
 	}
 
 	painter->restore();
 }
 
-int CUVSwitchButton::getTextWidth() const {
-	if (m_showText) {
-		return std::max(fontMetrics().boundingRect(m_textOn).width(), fontMetrics().boundingRect(m_textOff).width()) + m_spaceText;
+int CUVSwitchButtonPrivate::getTextWidth() const {
+	Q_Q(const CUVSwitchButton);
+
+	if (showText) {
+		return std::max(q->fontMetrics().boundingRect(textOn).width(), q->fontMetrics().boundingRect(textOff).width()) + spaceText;
 	}
 	return 0;
 }
 
-QRect CUVSwitchButton::getBackgroundRect() const {
-	int x = 0, y = 0, w = width(), h = height();
-	if (m_textPostion == TextPosition::Right) {
+QRect CUVSwitchButtonPrivate::getBackgroundRect() const {
+	Q_Q(const CUVSwitchButton);
+
+	int x = 0, y = 0, w = q->width(), h = q->height();
+	if (textPostion == CUVSwitchButton::TextPosition::Right) {
 		w -= getTextWidth();
-	} else if (m_textPostion == TextPosition::Left) {
+	} else if (textPostion == CUVSwitchButton::TextPosition::Left) {
 		x += getTextWidth();
 		w -= getTextWidth();
 	}
 	return { x, y, w, h };
 }
 
-QPainterPath CUVSwitchButton::getBackgroundPath(const QRect& rect) const {
-	const int side = qMin(width(), height());
-	const int rightRectX = (m_textPostion == TextPosition::Left) ? rect.width() - side + getTextWidth() : rect.width() - side;
+QPainterPath CUVSwitchButtonPrivate::getBackgroundPath(const QRect& rect) const {
+	Q_Q(const CUVSwitchButton);
+
+	const int side = qMin(q->width(), q->height());
+	const int rightRectX = (textPostion == CUVSwitchButton::TextPosition::Left) ? rect.width() - side + getTextWidth() : rect.width() - side;
 
 	QPainterPath path1, path2, path3;
 	// 左侧半圆
@@ -78,300 +137,397 @@ QPainterPath CUVSwitchButton::getBackgroundPath(const QRect& rect) const {
 	// 右侧半圆
 	path2.addEllipse(rightRectX, rect.y(), side, side);
 	// 中间的矩形
-	path3.addRect(rect.x() + side / static_cast<qreal>(2), rect.y(), rect.width() - side, height());
+	path3.addRect(rect.x() + side / static_cast<qreal>(2), rect.y(), rect.width() - side, q->height());
 	return { path1 + path2 + path3 };
 }
 
-QRect CUVSwitchButton::getSliderRect() const {
-	int x = m_spaceSlider + m_startX;
-	if (m_textPostion == TextPosition::Left) {
+QRect CUVSwitchButtonPrivate::getSliderRect() const {
+	Q_Q(const CUVSwitchButton);
+
+	int x = spaceSlider + startX;
+	if (textPostion == CUVSwitchButton::TextPosition::Left) {
 		x += getTextWidth();
 	}
-	return { x, m_spaceSlider, qMin(width(), height() - m_spaceSlider * 2), qMin(width(), height()) - m_spaceSlider * 2 };
+	return { x, spaceSlider, qMin(q->width(), q->height() - spaceSlider * 2), qMin(q->width(), q->height()) - spaceSlider * 2 };
 }
 
-QRect CUVSwitchButton::getTextRect(const TextPosition& position, const bool isChecked) const {
-	const int sliderWidth = qMin(width(), height()) - m_spaceSlider * 2 - m_radius;
+QRect CUVSwitchButtonPrivate::getTextRect(const CUVSwitchButton::TextPosition& position, const bool isChecked) const {
+	Q_Q(const CUVSwitchButton);
+
+	const int sliderWidth = qMin(q->width(), q->height()) - spaceSlider * 2 - radius;
 	int x = isChecked ? 0 : sliderWidth;
-	int y = 0, w = width() - sliderWidth, h = height();
-	if (position == TextPosition::Right) {
-		x = width() - getTextWidth();
+	int y = 0, w = q->width() - sliderWidth, h = q->height();
+	if (position == CUVSwitchButton::TextPosition::Right) {
+		x = q->width() - getTextWidth();
 		w = getTextWidth();
-	} else if (position == TextPosition::Left) {
+	} else if (position == CUVSwitchButton::TextPosition::Left) {
 		x = 0;
 		w = getTextWidth();
 	}
 	return { x, y, w, h };
 }
 
-std::pair<int, int> CUVSwitchButton::getEndXandStep(const TextPosition& position) const {
+std::pair<int, int> CUVSwitchButtonPrivate::getEndXandStep(const CUVSwitchButton::TextPosition& position) const {
+	Q_Q(const CUVSwitchButton);
+
 	int endX{}, step{};
-	if (position == TextPosition::Center) {
-		step = width() / 10;
-		endX = width() - height();
+	if (position == CUVSwitchButton::TextPosition::Center) {
+		step = q->width() / 10;
+		endX = q->width() - q->height();
 	} else {
-		step = (width() - getTextWidth()) / 10;
-		endX = width() - height() - getTextWidth();
+		step = (q->width() - getTextWidth()) / 10;
+		endX = q->width() - q->height() - getTextWidth();
 	}
 	return { endX, step };
 }
 
-void CUVSwitchButton::paintEvent(QPaintEvent* ev) {
+void CUVSwitchButtonPrivate::updateValue() {
+	Q_Q(CUVSwitchButton);
+
+	if (checked) {
+		if (startX < endX) {
+			startX += step;
+		} else {
+			startX = endX;
+			timer->stop();
+		}
+	} else {
+		if (startX > endX) {
+			startX -= step;
+		} else {
+			startX = endX;
+			timer->stop();
+		}
+	}
+
+	q->update();
+}
+
+/*!
+ *  \CUVSwitchButton
+ */
+CUVSwitchButton::CUVSwitchButton(QWidget* parent): QWidget(parent), d_ptr(new CUVSwitchButtonPrivate(this)) {
+	d_func()->init();
+}
+
+CUVSwitchButton::~CUVSwitchButton() = default;
+
+void CUVSwitchButton::paintEvent(QPaintEvent* event) {
+	Q_D(CUVSwitchButton);
 	// 启用反锯齿
 	QPainter painter(this);
 	painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
 	// 绘制背景
-	drawBackGround(&painter);
+	d->drawBackGround(&painter);
 
 	// 绘制滑块
-	drawSlider(&painter);
+	d->drawSlider(&painter);
 
 	// 绘制文本
-	drawText(&painter);
+	d->drawText(&painter);
 }
 
-void CUVSwitchButton::mousePressEvent(QMouseEvent* ev) {
-	Q_UNUSED(ev)
+void CUVSwitchButton::mousePressEvent(QMouseEvent* event) {
+	Q_UNUSED(event)
 
-	m_checked = !m_checked;
-	emit statusChanged(m_checked);
+	Q_D(CUVSwitchButton);
 
-	auto [endX, step] = getEndXandStep(m_textPostion);
-	m_step = step;
+	d->checked = !d->checked;
+	emit statusChanged(d->checked);
+
+	auto [endX, step] = d->getEndXandStep(d->textPostion);
+	d->step = step;
 	// 计算滑块X轴终点坐标
-	if (m_checked) {
-		m_endX = endX;
+	if (d->checked) {
+		d->endX = endX;
 	} else {
-		m_endX = 0;
+		d->endX = 0;
 	}
 
 	// 判断是否使用动画
-	if (m_animation) {
-		m_timer->start();
+	if (d->animation) {
+		d->timer->start();
 	} else {
-		m_startX = m_endX;
+		d->startX = d->endX;
 		update();
 	}
 }
 
-void CUVSwitchButton::updateValue() {
-	if (m_checked) {
-		if (m_startX < m_endX) {
-			m_startX += m_step;
-		} else {
-			m_startX = m_endX;
-			m_timer->stop();
-		}
-	} else {
-		if (m_startX > m_endX) {
-			m_startX -= m_step;
-		} else {
-			m_startX = m_endX;
-			m_timer->stop();
-		}
-	}
+int CUVSwitchButton::spaceSlider() const {
+	Q_D(const CUVSwitchButton);
 
-	update();
+	return d->spaceSlider;
 }
 
-void CUVSwitchButton::init() {
-	m_spaceSlider = 2;
-	m_radius = 5;
-	m_spaceText = 15;
-	m_checked = false;
-	m_showText = true;
-	m_animation = true;
+int CUVSwitchButton::spaceText() const {
+	Q_D(const CUVSwitchButton);
 
-	m_bgColorOn = qRgb(82, 164, 255);
-	m_bgColorOff = qRgb(170, 170, 170);
-
-	m_sliderColorOn = Qt::white;
-	m_sliderColorOff = Qt::white;
-
-	m_textColorOn = qRgb(51, 145, 255);
-	m_textColorOff = qRgb(91, 91, 91);
-
-	m_textOn = tr("Open");
-	m_textOff = tr("Close");
-
-	m_textPostion = TextPosition::Right;
-
-	m_step = 0;
-	m_startX = 0;
-	m_endX = 0;
-
-	m_timer = new QTimer(this);
-	m_timer->setInterval(30);
-	connect(m_timer, &QTimer::timeout, this, &CUVSwitchButton::updateValue);
-
-	const int width = m_textPostion == TextPosition::Center ? 50 : 110;
-	this->resize(width, 25);
+	return d->spaceText;
 }
 
-int CUVSwitchButton::spaceSlider() const { return m_spaceSlider; }
+int CUVSwitchButton::radius() const {
+	Q_D(const CUVSwitchButton);
 
-int CUVSwitchButton::spaceText() const { return m_spaceText; }
+	return d->radius;
+}
 
-int CUVSwitchButton::radius() const { return m_radius; }
+bool CUVSwitchButton::showText() const {
+	Q_D(const CUVSwitchButton);
 
-bool CUVSwitchButton::checked() const { return m_checked; }
+	return d->showText;
+}
 
-bool CUVSwitchButton::showText() const { return m_showText; }
+bool CUVSwitchButton::showAnimation() const {
+	Q_D(const CUVSwitchButton);
 
-bool CUVSwitchButton::showCircel() const { return m_showCircle; }
+	return d->animation;
+}
 
-bool CUVSwitchButton::animation() const { return m_animation; }
+QColor CUVSwitchButton::bgColorOn() const {
+	Q_D(const CUVSwitchButton);
 
-QColor CUVSwitchButton::bgColorOn() const { return m_bgColorOn; }
+	return d->bgColorOn;
+}
 
-QColor CUVSwitchButton::bgColorOff() const { return m_bgColorOff; }
+QColor CUVSwitchButton::bgColorOff() const {
+	Q_D(const CUVSwitchButton);
 
-QColor CUVSwitchButton::sliderColorOn() const { return m_sliderColorOn; }
+	return d->bgColorOff;
+}
 
-QColor CUVSwitchButton::sliderColorOff() const { return m_sliderColorOff; }
+QColor CUVSwitchButton::sliderColorOn() const {
+	Q_D(const CUVSwitchButton);
 
-QColor CUVSwitchButton::textColorOn() const { return m_textColorOn; }
+	return d->sliderColorOn;
+}
 
-QColor CUVSwitchButton::textColorOff() const { return m_textColorOff; }
+QColor CUVSwitchButton::sliderColorOff() const {
+	Q_D(const CUVSwitchButton);
 
-QString CUVSwitchButton::textOn() const { return m_textOn; }
+	return d->sliderColorOff;
+}
 
-QString CUVSwitchButton::textOff() const { return m_textOff; }
+QColor CUVSwitchButton::textColorOn() const {
+	Q_D(const CUVSwitchButton);
 
-int CUVSwitchButton::step() const { return m_step; }
+	return d->textColorOn;
+}
 
-int CUVSwitchButton::startX() const { return m_startX; }
+QColor CUVSwitchButton::textColorOff() const {
+	Q_D(const CUVSwitchButton);
 
-int CUVSwitchButton::endX() const { return m_endX; }
+	return d->textColorOff;
+}
 
-void CUVSwitchButton::setSpaceSlider(const int space) {
-	if (m_spaceSlider != space) {
-		m_spaceSlider = space;
+QString CUVSwitchButton::textOn() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->textOn;
+}
+
+QString CUVSwitchButton::textOff() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->textOff;
+}
+
+void CUVSwitchButton::setFontSize(const int fontsize) {
+	Q_D(CUVSwitchButton);
+
+	d->fontSize = fontsize;
+}
+
+int CUVSwitchButton::fontSize() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->fontSize;
+}
+
+void CUVSwitchButton::setFontBold(const bool fontbold) {
+	Q_D(CUVSwitchButton);
+
+	d->fontBold = fontbold;
+}
+
+bool CUVSwitchButton::fontBold() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->fontBold;
+}
+
+int CUVSwitchButton::step() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->step;
+}
+
+int CUVSwitchButton::startX() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->startX;
+}
+
+int CUVSwitchButton::endX() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->endX;
+}
+
+void CUVSwitchButton::setSpaceSlider(const int spaceslider) {
+	Q_D(CUVSwitchButton);
+
+	if (d->spaceSlider != spaceslider) {
+		d->spaceSlider = spaceslider;
 		update();
 	}
 }
 
-void CUVSwitchButton::setSpaceText(const int space) {
-	if (m_spaceText != space) {
-		m_spaceText = space;
+void CUVSwitchButton::setSpaceText(const int spacetext) {
+	Q_D(CUVSwitchButton);
+
+	if (d->spaceText != spacetext) {
+		d->spaceText = spacetext;
 		update();
 	}
 }
 
 void CUVSwitchButton::setRadius(const int radius) {
-	if (m_radius != radius) {
-		m_radius = radius;
+	Q_D(CUVSwitchButton);
+
+	if (d->radius != radius) {
+		d->radius = radius;
 		update();
 	}
 }
 
 void CUVSwitchButton::setChecked(const bool checked) {
-	m_checked = checked;
-	emit statusChanged(m_checked);
+	Q_D(CUVSwitchButton);
 
-	auto [endX, step] = getEndXandStep(m_textPostion);
-	m_step = step;
+	d->checked = checked;
+	emit statusChanged(d->checked);
+
+	auto [endX, step] = d->getEndXandStep(d->textPostion);
+	d->step = step;
 	// 计算滑块X轴终点坐标
-	if (m_checked) {
-		m_endX = endX;
-		m_startX = m_endX;
+	if (d->checked) {
+		d->endX = endX;
+		d->startX = d->endX;
 	} else {
-		m_endX = 0;
-		m_startX = m_endX;
+		d->endX = 0;
+		d->startX = d->endX;
 	}
 
 	update();
 }
 
-void CUVSwitchButton::setShowText(const bool show) {
-	if (m_showText != show) {
-		m_showText = show;
+void CUVSwitchButton::setShowText(const bool showtext) {
+	Q_D(CUVSwitchButton);
+
+	if (d->showText != showtext) {
+		d->showText = showtext;
 		update();
 	}
 }
 
-void CUVSwitchButton::setShowCircle(const bool show) {
-	if (m_showCircle != show) {
-		m_showCircle = show;
-		update();
-	}
-}
+void CUVSwitchButton::setShowAnimation(const bool showanimation) {
+	Q_D(CUVSwitchButton);
 
-void CUVSwitchButton::setAnimation(const bool ok) {
-	if (m_animation != ok) {
-		m_animation = ok;
+	if (d->animation != showanimation) {
+		d->animation = showanimation;
 		update();
 	}
 }
 
 void CUVSwitchButton::setBgColorOn(const QColor& color) {
-	if (m_bgColorOn != color) {
-		m_bgColorOn = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->bgColorOn != color) {
+		d->bgColorOn = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setBgColorOff(const QColor& color) {
-	if (m_bgColorOff != color) {
-		m_bgColorOff = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->bgColorOff != color) {
+		d->bgColorOff = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setSliderColorOn(const QColor& color) {
-	if (m_sliderColorOn != color) {
-		m_sliderColorOn = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->sliderColorOn != color) {
+		d->sliderColorOn = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setSliderColorOff(const QColor& color) {
-	if (m_sliderColorOff != color) {
-		m_sliderColorOff = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->sliderColorOff != color) {
+		d->sliderColorOff = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setTextColorOn(const QColor& color) {
-	if (m_textColorOn != color) {
-		m_textColorOn = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->textColorOn != color) {
+		d->textColorOn = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setTextColorOff(const QColor& color) {
-	if (m_textColorOff != color) {
-		m_textColorOff = color;
+	Q_D(CUVSwitchButton);
+
+	if (d->textColorOff != color) {
+		d->textColorOff = color;
 		update();
 	}
 }
 
 void CUVSwitchButton::setTextOn(const QString& text) {
-	if (m_textOn != text) {
-		m_textOn = text;
+	Q_D(CUVSwitchButton);
+
+	if (d->textOn != text) {
+		d->textOn = text;
 		update();
 	}
 }
 
 void CUVSwitchButton::setTextOff(const QString& text) {
-	if (m_textOff != text) {
-		m_textOff = text;
+	Q_D(CUVSwitchButton);
+
+	if (d->textOff != text) {
+		d->textOff = text;
 		update();
 	}
-}
-
-void CUVSwitchButton::setTextShowInBtn(const bool show) {
-	m_showInCenter = show;
 }
 
 void CUVSwitchButton::setTextPosition(const CUVSwitchButton::TextPosition& position) {
-	if (m_textPostion != position) {
-		m_textPostion = position;
+	Q_D(CUVSwitchButton);
+
+	if (d->textPostion != position) {
+		d->textPostion = position;
 		update();
 	}
 }
 
-bool CUVSwitchButton::status() const { return m_checked; }
+bool CUVSwitchButton::isChecked() const {
+	Q_D(const CUVSwitchButton);
 
-CUVSwitchButton::TextPosition CUVSwitchButton::textPosition() const { return m_textPostion; }
+	return d->checked;
+}
+
+CUVSwitchButton::TextPosition CUVSwitchButton::textPosition() const {
+	Q_D(const CUVSwitchButton);
+
+	return d->textPostion;
+}
