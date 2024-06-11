@@ -1,8 +1,8 @@
-# uv-materialwidgets [![Language](https://img.shields.io/badge/language-c++-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git) [![Language](https://img.shields.io/badge/language-cmake-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git)
+ï»¿# uv-materialwidgets [![Language](https://img.shields.io/badge/language-c++-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git) [![Language](https://img.shields.io/badge/language-cmake-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git)
 
-[English](../README.md) | [¼òÌåÖĞÎÄ](README.cn.md)
+[English](../README.md) | [ç®€ä½“ä¸­æ–‡](README.cn.md)
 
-| Ãû³Æ                         |  °æ±¾   |                    Íê³É×´Ì¬                    |
+| åç§°                         |  ç‰ˆæœ¬   |                    å®ŒæˆçŠ¶æ€                    |
 |:---------------------------|:-----:|:------------------------------------------:|
 | uvmaterialappbar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialavatar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
@@ -25,7 +25,7 @@
 | uvmaterialwaitingwidget    | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 
 
-|                           Ğ§¹û                           |             Ãû³Æ             |  °æ±¾   |
+|                           æ•ˆæœ                           |             åç§°             |  ç‰ˆæœ¬   |
 |:------------------------------------------------------:|:--------------------------:|:-----:|
 |      ![appbar](resource/gif/uvmaterialappbar.gif)      |      uvmaterialappbar      | 1.0.0 |
 |      ![appbar](resource/gif/uvmaterialavatar.gif)      |      uvmaterialavatar      | 1.0.0 |

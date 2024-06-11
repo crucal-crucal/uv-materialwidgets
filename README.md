@@ -1,6 +1,6 @@
-# uv-materialwidgets [![Language](https://img.shields.io/badge/language-c++-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git) [![Language](https://img.shields.io/badge/language-cmake-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git)
+ï»¿# uv-materialwidgets [![Language](https://img.shields.io/badge/language-c++-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git) [![Language](https://img.shields.io/badge/language-cmake-brightgreen.svg)](https://github.com/crucal-crucal/uv-materialwidgets.git)
 
-[English](README.md) | [¼òÌåÖÐÎÄ](doc/README.cn.md)
+[English](README.md) | [ç®€ä½“ä¸­æ–‡](doc/README.cn.md)
 
 | name                       | version |                 Complete state                 |
 |:---------------------------|:-------:|:----------------------------------------------:|
