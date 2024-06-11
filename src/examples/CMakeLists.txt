@@ -36,6 +36,7 @@ target_link_libraries(${TARGET_NAME}
         uvtabssettingseditor
         uvtogglesettingseditor
         uvwatingwidgeteditor
+        uvswitchbtnsettingseditor
 )
 
 install(TARGETS ${TARGET_NAME}
@@ -58,6 +59,7 @@ add_subdirectory(uvradiobuttonsettingseditor)
 add_subdirectory(uvscrollbarsettingseditor)
 add_subdirectory(uvslidersettingseditor)
 add_subdirectory(uvsnackbarsettingseditor)
+add_subdirectory(uvswitchbtnsettingseditor)
 add_subdirectory(uvtabssettingseditor)
 add_subdirectory(uvtogglesettingseditor)
 add_subdirectory(uvwatingwidgetsettingseditor)

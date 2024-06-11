@@ -34,6 +34,7 @@ void MainWidget::createCtrl() {
 	m_pTabsSettingsEditor = new CUVTabsSettingsEditor(this);
 	m_pToggleSettingsEditor = new CUVToggleSettingsEditor(this);
 	m_pWatingWidgetSettingsEditor = new CUVWatingWidgetSettingsEditor(this);
+	m_pSwitchBtnSettingsEditor = new CUVSwitchBtnSettingsEditor(this);
 
 	m_pHBoxLayout = new QHBoxLayout;
 	m_pStackedLayout = new QStackedLayout;
@@ -65,6 +66,7 @@ void MainWidget::customLayout() const {
 	m_pStackedLayout->addWidget(m_pSnackBarSettingsEditor);
 	m_pStackedLayout->addWidget(m_pTabsSettingsEditor);
 	m_pStackedLayout->addWidget(m_pToggleSettingsEditor);
+	m_pStackedLayout->addWidget(m_pSwitchBtnSettingsEditor);
 }
 
 void MainWidget::initConnection() {
@@ -95,6 +97,7 @@ void MainWidget::initData() const {
 	m_pListWidget->addItem("Snackbar");
 	m_pListWidget->addItem("Tabs");
 	m_pListWidget->addItem("Toggle");
+	m_pListWidget->addItem("Switch Button");
 
 	m_pListWidget->setCurrentRow(0);
 }

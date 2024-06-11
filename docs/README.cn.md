@@ -23,6 +23,7 @@
 | uvmaterialtextfield        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialtoggle           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialwaitingwidget    | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
+| uvmaterialswitchbtn        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 
 
 |                           效果                           |             名称             |  版本   |
@@ -46,6 +47,7 @@
 |    ![appbar](resource/gif/uvmaterialtextfield.gif)     |    uvmaterialtextfield     | 1.0.0 |
 |      ![appbar](resource/gif/uvmaterialtoggle.gif)      |      uvmaterialtoggle      | 1.0.0 |
 |  ![appbar](resource/gif/uvmaterialwaitingwidget.gif)   |  uvmaterialwaitingwidget   | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialswitchbtn.gif)     |    uvmaterialswitchbtn     | 1.0.0 |
 
 # 构建
 ```
