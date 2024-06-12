@@ -14,7 +14,11 @@ int main(int argc, char* argv[]) {
 	// 将路径切换到上级目录
 	const QString appParPath = appFile.absolutePath();
 	const QString strRcc = appParPath + "/resources.rcc";
-	qInfo(loadResources(strRcc) ? "load resources success" : "load resources failed");
+	if (loadResources(strRcc)) {
+		qInfo() << "load resources success";
+	} else {
+		qInfo() << "load resources failed";
+	}
 
 	MainWidget mainWidget;
 	QObject::connect(&mainWidget, &MainWidget::destroyed, [&]() {

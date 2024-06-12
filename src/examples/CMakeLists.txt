@@ -2,6 +2,12 @@
 
 setupQt()
 
+#add_definitions(-DQT_NO_DEBUG_OUTPUT)
+#add_definitions(-DQT_NO_INFO_OUTPUT)
+#add_definitions(-DQT_NO_WARNING_OUTPUT)
+#add_definitions(-DQT_NO_CRITICAL_OUTPUT)
+#add_definitions(-DQT_NO_FATAL_OUTPUT)
+
 include_directories(.)
 include_directories(../components)
 
