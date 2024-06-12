@@ -13,6 +13,7 @@ class CUVMaterialCheckable;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialCheckableIcon final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialCheckableIcon)
 
 	Q_PROPERTY(QColor color READ color WRITE setColor)
 	Q_PROPERTY(qreal iconSize READ iconSize WRITE setIconSize)
@@ -40,13 +41,11 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialCheckableIcon)
-
-	CUVMaterialCheckable* const m_checkable;
-	QColor m_color;
-	QIcon m_icon;
-	qreal m_iconSize;
-	qreal m_opacity;
+	CUVMaterialCheckable* const m_checkable{ nullptr };
+	QColor m_color{};
+	QIcon m_icon{};
+	qreal m_iconSize{};
+	qreal m_opacity{};
 };
 
 inline void CUVMaterialCheckableIcon::setIcon(const QIcon& icon) {

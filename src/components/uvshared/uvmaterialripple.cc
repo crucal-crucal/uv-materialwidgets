@@ -5,7 +5,6 @@
 /*!
  *  \class CUVMaterialRipple
  */
-
 CUVMaterialRipple::CUVMaterialRipple(const QPoint& center, QObject* parent)
 : QParallelAnimationGroup(parent), m_overlay(nullptr), m_radiusAnimation(animate("radius")), m_opacityAnimation(animate("opacity")),
   m_radius(0), m_opacity(0), m_center(center) {
@@ -57,6 +56,35 @@ void CUVMaterialRipple::setBrush(const QBrush& brush) {
 	if (m_overlay) {
 		m_overlay->update();
 	}
+}
+
+QPropertyAnimation* CUVMaterialRipple::radiusAnimation() const {
+	return m_radiusAnimation;
+}
+
+QPropertyAnimation* CUVMaterialRipple::opacityAnimation() const {
+	return m_opacityAnimation;
+}
+
+void CUVMaterialRipple::setOpacityStartValue(const qreal value) const {
+	m_opacityAnimation->setStartValue(value);
+}
+
+void CUVMaterialRipple::setOpacityEndValue(const qreal value) const {
+	m_opacityAnimation->setEndValue(value);
+}
+
+void CUVMaterialRipple::setRadiusStartValue(const qreal value) const {
+	m_radiusAnimation->setStartValue(value);
+}
+
+void CUVMaterialRipple::setRadiusEndValue(const qreal value) const {
+	m_radiusAnimation->setEndValue(value);
+}
+
+void CUVMaterialRipple::setDuration(const int msecs) const {
+	m_radiusAnimation->setDuration(msecs);
+	m_opacityAnimation->setDuration(msecs);
 }
 
 void CUVMaterialRipple::destroy() {

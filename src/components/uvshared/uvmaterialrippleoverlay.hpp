@@ -14,6 +14,7 @@ class CUVMaterialRipple;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialRippleOverlay : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialRippleOverlay)
 
 public:
 	explicit CUVMaterialRippleOverlay(QWidget* parent = nullptr);
@@ -35,13 +36,11 @@ protected:
 	[[nodiscard]] inline QList<CUVMaterialRipple*> ripples() const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialRippleOverlay)
-
 	static void paintRipple(QPainter* painter, const CUVMaterialRipple* ripple);
 
-	QList<CUVMaterialRipple*> m_ripples;
-	QPainterPath m_clipPath;
-	bool m_useClip;
+	QList<CUVMaterialRipple*> m_ripples{ nullptr };
+	QPainterPath m_clipPath{};
+	bool m_useClip{};
 };
 
 inline void CUVMaterialRippleOverlay::setClipping(const bool enable) {

@@ -13,6 +13,7 @@
  */
 class CUVMATERIALSHARED_EXPORT CUVMaterialOverlayWidget : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialOverlayWidget)
 
 public:
 	explicit CUVMaterialOverlayWidget(QWidget* parent = nullptr);
@@ -23,7 +24,4 @@ protected:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
 	[[nodiscard]] virtual QRect overlayGeometry() const;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialOverlayWidget)
 };

@@ -12,6 +12,8 @@ class CUVMaterialCheckablePrivate;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialCheckable : public QAbstractButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialCheckable)
+	Q_DECLARE_PRIVATE(CUVMaterialCheckable)
 
 public:
 	enum LabelPosition {
@@ -58,9 +60,5 @@ protected:
 
 	virtual void setupProperties();
 
-	const QScopedPointer<CUVMaterialCheckablePrivate> d_ptr;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialCheckable)
-	Q_DECLARE_PRIVATE(CUVMaterialCheckable)
+	const QScopedPointer<CUVMaterialCheckablePrivate> d_ptr{ nullptr };
 };
