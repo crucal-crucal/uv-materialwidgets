@@ -436,7 +436,7 @@ void CUVMaterialFlatButton::mousePressEvent(QMouseEvent* event) {
 			radiusEndValue = static_cast<qreal>(width()) / 2;
 		}
 
-		auto* ripple = new CUVMaterialRipple(pos);
+		const auto ripple = new CUVMaterialRipple(pos);
 
 		ripple->setRadiusEndValue(radiusEndValue);
 		ripple->setOpacityStartValue(0.35);

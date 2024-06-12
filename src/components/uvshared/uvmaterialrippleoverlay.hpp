@@ -38,7 +38,7 @@ protected:
 private:
 	static void paintRipple(QPainter* painter, const CUVMaterialRipple* ripple);
 
-	QList<CUVMaterialRipple*> m_ripples{ nullptr };
+	QList<CUVMaterialRipple*> m_ripples{};
 	QPainterPath m_clipPath{};
 	bool m_useClip{};
 };

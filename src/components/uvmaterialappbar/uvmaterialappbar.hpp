@@ -14,7 +14,10 @@ class CUVMaterialAppBarPrivate;
 class CUVMATERIALAPPBAR_EXPORT CUVMaterialAppBar final : public QWidget {
 	Q_OBJECT
 	Q_DISABLE_COPY(CUVMaterialAppBar)
-	Q_DECLARE_PRIVATE(CUVMaterialAppBar)
+	 Q_DECLARE_PRIVATE(CUVMaterialAppBar)
+	//[[nodiscard]] inline CUVMaterialAppBarPrivate* d_func() { return reinterpret_cast<CUVMaterialAppBarPrivate*>(d_ptr.data()); }
+	//[[nodiscard]] inline const CUVMaterialAppBarPrivate* d_func() const { return reinterpret_cast<const CUVMaterialAppBarPrivate*>(d_ptr.data()); }
+	//friend class CUVMaterialAppBarPrivate;
 
 	Q_PROPERTY(QColor foregroundColor WRITE setForegroundColor READ foregroundColor)
 	Q_PROPERTY(QColor backgroundColor WRITE setBackgroundColor READ backgroundColor)
