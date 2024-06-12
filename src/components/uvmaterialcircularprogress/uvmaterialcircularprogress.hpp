@@ -14,6 +14,8 @@ class CUVMaterialCircularProgressPrivate;
 
 class CUVMATERIALCIRCULARPROGRESS_EXPORT CUVMaterialCircularProgress : public QProgressBar {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialCircularProgress)
+	Q_DECLARE_PRIVATE(CUVMaterialCircularProgress)
 
 	Q_PROPERTY(qreal lineWidth WRITE setLineWidth READ lineWidth)
 	Q_PROPERTY(int size WRITE setSize READ Size)
@@ -44,8 +46,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialCircularProgressPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialCircularProgress)
-	Q_DECLARE_PRIVATE(CUVMaterialCircularProgress)
 };

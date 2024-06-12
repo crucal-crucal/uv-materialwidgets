@@ -12,6 +12,8 @@ class CUVMaterialBadgePrivate;
 
 class CUVMATERIALBADGE_EXPORT CUVMaterialBadge final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialBadge)
+	Q_DECLARE_PRIVATE(CUVMaterialBadge)
 
 	Q_PROPERTY(QColor textColor WRITE setTextColor READ textColor)
 	Q_PROPERTY(QColor backgroundColor WRITE setBackgroundColor READ backgroundColor)
@@ -56,8 +58,4 @@ protected:
 	[[nodiscard]] int getDiameter() const;
 
 	const QScopedPointer<CUVMaterialBadgePrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialBadge)
-	Q_DECLARE_PRIVATE(CUVMaterialBadge)
 };

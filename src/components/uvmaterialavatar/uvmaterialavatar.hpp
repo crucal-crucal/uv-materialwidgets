@@ -14,6 +14,8 @@ class CUVMaterialAvatarPrivate;
 
 class CUVMATERIALAVATAR_EXPORT CUVMaterialAvatar final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialAvatar)
+	Q_DECLARE_PRIVATE(CUVMaterialAvatar)
 
 public:
 	explicit CUVMaterialAvatar(QWidget* parent = nullptr);
@@ -46,8 +48,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialAvatarPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialAvatar)
-	Q_DECLARE_PRIVATE(CUVMaterialAvatar)
 };

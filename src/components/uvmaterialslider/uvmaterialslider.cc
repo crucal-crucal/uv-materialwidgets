@@ -202,9 +202,6 @@ bool CUVMaterialSlider::pageStepMode() const {
 	return d->pageStepMode;
 }
 
-/*!
- *  \remip
- */
 QSize CUVMaterialSlider::minimumSizeHint() const {
 	return Qt::Horizontal == orientation() ? QSize(130, 34) : QSize(34, 130);
 }
@@ -215,9 +212,6 @@ void CUVMaterialSlider::setInvertedAppearance(const bool value) {
 	updateThumbOffset();
 }
 
-/*!
- *  \remip
- */
 void CUVMaterialSlider::sliderChange(const SliderChange change) {
 	Q_D(CUVMaterialSlider);
 
@@ -245,9 +239,6 @@ void CUVMaterialSlider::sliderChange(const SliderChange change) {
 	QAbstractSlider::sliderChange(change);
 }
 
-/*!
- *  \remip
- */
 void CUVMaterialSlider::mouseMoveEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialSlider);
 
@@ -273,9 +264,6 @@ void CUVMaterialSlider::mouseMoveEvent(QMouseEvent* event) {
 	QAbstractSlider::mouseMoveEvent(event);
 }
 
-/*!
- *  \remip
- */
 void CUVMaterialSlider::mousePressEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialSlider);
 
@@ -305,9 +293,6 @@ void CUVMaterialSlider::mousePressEvent(QMouseEvent* event) {
 	setRepeatAction(action, 400, 8);
 }
 
-/*!
- *  \remip
- */
 void CUVMaterialSlider::mouseReleaseEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialSlider);
 
@@ -321,9 +306,6 @@ void CUVMaterialSlider::mouseReleaseEvent(QMouseEvent* event) {
 	QAbstractSlider::mouseReleaseEvent(event);
 }
 
-/*!
- *  \remip
- */
 void CUVMaterialSlider::leaveEvent(QEvent* event) {
 	Q_D(CUVMaterialSlider);
 

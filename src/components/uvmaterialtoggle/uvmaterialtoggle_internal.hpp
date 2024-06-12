@@ -8,6 +8,7 @@ class CUVMaterialToggleTrack;
 
 class CUVMaterialToggleRippleOverlay final : public CUVMaterialRippleOverlay {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialToggleRippleOverlay)
 
 public:
 	CUVMaterialToggleRippleOverlay(CUVMaterialToggleThumb* thumb, CUVMaterialToggleTrack* track, CUVMaterialToggle* parent);
@@ -21,8 +22,6 @@ protected:
 	[[nodiscard]] QRect overlayGeometry() const override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialToggleRippleOverlay)
-
 	CUVMaterialToggle* const m_toggle;
 	CUVMaterialToggleThumb* const m_thumb;
 	CUVMaterialToggleTrack* const m_track;
@@ -30,6 +29,7 @@ private:
 
 class CUVMaterialToggleThumb final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialToggleThumb)
 
 	Q_PROPERTY(qreal shift WRITE setShift READ shift)
 	Q_PROPERTY(QColor thumbColor WRITE setThumbColor READ thumbColor)
@@ -51,14 +51,12 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialToggleThumb)
-
 	void updateOffset();
 
-	CUVMaterialToggle* const m_toggle;
-	QColor m_thumbColor;
-	qreal m_shift;
-	qreal m_offset;
+	CUVMaterialToggle* const m_toggle{ nullptr };
+	QColor m_thumbColor{};
+	qreal m_shift{};
+	qreal m_offset{};
 };
 
 inline qreal CUVMaterialToggleThumb::shift() const {
@@ -80,6 +78,7 @@ inline QColor CUVMaterialToggleThumb::thumbColor() const {
 
 class CUVMaterialToggleTrack final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialToggleTrack)
 
 	Q_PROPERTY(QColor trackColor WRITE setTrackColor READ trackColor)
 
@@ -95,10 +94,8 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialToggleTrack)
-
-	CUVMaterialToggle* const m_toggle;
-	QColor m_trackColor;
+	CUVMaterialToggle* const m_toggle{ nullptr };
+	QColor m_trackColor{};
 };
 
 inline QColor CUVMaterialToggleTrack::trackColor() const {

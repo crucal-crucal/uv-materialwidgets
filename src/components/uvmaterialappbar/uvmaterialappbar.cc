@@ -13,14 +13,8 @@
 CUVMaterialAppBarPrivate::CUVMaterialAppBarPrivate(CUVMaterialAppBar* q): q_ptr(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialAppBarPrivate::~CUVMaterialAppBarPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialAppBarPrivate::init() {
 	Q_Q(CUVMaterialAppBar);
 

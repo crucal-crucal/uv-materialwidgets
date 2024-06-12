@@ -157,9 +157,6 @@ QColor CUVMaterialCircularProgress::color() const {
 	}
 }
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialCircularProgress::sizeHint() const {
 	Q_D(const CUVMaterialCircularProgress);
 
@@ -167,9 +164,6 @@ QSize CUVMaterialCircularProgress::sizeHint() const {
 	return { static_cast<int>(s), static_cast<int>(s) };
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialCircularProgress::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

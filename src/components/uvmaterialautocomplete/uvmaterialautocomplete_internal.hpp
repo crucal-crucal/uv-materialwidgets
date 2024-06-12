@@ -5,6 +5,7 @@
 
 class CUVMaterialAutoCompleteStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialAutoCompleteStateMachine)
 
 public:
 	explicit CUVMaterialAutoCompleteStateMachine(QWidget* menu);
@@ -16,8 +17,6 @@ signals:
 	void shouldFade();
 
 private:
-	Q_DISABLE_COPY(CUVMaterialAutoCompleteStateMachine)
-
 	QWidget* const m_menu;
 	QState* const m_closedState;
 	QState* const m_openState;

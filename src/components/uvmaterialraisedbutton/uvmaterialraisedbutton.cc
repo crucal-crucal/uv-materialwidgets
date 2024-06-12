@@ -15,14 +15,8 @@ CUVMaterialRaisedButtonPrivate::CUVMaterialRaisedButtonPrivate(CUVMaterialRaised
 : CUVMaterialFlatButtonPrivate(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialRaisedButtonPrivate::~CUVMaterialRaisedButtonPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialRaisedButtonPrivate::init() {
 	Q_Q(CUVMaterialRaisedButton);
 

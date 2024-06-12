@@ -13,6 +13,7 @@ class CUVSwitchButtonPrivate;
 
 class CUVMATERIALSWITCHBTN_EXPORT CUVSwitchButton final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVSwitchButton)
 	Q_DECLARE_PRIVATE(CUVSwitchButton)
 
 	Q_PROPERTY(bool isChecked WRITE setChecked READ isChecked)
@@ -175,7 +176,4 @@ protected:
 	void mousePressEvent(QMouseEvent* event) override;
 
 	const QScopedPointer<CUVSwitchButtonPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVSwitchButton)
 };

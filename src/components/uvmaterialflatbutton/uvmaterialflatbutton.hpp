@@ -14,6 +14,9 @@ class CUVMaterialFlatButtonPrivate;
 
 class CUVMATERIALFLATBUTTON_EXPORT CUVMaterialFlatButton : public QPushButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialFlatButton)
+	Q_DECLARE_PRIVATE(CUVMaterialFlatButton)
+
 	Q_PROPERTY(QColor foregroundColor WRITE setForegroundColor READ foregroundColor)
 	Q_PROPERTY(QColor backgroundColor WRITE setBackgroundColor READ backgroundColor)
 	Q_PROPERTY(QColor overlayColor WRITE setOverlayColor READ overlayColor)
@@ -106,8 +109,4 @@ protected:
 	virtual void updateClipPath();
 
 	const QScopedPointer<CUVMaterialFlatButtonPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialFlatButton)
-	Q_DECLARE_PRIVATE(CUVMaterialFlatButton)
 };

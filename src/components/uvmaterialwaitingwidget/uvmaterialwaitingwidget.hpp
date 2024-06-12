@@ -14,6 +14,7 @@ class CUVMaterialWatingWidgetPrivate;
 
 class CUVMATERIALWAITINGWIDGET_EXPORT CUVMaterialWatingWidget final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialWatingWidget)
 	Q_DECLARE_PRIVATE(CUVMaterialWatingWidget)
 
 	Q_PROPERTY(QColor color WRITE setColor READ color)
@@ -134,7 +135,4 @@ protected:
 	void paintEvent(QPaintEvent* paintEvent) override;
 
 	const QScopedPointer<CUVMaterialWatingWidgetPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialWatingWidget)
 };

@@ -16,6 +16,8 @@ class CUVMaterialTab;
 
 class CUVMATERIALTABS_EXPORT CUVMaterialTabs final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTabs)
+	Q_DECLARE_PRIVATE(CUVMaterialTabs)
 
 public:
 	explicit CUVMaterialTabs(QWidget* parent = nullptr);
@@ -54,8 +56,4 @@ protected:
 	void updateTabs();
 
 	const QScopedPointer<CUVMaterialTabsPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialTabs)
-	Q_DECLARE_PRIVATE(CUVMaterialTabs)
 };

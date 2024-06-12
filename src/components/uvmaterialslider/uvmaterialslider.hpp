@@ -15,6 +15,8 @@ class CUVMaterialSliderPrivate;
 
 class CUVMATERIALSLIDER_EXPORT CUVMaterialSlider : public QAbstractSlider {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSlider)
+	Q_DECLARE_PRIVATE(CUVMaterialSlider)
 
 	Q_PROPERTY(QColor thumbColor WRITE setThumbColor READ thumbColor)
 	Q_PROPERTY(QColor trackColor WRITE setTrackColor READ trackColor)
@@ -53,8 +55,4 @@ protected:
 	void updateThumbOffset();
 
 	const QScopedPointer<CUVMaterialSliderPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialSlider)
-	Q_DECLARE_PRIVATE(CUVMaterialSlider)
 };

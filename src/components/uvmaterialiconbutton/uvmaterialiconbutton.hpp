@@ -12,6 +12,8 @@ class CUVMaterialIconButtonPrivate;
 
 class CUVMATERIALICONBUTTON_EXPORT CUVMaterialIconButton final : public QAbstractButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialIconButton)
+	Q_DECLARE_PRIVATE(CUVMaterialIconButton)
 
 public:
 	explicit CUVMaterialIconButton(const QIcon& icon, QWidget* parent = nullptr);
@@ -37,8 +39,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialIconButtonPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialIconButton)
-	Q_DECLARE_PRIVATE(CUVMaterialIconButton)
 };

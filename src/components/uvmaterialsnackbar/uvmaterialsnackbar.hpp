@@ -12,6 +12,8 @@ class CUVMaterialSnackbarPrivate;
 
 class CUVMATERIALSNACKBAR_EXPORT CUVMaterialSnackbar final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSnackbar)
+	Q_DECLARE_PRIVATE(CUVMaterialSnackbar)
 
 public:
 	enum SnackBarPosition {
@@ -56,8 +58,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialSnackbarPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialSnackbar)
-	Q_DECLARE_PRIVATE(CUVMaterialSnackbar)
 };

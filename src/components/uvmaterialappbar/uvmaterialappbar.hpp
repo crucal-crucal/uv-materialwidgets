@@ -13,6 +13,8 @@ class CUVMaterialAppBarPrivate;
 
 class CUVMATERIALAPPBAR_EXPORT CUVMaterialAppBar final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialAppBar)
+	Q_DECLARE_PRIVATE(CUVMaterialAppBar)
 
 	Q_PROPERTY(QColor foregroundColor WRITE setForegroundColor READ foregroundColor)
 	Q_PROPERTY(QColor backgroundColor WRITE setBackgroundColor READ backgroundColor)
@@ -38,10 +40,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialAppBarPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialAppBar)
-	Q_DECLARE_PRIVATE(CUVMaterialAppBar)
 };
 
 inline QHBoxLayout* CUVMaterialAppBar::appBarLayout() const {

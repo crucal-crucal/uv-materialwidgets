@@ -12,6 +12,8 @@ class CUVMaterialRaisedButtonPrivate;
 
 class CUVMATERIALRAISEDBUTTON_EXPORT CUVMaterialRaisedButton : public CUVMaterialFlatButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialRaisedButton)
+	Q_DECLARE_PRIVATE(CUVMaterialRaisedButton)
 
 public:
 	explicit CUVMaterialRaisedButton(QWidget* parent = nullptr);
@@ -22,8 +24,4 @@ protected:
 	explicit CUVMaterialRaisedButton(CUVMaterialRaisedButtonPrivate& d, QWidget* parent = nullptr);
 
 	bool event(QEvent* event) override;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialRaisedButton)
-	Q_DECLARE_PRIVATE(CUVMaterialRaisedButton)
 };

@@ -12,6 +12,8 @@ class CUVMaterialTogglePrivate;
 
 class CUVMATERIALTOGGLE_EXPORT CUVMaterialToggle final : public QAbstractButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialToggle)
+	Q_DECLARE_PRIVATE(CUVMaterialToggle)
 
 	Q_PROPERTY(QColor disabledColor WRITE setDisabledColor READ disabledColor)
 	Q_PROPERTY(QColor activeColor WRITE setActiveColor READ activeColor)
@@ -47,8 +49,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialTogglePrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialToggle)
-	Q_DECLARE_PRIVATE(CUVMaterialToggle)
 };

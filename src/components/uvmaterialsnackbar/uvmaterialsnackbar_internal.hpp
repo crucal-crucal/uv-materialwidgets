@@ -9,6 +9,7 @@ class CUVMaterialSnackbar;
 
 class CUVMaterialSnackbarStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSnackbarStateMachine)
 
 	Q_PROPERTY(qreal offset WRITE setOffset READ offset)
 
@@ -33,8 +34,6 @@ protected:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialSnackbarStateMachine)
-
 	CUVMaterialSnackbar* const m_snackbar{ nullptr };
 	CUVMaterialSnackbar::SnackBarPosition m_position{ CUVMaterialSnackbar::BOTTOM };
 	QState* m_hiddenState{ nullptr };

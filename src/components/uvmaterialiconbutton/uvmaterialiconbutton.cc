@@ -51,9 +51,6 @@ CUVMaterialIconButton::CUVMaterialIconButton(const QIcon& icon, QWidget* parent)
 
 CUVMaterialIconButton::~CUVMaterialIconButton() = default;
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialIconButton::sizeHint() const {
 	return iconSize();
 }
@@ -116,9 +113,6 @@ CUVMaterialIconButton::CUVMaterialIconButton(CUVMaterialIconButtonPrivate& d, QW
 	d_func()->init();
 }
 
-/*!
- *  \reimp
- */
 bool CUVMaterialIconButton::event(QEvent* event) {
 	Q_D(CUVMaterialIconButton);
 
@@ -139,9 +133,6 @@ bool CUVMaterialIconButton::event(QEvent* event) {
 	return QAbstractButton::event(event);
 }
 
-/*!
- *  \reimp
- */
 bool CUVMaterialIconButton::eventFilter(QObject* watched, QEvent* event) {
 	if (QEvent::Resize == event->type()) {
 		Q_D(CUVMaterialIconButton);
@@ -151,9 +142,6 @@ bool CUVMaterialIconButton::eventFilter(QObject* watched, QEvent* event) {
 	return QAbstractButton::eventFilter(watched, event);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialIconButton::mousePressEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialIconButton);
 
@@ -163,9 +151,6 @@ void CUVMaterialIconButton::mousePressEvent(QMouseEvent* event) {
 	QAbstractButton::mousePressEvent(event);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialIconButton::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

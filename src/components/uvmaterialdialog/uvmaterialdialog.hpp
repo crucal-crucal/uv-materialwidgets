@@ -13,6 +13,8 @@ class CUVMaterialDialogPrivate;
 
 class CUVMATERIALDIALOG_EXPORT CUVMaterialDialog final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialDialog)
+	Q_DECLARE_PRIVATE(CUVMaterialDialog)
 
 public:
 	explicit CUVMaterialDialog(QWidget* parent = nullptr);
@@ -29,8 +31,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialDialogPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialDialog)
-	Q_DECLARE_PRIVATE(CUVMaterialDialog)
 };

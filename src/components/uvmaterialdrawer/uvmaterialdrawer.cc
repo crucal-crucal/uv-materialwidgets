@@ -17,14 +17,8 @@
 CUVMaterialDrawerPrivate::CUVMaterialDrawerPrivate(CUVMaterialDrawer* q): q_ptr(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialDrawerPrivate::~CUVMaterialDrawerPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialDrawerPrivate::init() {
 	Q_Q(CUVMaterialDrawer);
 

@@ -114,9 +114,6 @@ QColor CUVMaterialProgress::backgroundColor() const {
 	}
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialProgress::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

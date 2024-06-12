@@ -10,9 +10,10 @@ class CUVMaterialRadioButtonPrivate;
 #define CUVMATERIALRADIOBUTTON_EXPORT Q_DECL_IMPORT
 #endif
 
-
 class CUVMATERIALRADIOBUTTON_EXPORT CUVMaterialRadioButton final : public CUVMaterialCheckable {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialRadioButton)
+	Q_DECLARE_PRIVATE(CUVMaterialRadioButton)
 
 public:
 	explicit CUVMaterialRadioButton(QWidget* parent = nullptr);
@@ -20,8 +21,4 @@ public:
 
 protected:
 	void setupProperties() override;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialRadioButton)
-	Q_DECLARE_PRIVATE(CUVMaterialRadioButton)
 };

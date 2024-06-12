@@ -8,6 +8,7 @@ class CUVMaterialTabs;
 
 class CUVMaterialTabsInkBar final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTabsInkBar)
 
 	Q_PROPERTY(qreal tweenValue WRITE setTweenValue READ tweenValue)
 
@@ -26,8 +27,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialTabsInkBar)
-
 	CUVMaterialTabs* const m_tabs{ nullptr };
 	QPropertyAnimation* const m_animation{ nullptr };
 	QRect m_geometry{};
@@ -46,6 +45,7 @@ inline qreal CUVMaterialTabsInkBar::tweenValue() const {
 
 class CUVMaterialTab final : public CUVMaterialFlatButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTab)
 
 public:
 	explicit CUVMaterialTab(CUVMaterialTabs* parent);
@@ -63,8 +63,6 @@ protected:
 	void paintForeground(QPainter* painter) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialTab)
-
 	CUVMaterialTabs* const m_tabs{ nullptr };
 	bool m_active{};
 };

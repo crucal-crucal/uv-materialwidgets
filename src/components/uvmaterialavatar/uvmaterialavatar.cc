@@ -13,14 +13,8 @@
 CUVMaterialAvatarPrivate::CUVMaterialAvatarPrivate(CUVMaterialAvatar* q): q_ptr(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialAvatarPrivate::~CUVMaterialAvatarPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialAvatarPrivate::init() {
 	Q_Q(CUVMaterialAvatar);
 
@@ -122,9 +116,6 @@ QColor CUVMaterialAvatar::backgroundColor() const {
 	}
 }
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialAvatar::sizeHint() const {
 	Q_D(const CUVMaterialAvatar);
 
@@ -185,9 +176,6 @@ Material::AvatarType CUVMaterialAvatar::type() const {
 	return d->type;
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialAvatar::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

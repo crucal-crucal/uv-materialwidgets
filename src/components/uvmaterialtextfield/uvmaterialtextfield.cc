@@ -225,9 +225,6 @@ CUVMaterialTextField::CUVMaterialTextField(CUVMaterialTextFieldPrivate& d, QWidg
 	d_func()->init();
 }
 
-/*!
- *  \reimp
- */
 bool CUVMaterialTextField::event(QEvent* event) {
 	Q_D(CUVMaterialTextField);
 
@@ -244,9 +241,6 @@ bool CUVMaterialTextField::event(QEvent* event) {
 	return QLineEdit::event(event);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialTextField::paintEvent(QPaintEvent* event) {
 	Q_D(CUVMaterialTextField);
 

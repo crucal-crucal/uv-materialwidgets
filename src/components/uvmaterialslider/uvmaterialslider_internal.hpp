@@ -10,6 +10,7 @@ class CUVMaterialSliderTrack;
 
 class CUVMaterialSliderStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSliderStateMachine)
 
 public:
 	explicit CUVMaterialSliderStateMachine(CUVMaterialSlider* slider, CUVMaterialSliderThumb* thumb, CUVMaterialSliderTrack* track);
@@ -18,8 +19,6 @@ public:
 	void setupProperties() const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialSliderStateMachine)
-
 	CUVMaterialSlider* const m_slider{ nullptr };
 	CUVMaterialSliderThumb* const m_thumb{ nullptr };
 	CUVMaterialSliderTrack* const m_track{ nullptr };
@@ -37,6 +36,7 @@ private:
 
 class CUVMaterialSliderThumb final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSliderThumb)
 
 	Q_PROPERTY(qreal diameter WRITE setDiameter READ diameter)
 	Q_PROPERTY(qreal borderWidth WRITE setBorderWidth READ borderWidth)
@@ -75,8 +75,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialSliderThumb)
-
 	const CUVMaterialSlider* const m_slider{ nullptr };
 	QColor m_borderColor{};
 	QColor m_fillColor{};
@@ -152,6 +150,7 @@ inline int CUVMaterialSliderThumb::offset() const {
 
 class CUVMaterialSliderTrack final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialSliderTrack)
 
 	Q_PROPERTY(QColor fillColor WRITE setFillColor READ fillColor)
 
@@ -170,8 +169,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialSliderTrack)
-
 	const CUVMaterialSlider* const m_slider{ nullptr };
 	CUVMaterialSliderThumb* const m_thumb{ nullptr };
 	QColor m_fillColor{};

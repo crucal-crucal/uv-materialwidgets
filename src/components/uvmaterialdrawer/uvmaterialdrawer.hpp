@@ -13,6 +13,8 @@ class CUVMaterialDrawerStateMachine;
 
 class CUVMATERIALDRAWER_EXPORT CUVMaterialDrawer final : public CUVMaterialOverlayWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialDrawer)
+	Q_DECLARE_PRIVATE(CUVMaterialDrawer)
 
 public:
 	explicit CUVMaterialDrawer(QWidget* parent = nullptr);
@@ -43,8 +45,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialDrawerPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialDrawer)
-	Q_DECLARE_PRIVATE(CUVMaterialDrawer)
 };

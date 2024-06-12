@@ -48,7 +48,4 @@ CUVMaterialAutoCompleteStateMachine::CUVMaterialAutoCompleteStateMachine(QWidget
 	m_closingState->addTransition(transition);
 }
 
-/*!
- *  \internal
- */
 CUVMaterialAutoCompleteStateMachine::~CUVMaterialAutoCompleteStateMachine() = default;

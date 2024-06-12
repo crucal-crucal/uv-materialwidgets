@@ -8,6 +8,7 @@ class CUVMaterialDialogWindow;
 
 class CUVMaterialDialogProxy final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialDialogProxy)
 
 	Q_PROPERTY(qreal opacity WRITE setOpacity READ opacity)
 
@@ -35,8 +36,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialDialogProxy)
-
 	CUVMaterialDialogWindow* const m_source{ nullptr };
 	QStackedLayout* const m_layout{ nullptr };
 	CUVMaterialDialog* const m_dialog{ nullptr };
@@ -50,6 +49,7 @@ inline qreal CUVMaterialDialogProxy::opacity() const {
 
 class CUVMaterialDialogWindow final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialDialogWindow)
 
 	Q_PROPERTY(int offset WRITE setOffset READ offset)
 
@@ -64,7 +64,5 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialDialogWindow)
-
 	CUVMaterialDialog* const m_dialog{ nullptr };
 };

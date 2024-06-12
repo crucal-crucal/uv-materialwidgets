@@ -14,14 +14,8 @@
 CUVMaterialCheckBoxPrivate::CUVMaterialCheckBoxPrivate(CUVMaterialCheckBox* q): CUVMaterialCheckablePrivate(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialCheckBoxPrivate::~CUVMaterialCheckBoxPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialCheckBoxPrivate::init() {
 	Q_Q(CUVMaterialCheckBox);
 

@@ -4,6 +4,7 @@
 
 class CUVMaterialProgressDelegate final : public QObject {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialProgressDelegate)
 
 	Q_PROPERTY(qreal offset WRITE setOffset READ offset)
 
@@ -15,8 +16,6 @@ public:
 	[[nodiscard]] qreal offset() const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialProgressDelegate)
-
 	CUVMaterialProgress* const m_progress{ nullptr };
 	qreal m_offset{};
 };

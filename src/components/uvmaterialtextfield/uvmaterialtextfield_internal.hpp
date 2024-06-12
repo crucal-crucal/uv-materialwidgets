@@ -9,6 +9,7 @@ class CUVMaterialTextFieldLabel;
 
 class CUVMaterialTextFieldStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTextFieldStateMachine)
 
 	Q_PROPERTY(qreal progress WRITE setProgress READ progress)
 
@@ -25,8 +26,6 @@ public slots:
 	void setupProperties(const QString& text = "") const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialTextFieldStateMachine)
-
 	CUVMaterialTextField* const m_textField{ nullptr };
 	QState* const m_normalState{ nullptr };
 	QState* const m_focusedState{ nullptr };
@@ -38,6 +37,7 @@ private:
 
 class CUVMaterialTextFieldLabel final : public QWidget {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTextFieldLabel)
 
 	Q_PROPERTY(qreal scale WRITE setScale READ scale)
 	Q_PROPERTY(QPointF offset WRITE setOffset READ offset)
@@ -60,8 +60,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialTextFieldLabel)
-
 	CUVMaterialTextField* const m_textField{ nullptr };
 	qreal m_scale{};
 	qreal m_posX{};

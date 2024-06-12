@@ -16,14 +16,8 @@ CUVMaterialFloatingActionButtonPrivate::CUVMaterialFloatingActionButtonPrivate(C
 : CUVMaterialRaisedButtonPrivate(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialFloatingActionButtonPrivate::~CUVMaterialFloatingActionButtonPrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialFloatingActionButtonPrivate::init() {
 	Q_Q(CUVMaterialFloatingActionButton);
 
@@ -45,9 +39,6 @@ void CUVMaterialFloatingActionButtonPrivate::init() {
 	q->setFixedRippleRadius(50);
 }
 
-/*!
- *  \internal
- */
 QRect CUVMaterialFloatingActionButtonPrivate::fabGeometry() const {
 	Q_Q(const CUVMaterialFloatingActionButton);
 
@@ -71,9 +62,6 @@ QRect CUVMaterialFloatingActionButtonPrivate::fabGeometry() const {
 	return { parent->width() - (offsX + s), parent->height() - (offsY + s), s, s };
 }
 
-/*!
- *  \internal
- */
 void CUVMaterialFloatingActionButtonPrivate::setupProperties() const {
 	if (mini) {
 		effect->setColor(QColor(0, 0, 0, 80));
@@ -93,7 +81,6 @@ void CUVMaterialFloatingActionButtonPrivate::setupProperties() const {
 /*!
  *  \class CUVMaterialFloatingActionButton
  */
-
 CUVMaterialFloatingActionButton::CUVMaterialFloatingActionButton(const QIcon& icon, QWidget* parent)
 : CUVMaterialRaisedButton(*new CUVMaterialFloatingActionButtonPrivate(this), parent) {
 	d_func()->init();
@@ -103,9 +90,6 @@ CUVMaterialFloatingActionButton::CUVMaterialFloatingActionButton(const QIcon& ic
 
 CUVMaterialFloatingActionButton::~CUVMaterialFloatingActionButton() = default;
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialFloatingActionButton::sizeHint() const {
 	Q_D(const CUVMaterialFloatingActionButton);
 
@@ -207,9 +191,6 @@ int CUVMaterialFloatingActionButton::yOffset() const {
 	return d->offsY;
 }
 
-/*!
- *  \reimp
- */
 bool CUVMaterialFloatingActionButton::event(QEvent* event) {
 	Q_D(CUVMaterialFloatingActionButton);
 
@@ -232,9 +213,6 @@ bool CUVMaterialFloatingActionButton::event(QEvent* event) {
 	return CUVMaterialRaisedButton::event(event);
 }
 
-/*!
- *  \reimp
- */
 bool CUVMaterialFloatingActionButton::eventFilter(QObject* watched, QEvent* event) {
 	if (const QEvent::Type type = event->type(); QEvent::Move == type || QEvent::Resize == type) {
 		Q_D(CUVMaterialFloatingActionButton);
@@ -244,9 +222,6 @@ bool CUVMaterialFloatingActionButton::eventFilter(QObject* watched, QEvent* even
 	return CUVMaterialRaisedButton::eventFilter(watched, event);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialFloatingActionButton::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

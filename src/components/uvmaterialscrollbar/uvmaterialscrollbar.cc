@@ -44,9 +44,6 @@ CUVMaterialScrollBar::CUVMaterialScrollBar(QWidget* parent)
 
 CUVMaterialScrollBar::~CUVMaterialScrollBar() = default;
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialScrollBar::sizeHint() const {
 	if (Qt::Horizontal == orientation()) {
 		return { 1, 10 };
@@ -142,9 +139,6 @@ bool CUVMaterialScrollBar::hideOnMouseOut() const {
 	return d->hideOnMouseOut;
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialScrollBar::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

@@ -124,9 +124,6 @@ CUVMaterialTextFieldLabel::CUVMaterialTextFieldLabel(CUVMaterialTextField* paren
 
 CUVMaterialTextFieldLabel::~CUVMaterialTextFieldLabel() = default;
 
-/*!
- *  \reimp
- */
 void CUVMaterialTextFieldLabel::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

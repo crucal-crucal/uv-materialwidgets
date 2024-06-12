@@ -388,9 +388,6 @@ Qt::Alignment CUVMaterialFlatButton::textAlignment() const {
 	return d->textAlignment;
 }
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialFlatButton::sizeHint() const {
 	ensurePolished();
 
@@ -412,9 +409,6 @@ CUVMaterialFlatButton::CUVMaterialFlatButton(CUVMaterialFlatButtonPrivate& d, QW
 	applyPreset(preset);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialFlatButton::checkStateSet() {
 	Q_D(CUVMaterialFlatButton);
 
@@ -423,9 +417,6 @@ void CUVMaterialFlatButton::checkStateSet() {
 	QPushButton::checkStateSet();
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialFlatButton::mousePressEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialFlatButton);
 
@@ -459,9 +450,6 @@ void CUVMaterialFlatButton::mousePressEvent(QMouseEvent* event) {
 	QPushButton::mousePressEvent(event);
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialFlatButton::mouseReleaseEvent(QMouseEvent* event) {
 	Q_D(CUVMaterialFlatButton);
 
@@ -476,9 +464,6 @@ void CUVMaterialFlatButton::resizeEvent(QResizeEvent* event) {
 	updateClipPath();
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialFlatButton::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 
@@ -504,9 +489,6 @@ void CUVMaterialFlatButton::paintEvent(QPaintEvent* event) {
 	paintForeground(&painter);
 }
 
-/*!
- *  \internal
- */
 void CUVMaterialFlatButton::paintBackground(QPainter* painter) {
 	Q_D(CUVMaterialFlatButton);
 
@@ -557,9 +539,6 @@ void CUVMaterialFlatButton::paintBackground(QPainter* painter) {
 	}
 }
 
-/*!
- *  \internal
- */
 void CUVMaterialFlatButton::paintHalo(QPainter* painter) {
 	Q_D(CUVMaterialFlatButton);
 
@@ -585,9 +564,6 @@ void CUVMaterialFlatButton::paintHalo(QPainter* painter) {
 
 #define COLOR_INTERPOLATE(CH) ((1 - progress) * source.CH() + progress * dest.CH())
 
-/*!
- *  \internal
- */
 void CUVMaterialFlatButton::paintForeground(QPainter* painter) {
 	Q_D(CUVMaterialFlatButton);
 
@@ -639,9 +615,6 @@ void CUVMaterialFlatButton::paintForeground(QPainter* painter) {
 	painter->drawPixmap(iconGeometry, pixmap);
 }
 
-/*!
- *  \internal
- */
 void CUVMaterialFlatButton::updateClipPath() {
 	Q_D(CUVMaterialFlatButton);
 

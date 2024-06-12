@@ -9,6 +9,7 @@ class CUVMaterialDrawerWidget;
 
 class CUVMaterialDrawerStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialDrawerStateMachine)
 
 	Q_PROPERTY(qreal opacity WRITE setOpacity READ opacity)
 
@@ -29,8 +30,6 @@ signals:
 	void signalClose();
 
 private:
-	Q_DISABLE_COPY(CUVMaterialDrawerStateMachine)
-
 	CUVMaterialDrawerWidget* const m_drawer{ nullptr };
 	CUVMaterialDrawer* const m_main{ nullptr };
 	QState* const m_openingState{ nullptr };

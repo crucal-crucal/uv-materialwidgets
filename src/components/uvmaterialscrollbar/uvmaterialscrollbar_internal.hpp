@@ -11,6 +11,7 @@
 
 class CUVMATERIALSCROLLBAR_EXPORT CUVMaterialScrollBarStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialScrollBarStateMachine)
 
 	Q_PROPERTY(qreal opacity WRITE setOpacity READ opacity)
 
@@ -22,8 +23,6 @@ public:
 	[[nodiscard]] qreal opacity() const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialScrollBarStateMachine)
-
 	CUVMaterialScrollBar* const m_scrollBar{ nullptr };
 	QState* const m_focusState{ nullptr };
 	QState* const m_blurState{ nullptr };

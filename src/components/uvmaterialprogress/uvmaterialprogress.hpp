@@ -14,6 +14,8 @@ class CUVMaterialProgressPrivate;
 
 class CUVMATERIALPROGRESS_EXPORT CUVMaterialProgress final : public QProgressBar {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialProgress)
+	Q_DECLARE_PRIVATE(CUVMaterialProgress)
 
 	Q_PROPERTY(QColor progressColor WRITE setProgressColor READ progressColor)
 	Q_PROPERTY(QColor backgroundColor WRITE setProgressColor READ backgroundColor)
@@ -38,8 +40,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialProgressPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialProgress)
-	Q_DECLARE_PRIVATE(CUVMaterialProgress)
 };

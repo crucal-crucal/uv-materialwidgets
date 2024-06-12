@@ -13,6 +13,8 @@ class CUVMaterialTextFieldPrivate;
 
 class CUVMATERIALTEXTFIELD_EXPORT CUVMaterialTextField : public QLineEdit {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialTextField)
+	Q_DECLARE_PRIVATE(CUVMaterialTextField)
 
 	Q_PROPERTY(QColor textColor WRITE setTextColor READ textColor)
 	Q_PROPERTY(QColor inkColor WRITE setInkColor READ inkColor)
@@ -56,8 +58,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	const QScopedPointer<CUVMaterialTextFieldPrivate> d_ptr{ nullptr };
-
-private:
-	Q_DISABLE_COPY(CUVMaterialTextField)
-	Q_DECLARE_PRIVATE(CUVMaterialTextField)
 };

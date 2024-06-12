@@ -6,6 +6,7 @@
 
 class CUVMaterialCircularProgressDelegate final : public QObject {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialCircularProgressDelegate)
 
 	Q_PROPERTY(qreal dashOffset WRITE setDashOffset READ dashOffset)
 	Q_PROPERTY(qreal dashLength WRITE setDashLength READ dashLength)
@@ -25,8 +26,6 @@ public:
 	[[nodiscard]] int angle() const;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialCircularProgressDelegate)
-
 	CUVMaterialCircularProgress* const m_progress{ nullptr };
 	qreal m_dashOffset{};
 	qreal m_dashLength{};

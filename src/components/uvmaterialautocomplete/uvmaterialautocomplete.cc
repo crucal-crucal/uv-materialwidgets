@@ -16,14 +16,8 @@
 CUVMaterialAutoCompletePrivate::CUVMaterialAutoCompletePrivate(CUVMaterialAutoComplete* q): CUVMaterialTextFieldPrivate(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialAutoCompletePrivate::~CUVMaterialAutoCompletePrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialAutoCompletePrivate::init() {
 	Q_Q(CUVMaterialAutoComplete);
 

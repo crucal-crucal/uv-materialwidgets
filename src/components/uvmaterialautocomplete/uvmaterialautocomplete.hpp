@@ -12,6 +12,8 @@ class CUVMaterialAutoCompletePrivate;
 
 class CUVMATERIALAUTOCOMPLETE_EXPORT CUVMaterialAutoComplete final : public CUVMaterialTextField {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialAutoComplete)
+	Q_DECLARE_PRIVATE(CUVMaterialAutoComplete)
 
 public:
 	explicit CUVMaterialAutoComplete(QWidget* parent = nullptr);
@@ -28,8 +30,4 @@ protected slots:
 protected:
 	bool event(QEvent* event) override;
 	bool eventFilter(QObject* watched, QEvent* event) override;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialAutoComplete)
-	Q_DECLARE_PRIVATE(CUVMaterialAutoComplete)
 };

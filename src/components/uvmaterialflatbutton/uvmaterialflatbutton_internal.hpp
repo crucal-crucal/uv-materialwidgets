@@ -8,6 +8,7 @@ class QSequentialAnimationGroup;
 
 class CUVMaterialFlatButtonStateMachine final : public QStateMachine {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialFlatButtonStateMachine)
 
 	Q_PROPERTY(qreal overlayOpacity WRITE setOverlayOpacity READ overlayOpacity)
 	Q_PROPERTY(qreal checkedOverlayProgress WRITE setCheckedOverlayProgress READ checkedOverlayProgress)
@@ -47,8 +48,6 @@ protected:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
-	Q_DISABLE_COPY(CUVMaterialFlatButtonStateMachine)
-
 	void addTransition(QObject* object, QEvent::Type eventType, QState* fromState, QState* toState);
 	void addTransition(QAbstractTransition* transition, QState* fromState, QState* toState);
 

@@ -12,12 +12,10 @@ class CUVMaterialCheckBoxPrivate;
 
 class CUVMATERIALCHECKBOX_EXPORT CUVMaterialCheckBox final : public CUVMaterialCheckable {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialCheckBox)
+	Q_DECLARE_PRIVATE(CUVMaterialCheckBox)
 
 public:
 	explicit CUVMaterialCheckBox(QWidget* parent = nullptr);
 	~CUVMaterialCheckBox() override;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialCheckBox)
-	Q_DECLARE_PRIVATE(CUVMaterialCheckBox)
 };

@@ -12,6 +12,8 @@ class CUVMaterialFloatingActionButtonPrivate;
 
 class CUVMATERIALFAB_EXPORT CUVMaterialFloatingActionButton final : public CUVMaterialRaisedButton {
 	Q_OBJECT
+	Q_DISABLE_COPY(CUVMaterialFloatingActionButton)
+	Q_DECLARE_PRIVATE(CUVMaterialFloatingActionButton)
 
 public:
 	explicit CUVMaterialFloatingActionButton(const QIcon& icon, QWidget* parent = nullptr);
@@ -40,8 +42,4 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 
 	void updateClipPath() override;
-
-private:
-	Q_DISABLE_COPY(CUVMaterialFloatingActionButton)
-	Q_DECLARE_PRIVATE(CUVMaterialFloatingActionButton)
 };

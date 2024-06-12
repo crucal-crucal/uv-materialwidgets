@@ -9,18 +9,11 @@
  *  \class CUVMaterialBadgePrivate
  *  \internal
  */
-CUVMaterialBadgePrivate::CUVMaterialBadgePrivate(CUVMaterialBadge* q)
-: q_ptr(q) {
+CUVMaterialBadgePrivate::CUVMaterialBadgePrivate(CUVMaterialBadge* q): q_ptr(q) {
 }
 
-/*!
- *  \internal
- */
 CUVMaterialBadgePrivate::~CUVMaterialBadgePrivate() = default;
 
-/*!
- *  \internal
- */
 void CUVMaterialBadgePrivate::init() {
 	Q_Q(CUVMaterialBadge);
 
@@ -162,9 +155,6 @@ qreal CUVMaterialBadge::relativeYPosition() const {
 	return d->y;
 }
 
-/*!
- *  \reimp
- */
 QSize CUVMaterialBadge::sizeHint() const {
 	const int s = getDiameter();
 	return { s + 4, s + 4 };
@@ -203,9 +193,6 @@ QString CUVMaterialBadge::text() const {
 	return d->text;
 }
 
-/*!
- *  \reimp
- */
 void CUVMaterialBadge::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 
