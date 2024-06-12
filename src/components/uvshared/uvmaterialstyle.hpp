@@ -26,7 +26,7 @@ public:
 	[[nodiscard]] QColor themeColor(const QString& key) const;
 
 protected:
-	const QScopedPointer<CUVMaterialStylePrivate> d_ptr;
+	const QScopedPointer<CUVMaterialStylePrivate> d_ptr{ nullptr };
 
 private:
 	CUVMaterialStyle();

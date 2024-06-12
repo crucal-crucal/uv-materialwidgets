@@ -21,7 +21,7 @@ public:
 
 protected:
 	bool eventTest(QEvent* event) override;
-	void onTransition(QEvent*) override;
+	void onTransition(QEvent* event) override;
 
 private:
 	ECUVMaterialStateTransitionType m_type{};

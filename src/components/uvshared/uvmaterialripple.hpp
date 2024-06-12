@@ -15,7 +15,6 @@ class CUVMaterialRippleOverlay;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialRipple final : public QParallelAnimationGroup {
 	Q_OBJECT
-	Q_DISABLE_COPY(CUVMaterialRipple)
 
 	Q_PROPERTY(qreal radius WRITE setRadius READ radius)
 	Q_PROPERTY(qreal opacity WRITE setOpacity READ opacity)
@@ -54,6 +53,8 @@ protected slots:
 	void destroy();
 
 private:
+	Q_DISABLE_COPY(CUVMaterialRipple)
+
 	QPropertyAnimation* animate(const QByteArray& property, const QEasingCurve& easing = QEasingCurve::OutQuad, int duration = 800);
 
 	void init();

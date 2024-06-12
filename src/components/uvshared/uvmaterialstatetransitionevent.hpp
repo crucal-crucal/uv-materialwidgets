@@ -32,5 +32,5 @@ struct CUVMaterialStateTransitionEvent final : public QEvent {
 	: QEvent(static_cast<QEvent::Type>(QEvent::User + 1)), type(type) {
 	}
 
-	ECUVMaterialStateTransitionType type;
+	ECUVMaterialStateTransitionType type{};
 };

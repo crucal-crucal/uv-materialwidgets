@@ -11,5 +11,6 @@ bool CUVMaterialStateTransition::eventTest(QEvent* event) {
 	return (m_type == transition->type);
 }
 
-void CUVMaterialStateTransition::onTransition(QEvent*) {
+void CUVMaterialStateTransition::onTransition(QEvent* event) {
+	Q_UNUSED(event)
 }
