@@ -17,7 +17,6 @@ class CUVMaterialTheme;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialStyle final : public QCommonStyle {
 	Q_OBJECT
-	Q_DECLARE_PRIVATE(CUVMaterialStyle)
 
 public:
 	inline static CUVMaterialStyle& instance();
@@ -29,6 +28,8 @@ protected:
 	const QScopedPointer<CUVMaterialStylePrivate> d_ptr;
 
 private:
+	Q_DECLARE_PRIVATE(CUVMaterialStyle)
+
 	CUVMaterialStyle();
 };
 

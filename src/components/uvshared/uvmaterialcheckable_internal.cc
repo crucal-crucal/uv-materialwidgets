@@ -11,6 +11,7 @@
  *  \class CUVMaterialCheckableIcon
  *  \internal
  */
+
 CUVMaterialCheckableIcon::CUVMaterialCheckableIcon(QIcon icon, CUVMaterialCheckable* parent)
 : QWidget(parent), m_checkable(parent), m_color(Qt::black), m_icon(std::move(icon)), m_iconSize(24), m_opacity(1.0) {
 	Q_ASSERT(parent);

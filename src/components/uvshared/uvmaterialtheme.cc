@@ -9,6 +9,7 @@
 /*!material
  *  \class CUVMaterialThemePrivate
  */
+
 CUVMaterialThemePrivate::CUVMaterialThemePrivate(CUVMaterialTheme* q) : q_ptr(q) {
 }
 

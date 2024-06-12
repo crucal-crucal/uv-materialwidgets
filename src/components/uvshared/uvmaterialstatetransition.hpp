@@ -24,5 +24,5 @@ protected:
 	void onTransition(QEvent*) override;
 
 private:
-	ECUVMaterialStateTransitionType m_type{};
+	ECUVMaterialStateTransitionType m_type;
 };

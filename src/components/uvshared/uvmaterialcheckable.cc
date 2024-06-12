@@ -18,6 +18,7 @@
  *  \class CUVMaterialCheckablePrivate
  *  \internal
  */
+
 CUVMaterialCheckablePrivate::CUVMaterialCheckablePrivate(CUVMaterialCheckable* q): q_ptr(q) {
 }
 
@@ -252,6 +253,9 @@ QIcon CUVMaterialCheckable::uncheckedIcon() const {
 	return d->uncheckedIcon->icon();
 }
 
+/*!
+ *  \reimp
+ */
 QSize CUVMaterialCheckable::sizeHint() const {
 	if (text().isEmpty()) {
 		return { 40, 40 };
@@ -264,6 +268,9 @@ CUVMaterialCheckable::CUVMaterialCheckable(CUVMaterialCheckablePrivate& d, QWidg
 	d_func()->init();
 }
 
+/*!
+ *  \reimp
+ */
 bool CUVMaterialCheckable::event(QEvent* event) {
 	Q_D(CUVMaterialCheckable);
 
@@ -286,6 +293,9 @@ bool CUVMaterialCheckable::event(QEvent* event) {
 	return QAbstractButton::event(event);
 }
 
+/*!
+ *  \reimp
+ */
 bool CUVMaterialCheckable::eventFilter(QObject* watched, QEvent* event) {
 	if (QEvent::Resize == event->type()) {
 		Q_D(CUVMaterialCheckable);
@@ -295,6 +305,9 @@ bool CUVMaterialCheckable::eventFilter(QObject* watched, QEvent* event) {
 	return QAbstractButton::eventFilter(watched, event);
 }
 
+/*!
+ *  \reimp
+ */
 void CUVMaterialCheckable::mousePressEvent(QMouseEvent* event) {
 	Q_UNUSED(event)
 
@@ -320,6 +333,9 @@ void CUVMaterialCheckable::mousePressEvent(QMouseEvent* event) {
 	setChecked(!isChecked());
 }
 
+/*!
+ *  \reimp
+ */
 void CUVMaterialCheckable::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

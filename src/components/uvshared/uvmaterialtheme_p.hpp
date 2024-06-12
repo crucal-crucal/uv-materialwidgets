@@ -15,6 +15,6 @@ public:
 
 	QColor rgba(int r, int g, int b, qreal a);
 
-	CUVMaterialTheme* const q_ptr{ nullptr };
-	QHash<QString, QColor> colors{};
+	CUVMaterialTheme* const q_ptr;
+	QHash<QString, QColor> colors;
 };

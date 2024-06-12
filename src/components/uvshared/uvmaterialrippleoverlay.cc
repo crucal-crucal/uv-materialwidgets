@@ -8,6 +8,7 @@
  *  \class CUVMaterialRippleOverlay
  *  \internal
  */
+
 CUVMaterialRippleOverlay::CUVMaterialRippleOverlay(QWidget* parent)
 : CUVMaterialOverlayWidget(parent), m_useClip(false) {
 	setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -38,6 +39,9 @@ void CUVMaterialRippleOverlay::removeRipple(CUVMaterialRipple* ripple) {
 	}
 }
 
+/*!
+ *  \reimp
+ */
 void CUVMaterialRippleOverlay::paintEvent(QPaintEvent* event) {
 	Q_UNUSED(event)
 

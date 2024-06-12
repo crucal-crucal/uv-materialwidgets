@@ -323,8 +323,6 @@ class CUVMaterialThemePrivate;
 
 class CUVMATERIALSHARED_EXPORT CUVMaterialTheme final : public QObject {
 	Q_OBJECT
-	Q_DISABLE_COPY(CUVMaterialTheme)
-	Q_DECLARE_PRIVATE(CUVMaterialTheme)
 
 public:
 	explicit CUVMaterialTheme(QObject* parent = nullptr);
@@ -338,5 +336,9 @@ public:
 	static QIcon icon(const QString& category, const QString& icon);
 
 protected:
-	const QScopedPointer<CUVMaterialThemePrivate> d_ptr{ nullptr };
+	const QScopedPointer<CUVMaterialThemePrivate> d_ptr;
+
+private:
+	Q_DISABLE_COPY(CUVMaterialTheme)
+	Q_DECLARE_PRIVATE(CUVMaterialTheme)
 };
