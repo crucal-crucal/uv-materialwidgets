@@ -9,6 +9,7 @@
 #include <QWidget>
 
 #include "uvmaterialtoggle/uvmaterialtoggle.hpp"
+#include "uvmaterialtoggleswitch/uvmaterialtoggleswitch.hpp"
 
 #ifdef CUVTOGGLESETTINGSEDITOR_LIB
 #define CUVTOGGLESETTINGSEDITOR_EXPORT Q_DECL_EXPORT
@@ -80,6 +81,7 @@ private:
 
 	// lib
 	CUVMaterialToggle* const m_pToggle{ nullptr };
+	CUVMaterialToggleSwitch* const m_pToggleSwitch{ nullptr };
 
 private:
 	int m_nLabelWidth{ 140 };
