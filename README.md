@@ -24,6 +24,7 @@
 | uvmaterialtoggle           |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialwaitingwidget    |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialswitchbtn        |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
+| uvmaterialtoggleswitch     |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 
 
 |                           effect                            |            name            | version |
@@ -48,6 +49,7 @@
 |      ![appbar](docs/resource/gif/uvmaterialtoggle.gif)      |      uvmaterialtoggle      |  1.0.0  |
 |  ![appbar](docs/resource/gif/uvmaterialwaitingwidget.gif)   |  uvmaterialwaitingwidget   |  1.0.0  |
 |    ![appbar](docs/resource/gif/uvmaterialswitchbtn.gif)     |    uvmaterialswitchbtn     |  1.0.0  |
+|   ![appbar](docs/resource/gif/uvmaterialtoggleswitch.gif)   |   uvmaterialtoggleswitch   |  1.0.0  |
 
 # build
 ```
