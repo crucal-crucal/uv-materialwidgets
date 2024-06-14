@@ -112,9 +112,9 @@ void CUVMaterialToggleSwitchPrivate::adjustCircleCenterX() {
  *  \class CUVMaterialToggleSwitch
  */
 CUVMaterialToggleSwitch::CUVMaterialToggleSwitch(QWidget* parent): QWidget(parent), d_ptr(new CUVMaterialToggleSwitchPrivate(this)) {
-	setMouseTracking(true);
-	setFixedSize(100, 22);
 	d_func()->init();
+	setMouseTracking(true);
+	setFixedSize(88, 22);
 }
 
 CUVMaterialToggleSwitch::~CUVMaterialToggleSwitch() = default;
@@ -138,6 +138,21 @@ bool CUVMaterialToggleSwitch::isChecked() const {
 	Q_D(const CUVMaterialToggleSwitch);
 
 	return d->isToggled;
+}
+
+void CUVMaterialToggleSwitch::setShowText(const bool showText) {
+	Q_D(CUVMaterialToggleSwitch);
+
+	if (d->showText != showText) {
+		d->showText = showText;
+		update();
+	}
+}
+
+bool CUVMaterialToggleSwitch::showText() const {
+	Q_D(const CUVMaterialToggleSwitch);
+
+	return d->showText;
 }
 
 void CUVMaterialToggleSwitch::setOnText(const QString& text) {

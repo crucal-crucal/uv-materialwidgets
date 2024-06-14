@@ -22,6 +22,9 @@ public:
 	void setChecked(bool checked);
 	[[nodiscard]] bool isChecked() const;
 
+	void setShowText(bool showText);
+	[[nodiscard]] bool showText() const;
+
 	void setOnText(const QString& text);
 	[[nodiscard]] QString onText() const;
 
