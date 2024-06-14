@@ -2,6 +2,10 @@
 
 [English](README.md) | [简体中文](docs/README.cn.md)
 
+# download
+
+[![Download](https://img.shields.io/badge/download-v1.0.0-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.0)
+
 | name                       | version |                 Complete state                  |
 |:---------------------------|:-------:|:-----------------------------------------------:|
 | uvmaterialappbar           |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
