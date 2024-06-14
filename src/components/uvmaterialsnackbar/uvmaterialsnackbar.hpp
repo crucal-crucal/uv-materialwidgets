@@ -47,6 +47,7 @@ public:
 	void setClickToDismissMode(bool value);
 	[[nodiscard]] bool clickToDismissMode() const;
 
+	QT_DEPRECATED_X("Use the constructor to set SnackBarPosition")
 	void setSnackBarPosition(SnackBarPosition position);
 
 public slots:
