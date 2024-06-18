@@ -1,8 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QObject>
-
-#include <uvmaterialtoggleswitch.hpp>
 
 class CUVMaterialToggleSwitch;
 
@@ -45,15 +43,15 @@ public:
 	bool isMousePressMove{ false };
 	int lastMouseX{ 0 };
 	bool showText{};
-	// »¬¿é
+	// æ»‘å—
 	QColor circleOffColor{};
 	QColor circleOnColor{};
-	// ±³¾°
+	// èƒŒæ™¯
 	QColor backgroundOffColor{};
 	QColor backgroundOnColor{};
 	// text
-	int spaceText{}; // ÎÄ×Ö¾àÀë»¬¿éµÄ¾àÀë
-	int textFontSize{};
+	int spaceText{}; // æ–‡å­—è·ç¦»æ»‘å—çš„è·ç¦»
+	int fontSize{};
 	bool fontBold{};
 	QString offText{};
 	QString onText{};

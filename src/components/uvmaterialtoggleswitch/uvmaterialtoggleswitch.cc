@@ -1,4 +1,4 @@
-#include "uvmaterialtoggleswitch.hpp"
+ï»¿#include "uvmaterialtoggleswitch.hpp"
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -19,7 +19,7 @@ CUVMaterialToggleSwitchPrivate::~CUVMaterialToggleSwitchPrivate() = default;
 void CUVMaterialToggleSwitchPrivate::init() {
 	showText = true;
 	spaceText = 15;
-	textFontSize = 10;
+	fontSize = 10;
 	fontBold = false;
 
 	circleOffColor = qRgb(255, 255, 255);
@@ -200,6 +200,21 @@ bool CUVMaterialToggleSwitch::textBold() const {
 	return d->fontBold;
 }
 
+void CUVMaterialToggleSwitch::setFontSize(const int size) {
+	Q_D(CUVMaterialToggleSwitch);
+
+	if (d->fontSize != size) {
+		d->fontSize = size;
+		update();
+	}
+}
+
+int CUVMaterialToggleSwitch::fontSize() const {
+	Q_D(const CUVMaterialToggleSwitch);
+
+	return d->fontSize;
+}
+
 void CUVMaterialToggleSwitch::setOnTextColor(const QColor& color) {
 	Q_D(CUVMaterialToggleSwitch);
 
@@ -230,7 +245,7 @@ QColor CUVMaterialToggleSwitch::offTextColor() const {
 	return d->offTextColor;
 }
 
-void CUVMaterialToggleSwitch::setcircleOffColor(const QColor& color) {
+void CUVMaterialToggleSwitch::setOffCircleColor(const QColor& color) {
 	Q_D(CUVMaterialToggleSwitch);
 
 	if (d->circleOffColor != color) {
@@ -245,7 +260,7 @@ QColor CUVMaterialToggleSwitch::circleOffColor() const {
 	return d->circleOffColor;
 }
 
-void CUVMaterialToggleSwitch::setcircleOnColor(const QColor& color) {
+void CUVMaterialToggleSwitch::setOnCircleColor(const QColor& color) {
 	Q_D(CUVMaterialToggleSwitch);
 
 	if (d->circleOnColor != color) {
@@ -260,7 +275,7 @@ QColor CUVMaterialToggleSwitch::circleOnColor() const {
 	return d->circleOnColor;
 }
 
-void CUVMaterialToggleSwitch::setbackgroundOffColor(const QColor& color) {
+void CUVMaterialToggleSwitch::setOffBackgroundColor(const QColor& color) {
 	Q_D(CUVMaterialToggleSwitch);
 
 	if (d->backgroundOffColor != color) {
@@ -275,7 +290,7 @@ QColor CUVMaterialToggleSwitch::backgroundOffColor() const {
 	return d->backgroundOffColor;
 }
 
-void CUVMaterialToggleSwitch::setbackgroundOnColor(const QColor& color) {
+void CUVMaterialToggleSwitch::setOnBackgroundColor(const QColor& color) {
 	Q_D(CUVMaterialToggleSwitch);
 
 	if (d->backgroundOnColor != color) {
@@ -372,10 +387,10 @@ void CUVMaterialToggleSwitch::paintEvent(QPaintEvent* event) {
 	painter.save();
 	painter.setRenderHints(QPainter::SmoothPixmapTransform | QPainter::Antialiasing | QPainter::TextAntialiasing);
 
-	// µ÷ÕûÂ·¾¶£¬¼õÈ¥ÎÄ±¾¿í¶È
+	// è°ƒæ•´è·¯å¾„ï¼Œå‡åŽ»æ–‡æœ¬å®½åº¦
 	const int adjustedWidth = width() - d->getTextWidth();
 
-	// »æÖÆ±³¾°
+	// ç»˜åˆ¶èƒŒæ™¯
 	painter.setPen(d->isToggled ? QPen(d->backgroundOnColor, 2) : QPen(d->backgroundOffColor, 2));
 	// painter.setBrush(d->isToggled ? d->m_backgroundOnColor : (underMouse() ? d->m_backgroundOnColor : d->m_backgroundOffColor));
 	painter.setBrush(d->isToggled ? d->backgroundOnColor : d->backgroundOffColor);
@@ -387,7 +402,7 @@ void CUVMaterialToggleSwitch::paintEvent(QPaintEvent* event) {
 	path.lineTo(adjustedWidth - height() - d->margin, height() - d->margin);
 	painter.drawPath(path);
 
-	// Ô²ÐÄ»æÖÆ
+	// åœ†å¿ƒç»˜åˆ¶
 	painter.setBrush(d->isToggled ? d->circleOnColor : d->circleOffColor);
 	painter.setPen(Qt::NoPen);
 	if (d->m_circleRadius == 0) {
@@ -409,7 +424,7 @@ void CUVMaterialToggleSwitch::paintEvent(QPaintEvent* event) {
 	if (d->showText) {
 		painter.setPen(d->isToggled ? d->onTextColor : d->offTextColor);
 		QFont font = painter.font();
-		font.setPointSize(d->textFontSize);
+		font.setPointSize(d->fontSize);
 		font.setBold(d->fontBold);
 		painter.setFont(font);
 

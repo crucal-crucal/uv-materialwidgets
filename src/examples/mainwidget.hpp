@@ -20,10 +20,11 @@
 #include "uvscrollbarsettingseditor/uvscrollbarsettingseditor.hpp"
 #include "uvslidersettingseditor/uvslidersettingseditor.hpp"
 #include "uvsnackbarsettingseditor/uvsnackbarsettingseditor.hpp"
+#include "uvswitchbtnsettingseditor/uvswitchbtnsettingseditor.hpp"
 #include "uvtabssettingseditor/uvtabssettingseditor.hpp"
 #include "uvtogglesettingseditor/uvtogglesettingseditor.hpp"
+#include "uvtoggleswitchsettingseditor/uvtoggleswitchsettingseditor.hpp"
 #include "uvwatingwidgetsettingseditor/uvwatingwidgetsettingseditor.hpp"
-#include "uvswitchbtnsettingseditor/uvswitchbtnsettingseditor.hpp"
 
 class MainWidget final : public QMainWindow {
 	Q_OBJECT
@@ -66,4 +67,5 @@ private:
 	CUVToggleSettingsEditor* m_pToggleSettingsEditor{ nullptr };
 	CUVWatingWidgetSettingsEditor* m_pWatingWidgetSettingsEditor{ nullptr };
 	CUVSwitchBtnSettingsEditor* m_pSwitchBtnSettingsEditor{ nullptr };
+	CUVToggleSwitchSettingsEditor* m_pToggleSwitchSettingsEditor{ nullptr };
 };

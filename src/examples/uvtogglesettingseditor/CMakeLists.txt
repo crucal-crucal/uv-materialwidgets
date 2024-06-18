@@ -9,7 +9,7 @@ aux_source_directory(. SRC_LIST)
 
 add_library(${TARGET_NAME} SHARED ${SRC_LIST})
 target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
-target_link_libraries(${TARGET_NAME} uvmaterialtoggle uvmaterialtoggleswitch)
+target_link_libraries(${TARGET_NAME} uvmaterialtoggle)
 
 target_compile_definitions(${TARGET_NAME} PRIVATE CUVTOGGLESETTINGSEDITOR_LIB)
 

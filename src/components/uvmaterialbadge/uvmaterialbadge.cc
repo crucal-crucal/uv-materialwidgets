@@ -205,8 +205,7 @@ void CUVMaterialBadge::paintEvent(QPaintEvent* event) {
 
 	QBrush brush;
 	brush.setStyle(Qt::SolidPattern);
-	brush.setColor(isEnabled() ? backgroundColor()
-		               : CUVMaterialStyle::instance().themeColor("disabled"));
+	brush.setColor(isEnabled() ? backgroundColor() : CUVMaterialStyle::instance().themeColor("disabled"));
 	painter.setBrush(brush);
 	painter.setPen(Qt::NoPen);
 

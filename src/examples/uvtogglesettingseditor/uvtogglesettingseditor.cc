@@ -4,7 +4,7 @@
 #include <QDebug>
 
 CUVToggleSettingsEditor::CUVToggleSettingsEditor(QWidget* parent)
-: QWidget(parent), m_pToggle(new CUVMaterialToggle(this)), m_pToggleSwitch(new CUVMaterialToggleSwitch(this)) {
+: QWidget(parent), m_pToggle(new CUVMaterialToggle(this)) {
 	createCtrl();
 	customLayout();
 	initData();
@@ -117,8 +117,6 @@ void CUVToggleSettingsEditor::customLayout() const {
 
 	m_pVLayBottom->addWidget(m_pToggle);
 	m_pVLayBottom->setAlignment(m_pToggle, Qt::AlignHCenter);
-	m_pVLayBottom->addWidget(m_pToggleSwitch);
-	m_pVLayBottom->setAlignment(m_pToggleSwitch, Qt::AlignHCenter);
 
 	m_pVLayCenter->addLayout(m_pHLayDisabled);
 	m_pVLayCenter->addLayout(m_pHLayChecked);
@@ -146,7 +144,6 @@ void CUVToggleSettingsEditor::initConnection() {
 	connect(m_pTbDisabledColor, &QToolButton::clicked, this, &CUVToggleSettingsEditor::selectColor);
 	connect(m_pTbTrackColor, &QToolButton::clicked, this, &CUVToggleSettingsEditor::selectColor);
 	connect(m_pToggle, &CUVMaterialToggle::toggled, this, &CUVToggleSettingsEditor::setupForm);
-	connect(m_pToggleSwitch, &CUVMaterialToggleSwitch::clicked, this, &CUVToggleSettingsEditor::setupForm);
 }
 
 void CUVToggleSettingsEditor::setupForm() const {
@@ -182,7 +179,6 @@ void CUVToggleSettingsEditor::updateWidget() const {
 
 	m_pToggle->setDisabled(m_pCbDisabled->isChecked());
 	m_pToggle->setChecked(m_pCbChecked->isChecked());
-	m_pToggleSwitch->setChecked(m_pCbChecked->isChecked());
 	m_pToggle->setUseThemeColors(m_pCbUseThemeColors->isChecked());
 }
 

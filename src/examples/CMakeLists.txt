@@ -43,6 +43,7 @@ target_link_libraries(${TARGET_NAME}
         uvtogglesettingseditor
         uvwatingwidgeteditor
         uvswitchbtnsettingseditor
+        uvtoggleswitcheditor
 )
 
 install(TARGETS ${TARGET_NAME}
@@ -68,6 +69,7 @@ add_subdirectory(uvsnackbarsettingseditor)
 add_subdirectory(uvswitchbtnsettingseditor)
 add_subdirectory(uvtabssettingseditor)
 add_subdirectory(uvtogglesettingseditor)
+add_subdirectory(uvtoggleswitchsettingseditor)
 add_subdirectory(uvwatingwidgetsettingseditor)
 
 #copy rcc file to execute directory

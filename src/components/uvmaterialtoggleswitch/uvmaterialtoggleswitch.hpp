@@ -1,6 +1,6 @@
-#pragma once
+﻿#pragma once
 
-#include <QPushButton>
+#include <QWidget>
 
 class CUVMaterialToggleSwitchPrivate;
 
@@ -34,22 +34,25 @@ public:
 	void setTextBold(bool bold);
 	[[nodiscard]] bool textBold() const;
 
+	void setFontSize(int size);
+	[[nodiscard]] int fontSize() const;
+
 	void setOnTextColor(const QColor& color);
 	[[nodiscard]] QColor onTextColor() const;
 
 	void setOffTextColor(const QColor& color);
 	[[nodiscard]] QColor offTextColor() const;
 
-	void setcircleOffColor(const QColor& color);
+	void setOffCircleColor(const QColor& color);
 	[[nodiscard]] QColor circleOffColor() const;
 
-	void setcircleOnColor(const QColor& color);
+	void setOnCircleColor(const QColor& color);
 	[[nodiscard]] QColor circleOnColor() const;
 
-	void setbackgroundOffColor(const QColor& color);
+	void setOffBackgroundColor(const QColor& color);
 	[[nodiscard]] QColor backgroundOffColor() const;
 
-	void setbackgroundOnColor(const QColor& color);
+	void setOnBackgroundColor(const QColor& color);
 	[[nodiscard]] QColor backgroundOnColor() const;
 
 signals:
