@@ -6,7 +6,7 @@
         <file alias="roboto_regular">fonts/Roboto/Roboto-Regular.ttf</file>
         <file alias="roboto_light">fonts/Roboto/Roboto-Light.ttf</file>
         <file alias="roboto_thin">fonts/Roboto/Roboto-Thin.ttf</file>
-        <file>fonts/Awesome/CUVAwesome.ttf</file>
+        <file alias="cuvawesome">fonts/Awesome/CUVAwesome.ttf</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/communication/svg/production/ic_message_24px.svg</file>
