@@ -1,6 +1,7 @@
 ﻿#include <QApplication>
 #include <QDebug>
 #include <QFileInfo>
+#include <QFontDatabase>
 #include <QResource>
 
 #include "mainwidget.hpp"
@@ -9,6 +10,13 @@ bool loadResources(const QString& strPath);
 bool unloadResources(const QString& strPath);
 
 int main(int argc, char* argv[]) {
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+	QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+#endif
+#endif
 	QApplication app(argc, argv);
 	const QFileInfo appFile(QApplication::applicationFilePath());
 	// 将路径切换到上级目录
@@ -19,6 +27,7 @@ int main(int argc, char* argv[]) {
 	} else {
 		qInfo() << "load resources failed";
 	}
+	QFontDatabase::addApplicationFont(":/fonts/Awesome/CUVAwesome.ttf");
 
 	MainWidget mainWidget;
 	QObject::connect(&mainWidget, &MainWidget::destroyed, [&]() {

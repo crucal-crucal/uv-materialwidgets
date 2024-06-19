@@ -15,6 +15,7 @@
 #include "uvfabsettingseditor/uvfabsettingseditor.hpp"
 #include "uvflatbuttonsettingseditor/uvflatbuttonsettingseditor.hpp"
 #include "uviconbuttonsettingseditor/uviconbuttonsettingseditor.hpp"
+#include "uvmessagebtnsettingseditor/uvmessagebtnsettingseditor.hpp"
 #include "uvprogresssettingseditor/uvprogresssettingseditor.hpp"
 #include "uvradiobuttonsettingseditor/uvradiobuttonsettingseditor.hpp"
 #include "uvscrollbarsettingseditor/uvscrollbarsettingseditor.hpp"
@@ -68,4 +69,5 @@ private:
 	CUVWatingWidgetSettingsEditor* m_pWatingWidgetSettingsEditor{ nullptr };
 	CUVSwitchBtnSettingsEditor* m_pSwitchBtnSettingsEditor{ nullptr };
 	CUVToggleSwitchSettingsEditor* m_pToggleSwitchSettingsEditor{ nullptr };
+	CUVMessageBtnSettingsEditor* m_pMessageBarSettingsEditor{ nullptr };
 };

@@ -8,7 +8,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include "uvmaterialiconbutton/uvmaterialiconbutton.hpp"
+#include "uvmaterialiconbutton1/uvmaterialiconbutton.hpp"
 
 #ifdef CUVICONBUTTONSETTINGSEDITOR_LIB
 #define CUVICONBUTTONSETTINGSEDITOR_EXPORT Q_DECL_EXPORT

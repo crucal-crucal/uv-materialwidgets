@@ -9,6 +9,7 @@
 
 /*!
  *  \class CUVMaterialIconButtonPrivate
+ *  \internal
  */
 CUVMaterialIconButtonPrivate::CUVMaterialIconButtonPrivate(CUVMaterialIconButton* q): q_ptr(q) {
 }

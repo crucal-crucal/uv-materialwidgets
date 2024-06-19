@@ -13,6 +13,7 @@
 
 /*!
  *  \class CUVMaterialFlatButtonPrivate
+ *  \internal
  */
 CUVMaterialFlatButtonPrivate::CUVMaterialFlatButtonPrivate(CUVMaterialFlatButton* q): q_ptr(q) {
 }

@@ -1,7 +1,5 @@
 ﻿set(TARGET_NAME examples)
 
-setupQt()
-
 #add_definitions(-DQT_NO_DEBUG_OUTPUT)
 #add_definitions(-DQT_NO_INFO_OUTPUT)
 #add_definitions(-DQT_NO_WARNING_OUTPUT)
@@ -44,6 +42,7 @@ target_link_libraries(${TARGET_NAME}
         uvwatingwidgeteditor
         uvswitchbtnsettingseditor
         uvtoggleswitcheditor
+        uvmessagebtnsettingseditor
 )
 
 install(TARGETS ${TARGET_NAME}
@@ -71,6 +70,7 @@ add_subdirectory(uvtabssettingseditor)
 add_subdirectory(uvtogglesettingseditor)
 add_subdirectory(uvtoggleswitchsettingseditor)
 add_subdirectory(uvwatingwidgetsettingseditor)
+add_subdirectory(uvmessagebtnsettingseditor)
 
 #copy rcc file to execute directory
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
