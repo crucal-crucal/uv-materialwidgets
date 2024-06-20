@@ -6,6 +6,8 @@
 #add_definitions(-DQT_NO_CRITICAL_OUTPUT)
 #add_definitions(-DQT_NO_FATAL_OUTPUT)
 
+option(INSTALL_WITH_WINDOWS "Add WIN32 flag for executable during install" OFF)
+
 include_directories(.)
 include_directories(../components)
 
@@ -14,10 +16,18 @@ set(examples_SOURCES
         mainwidget.cc
 )
 
-add_executable(${TARGET_NAME}
-        main.cc
-        ${examples_SOURCES}
-)
+if (INSTALL_WITH_WINDOWS)
+    add_executable(${TARGET_NAME}
+            WIN32
+            main.cc
+            ${examples_SOURCES}
+    )
+else ()
+    add_executable(${TARGET_NAME}
+            main.cc
+            ${examples_SOURCES}
+    )
+endif ()
 
 target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(${TARGET_NAME}

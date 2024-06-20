@@ -4,7 +4,7 @@
 
 # download
 
-[![Download](https://img.shields.io/badge/download-v1.0.0-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.0)
+[![Download](https://img.shields.io/badge/download-v1.0.1-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.1)
 
 | name                       | version |                 Complete state                  |
 |:---------------------------|:-------:|:-----------------------------------------------:|
@@ -30,7 +30,7 @@
 | uvmaterialswitchbtn        |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialtoggleswitch     |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialmessagebar       |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
-| uvmaterialawesomebutton    |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
+| uvmaterialawesomebutton    |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |
 
 |                           effect                            |                      name                      | version |
 |:-----------------------------------------------------------:|:----------------------------------------------:|:-------:|
@@ -55,7 +55,7 @@
 |  ![appbar](docs/resource/gif/uvmaterialwaitingwidget.gif)   |            uvmaterialwaitingwidget             |  1.0.0  |
 |    ![appbar](docs/resource/gif/uvmaterialswitchbtn.gif)     |              uvmaterialswitchbtn               |  1.0.0  |
 |   ![appbar](docs/resource/gif/uvmaterialtoggleswitch.gif)   |             uvmaterialtoggleswitch             |  1.0.0  |
-|    ![appbar](docs/resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton |  1.0.0  |
+|    ![appbar](docs/resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton |  1.0.1  |
 
 # build
 ```

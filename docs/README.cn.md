@@ -4,7 +4,7 @@
 
 # 下载
 
-[![下载](https://img.shields.io/badge/download-v1.0.0-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.0)
+[![下载](https://img.shields.io/badge/download-v1.0.1-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.1)
 
 
 | 名称                         |  版本   |                    完成状态                    |
@@ -31,7 +31,7 @@
 | uvmaterialswitchbtn        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialtoggleswitch     | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialmessagebar       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialawesomebutton    | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
+| uvmaterialawesomebutton    | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
 
 
 |                           效果                           |                       名称                       |  版本   |
@@ -57,7 +57,7 @@
 |  ![appbar](resource/gif/uvmaterialwaitingwidget.gif)   |            uvmaterialwaitingwidget             | 1.0.0 |
 |    ![appbar](resource/gif/uvmaterialswitchbtn.gif)     |              uvmaterialswitchbtn               | 1.0.0 |
 |   ![appbar](resource/gif/uvmaterialtoggleswitch.gif)   |             uvmaterialtoggleswitch             | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton | 1.0.1 |
 
 # 构建
 ```
