@@ -18,6 +18,8 @@ CUVMaterialMessageButtonPrivate::CUVMaterialMessageButtonPrivate(CUVMaterialMess
 CUVMaterialMessageButtonPrivate::~CUVMaterialMessageButtonPrivate() = default;
 
 void CUVMaterialMessageButtonPrivate::init() {
+	Q_Q(CUVMaterialMessageButton);
+
 	borderRadius = 3;
 	displayMsec = 2000;
 	messageMode = UVMessageBarType::Success;
@@ -40,7 +42,11 @@ CUVMaterialMessageButton::CUVMaterialMessageButton(QWidget* parent): QPushButton
 	setMouseTracking(true);
 	setText("Message");
 	setObjectName("CUVMessageButton");
+#ifdef Q_OS_UNIX
+	setStyleSheet("#CUVMessageButton { background-color: white; }");
+#else
 	setStyleSheet("#CUVMessageButton { background-color: transparent; }");
+#endif
 	connect(this, &CUVMaterialMessageButton::clicked, this, [=]() {
 		switch (d->messageMode) {
 			case UVMessageBarType::Success: {
@@ -74,7 +80,11 @@ CUVMaterialMessageButton::CUVMaterialMessageButton(const QString& text, QWidget*
 	setFont(font);
 	setMouseTracking(true);
 	setObjectName("CUVMessageButton");
+#ifdef Q_OS_UNIX
+	setStyleSheet("#CUVMessageButton { background-color: white; }");
+#else
 	setStyleSheet("#CUVMessageButton { background-color: transparent; }");
+#endif
 	connect(this, &CUVMaterialMessageButton::clicked, this, [=]() {
 		switch (d->messageMode) {
 			case UVMessageBarType::Success: {
@@ -109,7 +119,11 @@ CUVMaterialMessageButton::CUVMaterialMessageButton(const QString& text, const UV
 	setFont(font);
 	setMouseTracking(true);
 	setObjectName("CUVMessageButton");
+#ifdef Q_OS_UNIX
+	setStyleSheet("#CUVMessageButton { background-color: white; }");
+#else
 	setStyleSheet("#CUVMessageButton { background-color: transparent; }");
+#endif
 	connect(this, &CUVMaterialMessageButton::clicked, this, [=]() {
 		switch (d->messageMode) {
 			case UVMessageBarType::Success: {

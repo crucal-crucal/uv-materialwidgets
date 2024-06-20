@@ -31,32 +31,33 @@
 | uvmaterialswitchbtn        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialtoggleswitch     | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialmessagebar       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
+| uvmaterialawesomebutton    | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 
 
-|                           效果                           |             名称             |  版本   |
-|:------------------------------------------------------:|:--------------------------:|:-----:|
-|      ![appbar](resource/gif/uvmaterialappbar.gif)      |      uvmaterialappbar      | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialavatar.gif)      |      uvmaterialavatar      | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialbadge.gif)       |      uvmaterialbadge       | 1.0.0 |
-|     ![appbar](resource/gif/uvmaterialcheckbox.gif)     |     uvmaterialcheckbox     | 1.0.0 |
-| ![appbar](resource/gif/uvmaterialcircularprogress.gif) | uvmaterialcircularprogress | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialdialog.gif)      |      uvmaterialdialog      | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialdrawer.gif)      |      uvmaterialdrawer      | 1.0.0 |
-|       ![appbar](resource/gif/uvmaterialfab.gif)        |       uvmaterialfab        | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialflatbutton.gif)    |    uvmaterialflatbutton    | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialiconbutton.gif)    |    uvmaterialiconbutton    | 1.0.0 |
-|     ![appbar](resource/gif/uvmaterialprogress.gif)     |     uvmaterialprogress     | 1.0.0 |
-|   ![appbar](resource/gif/uvmaterialradiobutton.gif)    |   uvmaterialradiobutton    | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialscrollbar.gif)     |    uvmaterialscrollbar     | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialslider.gif)      |      uvmaterialslider      | 1.0.0 |
-|     ![appbar](resource/gif/uvmaterialsnackbar.gif)     |     uvmaterialsnackbar     | 1.0.0 |
-|       ![appbar](resource/gif/uvmaterialtabs.gif)       |       uvmaterialtabs       | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialtextfield.gif)     |    uvmaterialtextfield     | 1.0.0 |
-|      ![appbar](resource/gif/uvmaterialtoggle.gif)      |      uvmaterialtoggle      | 1.0.0 |
-|  ![appbar](resource/gif/uvmaterialwaitingwidget.gif)   |  uvmaterialwaitingwidget   | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialswitchbtn.gif)     |    uvmaterialswitchbtn     | 1.0.0 |
-|   ![appbar](resource/gif/uvmaterialtoggleswitch.gif)   |   uvmaterialtoggleswitch   | 1.0.0 |
-|    ![appbar](resource/gif/uvmaterialmessagebar.gif)    |    uvmaterialmessagebar    | 1.0.0 |
+|                           效果                           |                       名称                       |  版本   |
+|:------------------------------------------------------:|:----------------------------------------------:|:-----:|
+|      ![appbar](resource/gif/uvmaterialappbar.gif)      |                uvmaterialappbar                | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialavatar.gif)      |                uvmaterialavatar                | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialbadge.gif)       |                uvmaterialbadge                 | 1.0.0 |
+|     ![appbar](resource/gif/uvmaterialcheckbox.gif)     |               uvmaterialcheckbox               | 1.0.0 |
+| ![appbar](resource/gif/uvmaterialcircularprogress.gif) |           uvmaterialcircularprogress           | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialdialog.gif)      |                uvmaterialdialog                | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialdrawer.gif)      |                uvmaterialdrawer                | 1.0.0 |
+|       ![appbar](resource/gif/uvmaterialfab.gif)        |                 uvmaterialfab                  | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialflatbutton.gif)    |              uvmaterialflatbutton              | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialiconbutton.gif)    |              uvmaterialiconbutton              | 1.0.0 |
+|     ![appbar](resource/gif/uvmaterialprogress.gif)     |               uvmaterialprogress               | 1.0.0 |
+|   ![appbar](resource/gif/uvmaterialradiobutton.gif)    |             uvmaterialradiobutton              | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialscrollbar.gif)     |              uvmaterialscrollbar               | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialslider.gif)      |                uvmaterialslider                | 1.0.0 |
+|     ![appbar](resource/gif/uvmaterialsnackbar.gif)     |               uvmaterialsnackbar               | 1.0.0 |
+|       ![appbar](resource/gif/uvmaterialtabs.gif)       |                 uvmaterialtabs                 | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialtextfield.gif)     |              uvmaterialtextfield               | 1.0.0 |
+|      ![appbar](resource/gif/uvmaterialtoggle.gif)      |                uvmaterialtoggle                | 1.0.0 |
+|  ![appbar](resource/gif/uvmaterialwaitingwidget.gif)   |            uvmaterialwaitingwidget             | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialswitchbtn.gif)     |              uvmaterialswitchbtn               | 1.0.0 |
+|   ![appbar](resource/gif/uvmaterialtoggleswitch.gif)   |             uvmaterialtoggleswitch             | 1.0.0 |
+|    ![appbar](resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton | 1.0.0 |
 
 # 构建
 ```

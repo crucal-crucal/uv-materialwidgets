@@ -31,7 +31,7 @@ void CUVMessageBtnSettingsEditor::createCtrl() {
 
 	m_pBtnTest = new QPushButton("Test", this);
 	connect(m_pBtnTest, &QPushButton::clicked, this, [this]() {
-		CUVMaterialMessageBar::success("test", "test message ...", 2000, UVMessageBarType::PositionPolicy::Top, window());
+		CUVMaterialMessageBar::success("test test test test", "test message ...", 2000, UVMessageBarType::PositionPolicy::Top, window());
 	});
 
 	m_pHLayBtn = new QHBoxLayout;

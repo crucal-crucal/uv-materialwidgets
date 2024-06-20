@@ -3,7 +3,7 @@
 #include <QObject>
 
 class CUVMaterialMessageBar;
-class CUVMaterialIconButton;
+class CUVMaterialAwesomeButton;
 class QPainter;
 
 class CUVMaterialMessageBarPrivate final : public QObject {
@@ -44,7 +44,7 @@ public:
 
 public slots:
 	void onCloseButtonClicked();
-	void onOtherMessageBarClosed(UVMessageBarType::PositionPolicy positionPolicy, int messageBarIndex);
+	void onOtherMessageBarClosed(UVMessageBarType::PositionPolicy positionPolicy, int barIndex);
 
 signals:
 	void messageBarClosed(UVMessageBarType::PositionPolicy positionPolicy, int messageBarIndex);
@@ -76,6 +76,6 @@ public:
 	bool isCloseAnimationStart{};
 	bool isNormalDisplay{};
 	bool isMessageBarEventAnimationStart{};
-	CUVMaterialIconButton* closeButton{ nullptr };
+	CUVMaterialAwesomeButton* closeButton{ nullptr };
 	static QMap<UVMessageBarType::PositionPolicy, QList<CUVMaterialMessageBar*>*> messageBarActiveMap;
 };

@@ -11,7 +11,7 @@
 #include <QVariant>
 
 #include "uvmaterialmessagebar_p.hpp"
-#include "uvmaterialiconbutton2/uvmaterialiconbutton.hpp"
+#include "uvmaterialawesomebutton/uvmaterialawesomebutton.hpp"
 
 using namespace UVIconType;
 
@@ -66,7 +66,7 @@ void CUVMaterialMessageBarPrivate::messageBarStartAnimation(const int displayMse
 	const int textWidth = q->fontMetrics().horizontalAdvance(this->text);
 	const int fixedWidth = this->closeButtonLeftRightMargin + this->leftPadding + this->titleLeftSpacing * 2 + this->closeButtonWidth
 		+ titleWidth + textWidth + 2 * this->shadowBorderWidth;
-	q->setFixedWidth(fixedWidth > 500 ? 500 : fixedWidth);
+	q->setFixedWidth(fixedWidth > 600 ? 600 : fixedWidth);
 	updateActiveMap(true); // 计算坐标前增加
 	int startX, startY, endX, endY;
 	calculatePos(startX, startY, endX, endY);
@@ -382,8 +382,8 @@ void CUVMaterialMessageBarPrivate::onCloseButtonClicked() {
 	emit messageBarClosed(this->policy, this->messageBarIndex);
 }
 
-void CUVMaterialMessageBarPrivate::onOtherMessageBarClosed(const UVMessageBarType::PositionPolicy positionPolicy, const int messageBarIndex) {
-	if (this->policy == positionPolicy && !isCloseAnimationStart && this->messageBarIndex > messageBarIndex) {
+void CUVMaterialMessageBarPrivate::onOtherMessageBarClosed(const UVMessageBarType::PositionPolicy positionPolicy, const int barIndex) {
+	if (this->policy == positionPolicy && !isCloseAnimationStart && this->messageBarIndex > barIndex) {
 		this->messageBarIndex -= 1;
 		if (!this->isMessageBarStartAnimationFinished) {
 			this->isMessageBarEventAnimationInStartAnimation = true;
@@ -413,7 +413,7 @@ CUVMaterialMessageBar::CUVMaterialMessageBar(const UVMessageBarType::PositionPol
 	setGraphicsEffect(effect);
 	setFont(QFont("Microsoft YaHei"));
 	parent->installEventFilter(this);
-	d->closeButton = new CUVMaterialIconButton(CUVIconType::Xmark, 17, d->closeButtonWidth, 30, this);
+	d->closeButton = new CUVMaterialAwesomeButton(CUVIconType::Xmark, 17, d->closeButtonWidth, 30, this);
 	switch (d->messageMode) {
 		case UVMessageBarType::Success: {
 			d->closeButton->setLightHoverColor(QColor(0xE6, 0xFC, 0xE3));
@@ -442,7 +442,7 @@ CUVMaterialMessageBar::CUVMaterialMessageBar(const UVMessageBarType::PositionPol
 		}
 	}
 	d->closeButton->setBorderRadius(5);
-	connect(d->closeButton, &CUVMaterialIconButton::clicked, d, &CUVMaterialMessageBarPrivate::onCloseButtonClicked);
+	connect(d->closeButton, &CUVMaterialAwesomeButton::clicked, d, &CUVMaterialMessageBarPrivate::onCloseButtonClicked);
 	const auto mainLayout = new QHBoxLayout(this);
 	mainLayout->setContentsMargins(0, 0, 10, 0);
 	mainLayout->addStretch();
@@ -533,7 +533,7 @@ void CUVMaterialMessageBar::paintEvent(QPaintEvent* event) {
 	if (titleTextWidth > 100) {
 		titleTextWidth = 100;
 	}
-	constexpr int textFlags = Qt::AlignLeft | Qt::AlignVCenter | Qt::TextWordWrap | Qt::TextWrapAnywhere;
+	constexpr int textFlags = Qt::AlignLeft | Qt::AlignVCenter | Qt::TextWordWrap;
 	painter.drawText(QRect(d->leftPadding + d->titleLeftSpacing, -1, titleTextWidth, height()), textFlags, d->title);
 	// 正文
 	font.setWeight(QFont::Light);

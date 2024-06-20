@@ -1,4 +1,4 @@
-﻿set(TARGET_NAME uvmaterialmessagebutton)
+﻿set(TARGET_NAME uvmaterialawesomebutton)
 
 if (WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -9,8 +9,7 @@ aux_source_directory(. SRC_LIST)
 
 add_library(${TARGET_NAME} SHARED ${SRC_LIST})
 target_link_libraries(${TARGET_NAME} Qt5::Widgets)
-target_link_libraries(${TARGET_NAME} uvmaterialmessagebar)
 
-target_compile_definitions(${TARGET_NAME} PRIVATE CUVMATERIALMESSAGEBUTTON_LIB)
+target_compile_definitions(${TARGET_NAME} PRIVATE CUVMATERIALAWESOMEBUTTON_LIB)
 
 installdll()

@@ -2,25 +2,25 @@
 
 #include <QPushButton>
 
-#include "uvdef.hpp"
+#include "uvmaterialmessagebar/uvdef.hpp"
 
-#ifdef CUVMATERIALICONBUTTON2_LIB
-#define CUVMATERIALICONBUTTON2_EXPORT Q_DECL_EXPORT
+#ifdef CUVMATERIALAWESOMEBUTTON_LIB
+#define CUVMATERIALAWESOMEBUTTON_EXPORT Q_DECL_EXPORT
 #else
-#define CUVMATERIALICONBUTTON2_EXPORT Q_DECL_IMPORT
+#define CUVMATERIALAWESOMEBUTTON_EXPORT Q_DECL_IMPORT
 #endif
 
 using namespace UVIconType;
 
-class CUVMaterialIconButtonPrivate;
+class CUVMaterialAwesomeButtonPrivate;
 
 /**
  * 使用 Awesome 绘制的图标按钮
  */
-class CUVMATERIALICONBUTTON2_EXPORT CUVMaterialIconButton final : public QPushButton {
+class CUVMATERIALAWESOMEBUTTON_EXPORT CUVMaterialAwesomeButton final : public QPushButton {
 	Q_OBJECT
-	Q_DISABLE_COPY(CUVMaterialIconButton)
-	Q_DECLARE_PRIVATE(CUVMaterialIconButton)
+	Q_DISABLE_COPY(CUVMaterialAwesomeButton)
+	Q_DECLARE_PRIVATE(CUVMaterialAwesomeButton)
 
 	Q_PROPERTY(int borderRadius READ borderRadius WRITE setBorderRadius NOTIFY borderRadiusChanged)
 	Q_PROPERTY(QColor lightHoverColor READ lightHoverColor WRITE setLightHoverColor NOTIFY lightHoverColorChanged)
@@ -30,10 +30,10 @@ class CUVMATERIALICONBUTTON2_EXPORT CUVMaterialIconButton final : public QPushBu
 	Q_PROPERTY(bool isSelected READ isSelected WRITE setIsSelected NOTIFY isSelectedChanged)
 
 public:
-	explicit CUVMaterialIconButton(const CUVIconType& iconType, QWidget* parent = nullptr);
-	explicit CUVMaterialIconButton(const CUVIconType& iconType, int pixelSize, QWidget* parent = nullptr);
-	explicit CUVMaterialIconButton(const CUVIconType& iconType, int pixelSize, int fixedWidth, int fixedHeight, QWidget* parent = nullptr);
-	~CUVMaterialIconButton() override;
+	explicit CUVMaterialAwesomeButton(const CUVIconType& iconType, QWidget* parent = nullptr);
+	explicit CUVMaterialAwesomeButton(const CUVIconType& iconType, int pixelSize, QWidget* parent = nullptr);
+	explicit CUVMaterialAwesomeButton(const CUVIconType& iconType, int pixelSize, int fixedWidth, int fixedHeight, QWidget* parent = nullptr);
+	~CUVMaterialAwesomeButton() override;
 
 	void setIconType(const CUVIconType& iconType);
 	[[nodiscard]] CUVIconType iconType() const;
@@ -66,5 +66,5 @@ signals:
 
 protected:
 	void paintEvent(QPaintEvent* event) override;
-	const QScopedPointer<CUVMaterialIconButtonPrivate> d_ptr{ nullptr };
+	const QScopedPointer<CUVMaterialAwesomeButtonPrivate> d_ptr{ nullptr };
 };

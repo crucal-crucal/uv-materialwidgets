@@ -6,7 +6,7 @@
 #include <QToolButton>
 
 #include "uvmaterialappbar/uvmaterialappbar.hpp"
-#include "uvmaterialiconbutton1/uvmaterialiconbutton.hpp"
+#include "uvmaterialiconbutton/uvmaterialiconbutton.hpp"
 
 #ifdef CUVAPPBARSETTINGSEDITOR_LIB
 #define CUVAPPBARSETTINGSEDITOR_EXPORT Q_DECL_EXPORT
