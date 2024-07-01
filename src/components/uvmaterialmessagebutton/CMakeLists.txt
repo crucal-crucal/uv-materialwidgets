@@ -13,4 +13,4 @@ target_link_libraries(${TARGET_NAME} uvmaterialmessagebar)
 
 target_compile_definitions(${TARGET_NAME} PRIVATE CUVMATERIALMESSAGEBUTTON_LIB)
 
-installdll()
+uv_install_dll()

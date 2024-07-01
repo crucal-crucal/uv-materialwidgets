@@ -12,4 +12,4 @@ target_link_libraries(${TARGET_NAME} Qt5::Widgets)
 
 target_compile_definitions(${TARGET_NAME} PRIVATE CUVMATERIALSWITCHBTN_LIB)
 
-installdll()
+uv_install_dll()
