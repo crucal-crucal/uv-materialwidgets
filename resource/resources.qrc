@@ -969,6 +969,7 @@
         <file>icons/social/svg/production/ic_sentiment_very_satisfied_24px.svg</file>
         <file>icons/social/svg/production/ic_share_24px.svg</file>
         <file>icons/social/svg/production/ic_whatshot_24px.svg</file>
+        <file>icons/combo/combobox_down_arrow.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>assets/uxceo-128.jpg</file>
