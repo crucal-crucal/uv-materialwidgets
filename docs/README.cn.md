@@ -7,32 +7,32 @@
 [![下载](https://img.shields.io/badge/download-v1.0.1-blue.svg)](https://github.com/crucal-crucal/uv-materialwidgets/releases/tag/v1.0.1)
 
 
-| 名称                         |  版本   |                    完成状态                    |
-|:---------------------------|:-----:|:------------------------------------------:|
-| uvmaterialappbar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialavatar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialbadge            | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialcheckbox         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialcircularprogress | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialdialog           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialdrawer           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialfab              | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialflatbutton       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialiconbutton       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialprogress         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialradiobutton      | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialscrollbar        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialslider           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialsnackbar         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialtabs             | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialtextfield        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvmaterialtoggle           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
-| uvwaitingwidget            | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
-| uvswitchbtn                | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
-| uvtoggleswitch             | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
-| uvmessagebar               | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
-| uvawesomebutton            | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
-| uvcombobox                 | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
+| 名称                         |  版本   |                    完成状态                    |                          需要链接库                           |
+|:---------------------------|:-----:|:------------------------------------------:|:--------------------------------------------------------:|
+| uvmaterialappbar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialavatar           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialbadge            | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialcheckbox         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialcircularprogress | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialdialog           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialdrawer           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |    Qt5::Widgets & uvmaterialshared & uvmaterialdialog    |
+| uvmaterialfab              | 1.0.0 | ![checked](resource/svg/finished_16px.svg) | Qt5::Widgets & uvmaterialshared & uvmaterialraisedbutton |
+| uvmaterialflatbutton       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialiconbutton       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialprogress         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialradiobutton      | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialscrollbar        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialslider           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialsnackbar         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialtabs             | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |  Qt5::Widgets & uvmaterialshared & uvmaterialflatbutton  |
+| uvmaterialtextfield        | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvmaterialtoggle           | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |             Qt5::Widgets & uvmaterialshared              |
+| uvwaitingwidget            | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvswitchbtn                | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvtoggleswitch             | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |              Qt5::Widgets & uvawesomebutton              |
+| uvmessagebar               | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvawesomebutton            | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvcombobox                 | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 
 
 |                           效果                           |               名称               |  版本   |

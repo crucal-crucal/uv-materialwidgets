@@ -31,7 +31,7 @@
 | uvtoggleswitch             |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |              Qt5::Widgets & uvawesomebutton              |
 | uvmessagebar               |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 | uvawesomebutton            |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
-| uvcombobox                 |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |
+| uvcombobox                 |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 
 |                           effect                            |              name              | version |
 |:-----------------------------------------------------------:|:------------------------------:|:-------:|
