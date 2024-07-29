@@ -6,4 +6,7 @@ include(cmake/uvconfigmacros.cmake)
 
 uv_initialize_build_flags()
 
+uv_setup_Qt()
+
 add_subdirectory(src)
+add_subdirectory(examples)
