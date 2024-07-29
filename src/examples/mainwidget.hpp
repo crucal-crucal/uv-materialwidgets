@@ -4,28 +4,29 @@
 #include <QMainWindow>
 #include <QStackedLayout>
 
-#include "uvappbarsettingseditor/uvappbarsettingseditor.hpp"
-#include "uvautocompletesettingseditor/uvautocompletesettingseditor.hpp"
-#include "uvavatarsettingseditor/uvavatarsettingseditor.hpp"
-#include "uvbadgesettingseditor/uvbadgesettingseditor.hpp"
-#include "uvcheckboxsettingseditor/uvcheckboxsettingseditor.hpp"
-#include "uvcircularprogresssettingseditor/uvcircularprogresssettingseditor.hpp"
-#include "uvdialogsettingseditor/uvdialogsettingseditor.hpp"
-#include "uvdrawersettingseditor/uvdrawersettingseditor.hpp"
-#include "uvfabsettingseditor/uvfabsettingseditor.hpp"
-#include "uvflatbuttonsettingseditor/uvflatbuttonsettingseditor.hpp"
-#include "uviconbuttonsettingseditor/uviconbuttonsettingseditor.hpp"
-#include "uvmessagebtnsettingseditor/uvmessagebtnsettingseditor.hpp"
-#include "uvprogresssettingseditor/uvprogresssettingseditor.hpp"
-#include "uvradiobuttonsettingseditor/uvradiobuttonsettingseditor.hpp"
-#include "uvscrollbarsettingseditor/uvscrollbarsettingseditor.hpp"
-#include "uvslidersettingseditor/uvslidersettingseditor.hpp"
-#include "uvsnackbarsettingseditor/uvsnackbarsettingseditor.hpp"
-#include "uvswitchbtnsettingseditor/uvswitchbtnsettingseditor.hpp"
-#include "uvtabssettingseditor/uvtabssettingseditor.hpp"
-#include "uvtogglesettingseditor/uvtogglesettingseditor.hpp"
-#include "uvtoggleswitchsettingseditor/uvtoggleswitchsettingseditor.hpp"
-#include "uvwatingwidgetsettingseditor/uvwatingwidgetsettingseditor.hpp"
+class CUVComboBoxSettingsEditor;
+class CUVMessageBtnSettingsEditor;
+class CUVToggleSwitchSettingsEditor;
+class CUVSwitchBtnSettingsEditor;
+class CUVWatingWidgetSettingsEditor;
+class CUVToggleSettingsEditor;
+class CUVTabsSettingsEditor;
+class CUVSnackBarSettingsEditor;
+class CUVSliderSettingsEditor;
+class CUVScrollBarSettingsEditor;
+class CUVAppBarSettingsEditor;
+class CUVAutoCompleteSettingsEditor;
+class CUVAvatarSettingsEditor;
+class CUVBadgeSettingsEditor;
+class CUVCheckBoxSettingsEditor;
+class CUVCircularProgressSettingsEditor;
+class CUVFabSettingsEditor;
+class CUVFlatButtonSettingsEditor;
+class CUVDialogSettingsEditor;
+class CUVDrawerSettingsEditor;
+class CUVIconButtonSettingsEditor;
+class CUVProgressSettingsEditor;
+class CUVRadioButtonSettingsEditor;
 
 class MainWidget final : public QMainWindow {
 	Q_OBJECT
@@ -70,4 +71,5 @@ private:
 	CUVSwitchBtnSettingsEditor* m_pSwitchBtnSettingsEditor{ nullptr };
 	CUVToggleSwitchSettingsEditor* m_pToggleSwitchSettingsEditor{ nullptr };
 	CUVMessageBtnSettingsEditor* m_pMessageBarSettingsEditor{ nullptr };
+	CUVComboBoxSettingsEditor* m_pComboxBoxSettingsEditor{ nullptr };
 };

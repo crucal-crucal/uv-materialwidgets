@@ -31,6 +31,7 @@
 | uvmaterialtoggleswitch     |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialmessagebar       |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 | uvmaterialawesomebutton    |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |
+| uvmaterialcombobox         |  1.0.0  | ![checked](docs/resource/svg/finished_16px.svg) |
 
 |                           effect                            |                      name                      | version |
 |:-----------------------------------------------------------:|:----------------------------------------------:|:-------:|
@@ -56,8 +57,10 @@
 |    ![appbar](docs/resource/gif/uvmaterialswitchbtn.gif)     |              uvmaterialswitchbtn               |  1.0.0  |
 |   ![appbar](docs/resource/gif/uvmaterialtoggleswitch.gif)   |             uvmaterialtoggleswitch             |  1.0.0  |
 |    ![appbar](docs/resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton |  1.0.1  |
+|     ![appbar](docs/resource/gif/uvmaterialcombobox.gif)     |               uvmaterialcombobox               |  1.0.0  |
 
 # build
+
 ```
 Windows
 build type (Debug, Release, RelWithDebInfo ...)
@@ -75,7 +78,9 @@ CMake Minimum version: 3.16
 builder: default
 Development environment: Ubuntu 22.04.3 + CLion 2024.1
 ```
+
 # example
+
 [Windows](docs/build-win.md)
 
 [Linux](docs/build-linux.md)

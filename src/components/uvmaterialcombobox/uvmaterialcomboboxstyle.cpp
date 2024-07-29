@@ -12,6 +12,9 @@ CUVMaterialComboBoxStyle::CUVMaterialComboBoxStyle(QStyle* style): QProxyStyle(s
 	mouseHoverColor = qRgb(42, 42, 42);
 	mouseSelectedColor = qRgb(42, 42, 42);
 	borderColor = qRgb(75, 75, 77);
+	selectedMarkColor = QColor(0x4C, 0xA0, 0xE0);
+	itemHoverColor = QColor(0x40, 0x40, 0x40);
+	expansionIndicatorColor = QColor(0x4C, 0xA0, 0xE0);
 }
 
 CUVMaterialComboBoxStyle::~CUVMaterialComboBoxStyle() = default;
@@ -83,12 +86,12 @@ void CUVMaterialComboBoxStyle::drawControl(const ControlElement element, const Q
 					}
 					// 选中Mark
 					painter->setPen(Qt::NoPen);
-					painter->setBrush(QColor(0x4C, 0xA0, 0xE0));
+					painter->setBrush(selectedMarkColor);
 					painter->drawRoundedRect(QRectF(optionRect.x() + 3, optionRect.y() + optionRect.height() * 0.2, 3, optionRect.height() - +optionRect.height() * 0.4), 2, 2);
 				} else {
 					if (option->state & QStyle::State_MouseOver) {
 						// 覆盖时颜色
-						painter->setBrush(QColor(0x40, 0x40, 0x40));
+						painter->setBrush(itemHoverColor);
 						painter->drawPath(path);
 					}
 				}
@@ -125,7 +128,7 @@ void CUVMaterialComboBoxStyle::drawComplexControl(const ComplexControl control, 
 				painter->drawText(textRect, Qt::AlignVCenter | Qt::AlignLeft, copt->currentText);
 				// 展开指示器绘制
 				painter->setPen(Qt::NoPen);
-				painter->setBrush(QColor(0x4C, 0xA0, 0xE0));
+				painter->setBrush(expansionIndicatorColor);
 				painter->drawRoundedRect(QRectF(comboBoxRect.center().x() - _pExpandMarkWidth, comboBoxRect.height() - 3, _pExpandMarkWidth * 2, 3), 2, 2);
 				// 展开图标绘制
 				if (const QRect expandIconRect = subControlRect(QStyle::CC_ComboBox, copt, QStyle::SC_ScrollBarAddPage, widget); expandIconRect.isValid()) {

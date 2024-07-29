@@ -32,6 +32,7 @@
 | uvmaterialtoggleswitch     | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialmessagebar       | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 | uvmaterialawesomebutton    | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |
+| uvmaterialcombobox         | 1.0.0 | ![checked](resource/svg/finished_16px.svg) |
 
 
 |                           效果                           |                       名称                       |  版本   |
@@ -58,6 +59,7 @@
 |    ![appbar](resource/gif/uvmaterialswitchbtn.gif)     |              uvmaterialswitchbtn               | 1.0.0 |
 |   ![appbar](resource/gif/uvmaterialtoggleswitch.gif)   |             uvmaterialtoggleswitch             | 1.0.0 |
 |    ![appbar](resource/gif/uvmaterialmessagebar.gif)    | uvmaterialmessagebar & uvmaterialawesomebutton | 1.0.1 |
+|     ![appbar](resource/gif/uvmaterialcombobox.gif)     |               uvmaterialcombobox               | 1.0.0 |
 
 # 构建
 ```

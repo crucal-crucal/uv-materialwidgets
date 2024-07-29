@@ -53,6 +53,7 @@ target_link_libraries(${TARGET_NAME}
         uvswitchbtnsettingseditor
         uvtoggleswitcheditor
         uvmessagebtnsettingseditor
+        uvcomboboxsettingseditor
 )
 
 install(TARGETS ${TARGET_NAME}
@@ -65,6 +66,7 @@ add_subdirectory(uvavatarsettingseditor)
 add_subdirectory(uvbadgesettingseditor)
 add_subdirectory(uvcheckboxsettingseditor)
 add_subdirectory(uvcircularprogresssettingseditor)
+add_subdirectory(uvcomboboxsettingseditor)
 add_subdirectory(uvdialogsettingseditor)
 add_subdirectory(uvdrawersettingseditor)
 add_subdirectory(uvfabsettingseditor)

@@ -1,5 +1,29 @@
 ﻿#include "mainwidget.hpp"
 
+#include "uvappbarsettingseditor/uvappbarsettingseditor.hpp"
+#include "uvautocompletesettingseditor/uvautocompletesettingseditor.hpp"
+#include "uvavatarsettingseditor/uvavatarsettingseditor.hpp"
+#include "uvbadgesettingseditor/uvbadgesettingseditor.hpp"
+#include "uvcheckboxsettingseditor/uvcheckboxsettingseditor.hpp"
+#include "uvcircularprogresssettingseditor/uvcircularprogresssettingseditor.hpp"
+#include "uvdialogsettingseditor/uvdialogsettingseditor.hpp"
+#include "uvdrawersettingseditor/uvdrawersettingseditor.hpp"
+#include "uvfabsettingseditor/uvfabsettingseditor.hpp"
+#include "uvflatbuttonsettingseditor/uvflatbuttonsettingseditor.hpp"
+#include "uviconbuttonsettingseditor/uviconbuttonsettingseditor.hpp"
+#include "uvmessagebtnsettingseditor/uvmessagebtnsettingseditor.hpp"
+#include "uvprogresssettingseditor/uvprogresssettingseditor.hpp"
+#include "uvradiobuttonsettingseditor/uvradiobuttonsettingseditor.hpp"
+#include "uvscrollbarsettingseditor/uvscrollbarsettingseditor.hpp"
+#include "uvslidersettingseditor/uvslidersettingseditor.hpp"
+#include "uvsnackbarsettingseditor/uvsnackbarsettingseditor.hpp"
+#include "uvswitchbtnsettingseditor/uvswitchbtnsettingseditor.hpp"
+#include "uvtabssettingseditor/uvtabssettingseditor.hpp"
+#include "uvtogglesettingseditor/uvtogglesettingseditor.hpp"
+#include "uvtoggleswitchsettingseditor/uvtoggleswitchsettingseditor.hpp"
+#include "uvwatingwidgetsettingseditor/uvwatingwidgetsettingseditor.hpp"
+#include "uvcomboboxsettingseditor/uvcomboboxsettingseditor.hpp"
+
 MainWidget::MainWidget(QWidget* parent): QMainWindow(parent) {
 	createCtrl();
 	customLayout();
@@ -37,6 +61,7 @@ void MainWidget::createCtrl() {
 	m_pSwitchBtnSettingsEditor = new CUVSwitchBtnSettingsEditor(this);
 	m_pToggleSwitchSettingsEditor = new CUVToggleSwitchSettingsEditor(this);
 	m_pMessageBarSettingsEditor = new CUVMessageBtnSettingsEditor(this);
+	m_pComboxBoxSettingsEditor = new CUVComboBoxSettingsEditor(this);
 
 	m_pHBoxLayout = new QHBoxLayout;
 	m_pStackedLayout = new QStackedLayout;
@@ -71,6 +96,7 @@ void MainWidget::customLayout() const {
 	m_pStackedLayout->addWidget(m_pSwitchBtnSettingsEditor);
 	m_pStackedLayout->addWidget(m_pToggleSwitchSettingsEditor);
 	m_pStackedLayout->addWidget(m_pMessageBarSettingsEditor);
+	m_pStackedLayout->addWidget(m_pComboxBoxSettingsEditor);
 }
 
 void MainWidget::initConnection() {
@@ -104,6 +130,7 @@ void MainWidget::initData() const {
 	m_pListWidget->addItem("Switch Button");
 	m_pListWidget->addItem("Toggle Switch");
 	m_pListWidget->addItem("Message Button");
+	m_pListWidget->addItem("ComboBox");
 
 	m_pListWidget->setCurrentRow(0);
 }

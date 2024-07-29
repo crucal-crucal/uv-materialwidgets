@@ -36,6 +36,15 @@ public:
 	void setBorderColor(const QColor& color);
 	[[nodiscard]] QColor getBorderColor() const;
 
+	void setSelectedMarkColor(const QColor& color);
+	[[nodiscard]] QColor getSelectedMarkColor() const;
+
+	void setItemHoverColor(const QColor& color);
+	[[nodiscard]] QColor getItemHoverColor() const;
+
+	void setExpansionIndicatorColor(const QColor& color);
+	[[nodiscard]] QColor getExpansionIndicatorColor() const;
+
 signals:
 	void onBorderRadiusChanged();
 

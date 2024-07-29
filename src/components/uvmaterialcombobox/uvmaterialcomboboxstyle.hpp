@@ -39,4 +39,7 @@ public:
 	QColor mouseHoverColor{};
 	QColor mouseSelectedColor{};
 	QColor borderColor{};
+	QColor selectedMarkColor{};
+	QColor itemHoverColor{};
+	QColor expansionIndicatorColor{};
 };

@@ -35,8 +35,8 @@ CUVMaterialComboBox::CUVMaterialComboBox(QWidget* parent): QComboBox(parent), d_
 	comboBoxView->setObjectName("CUVComboBoxView");
 	comboBoxView->setStyleSheet("#CUVComboBoxView{ background-color: transparent; }");
 	comboBoxView->setStyle(d->_comboBoxStyle);
-	comboBoxView->verticalScrollBar()->setVisible(false);
-	comboBoxView->horizontalScrollBar()->setVisible(false);
+	// comboBoxView->verticalScrollBar()->setVisible(false);
+	// comboBoxView->horizontalScrollBar()->setVisible(false);
 	if (QWidget* container = this->findChild<QFrame*>()) {
 		container->setWindowFlags(Qt::Popup | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
 		container->setAttribute(Qt::WA_TranslucentBackground);
@@ -113,6 +113,42 @@ QColor CUVMaterialComboBox::getBorderColor() const {
 	Q_D(const CUVMaterialComboBox);
 
 	return d->_comboBoxStyle->borderColor;
+}
+
+void CUVMaterialComboBox::setSelectedMarkColor(const QColor& color) {
+	Q_D(CUVMaterialComboBox);
+
+	d->_comboBoxStyle->selectedMarkColor = color;
+}
+
+QColor CUVMaterialComboBox::getSelectedMarkColor() const {
+	Q_D(const CUVMaterialComboBox);
+
+	return d->_comboBoxStyle->selectedMarkColor;
+}
+
+void CUVMaterialComboBox::setItemHoverColor(const QColor& color) {
+	Q_D(CUVMaterialComboBox);
+
+	d->_comboBoxStyle->itemHoverColor = color;
+}
+
+QColor CUVMaterialComboBox::getItemHoverColor() const {
+	Q_D(const CUVMaterialComboBox);
+
+	return d->_comboBoxStyle->itemHoverColor;
+}
+
+void CUVMaterialComboBox::setExpansionIndicatorColor(const QColor& color) {
+	Q_D(CUVMaterialComboBox);
+
+	d->_comboBoxStyle->expansionIndicatorColor = color;
+}
+
+QColor CUVMaterialComboBox::getExpansionIndicatorColor() const {
+	Q_D(const CUVMaterialComboBox);
+
+	return d->_comboBoxStyle->expansionIndicatorColor;
 }
 
 void CUVMaterialComboBox::showPopup() {
