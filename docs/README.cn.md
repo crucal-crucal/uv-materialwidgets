@@ -33,6 +33,7 @@
 | uvmessagebar               | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 | uvawesomebutton            | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 | uvcombobox                 | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvstackwidget              | 1.0.1 | ![checked](resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 
 
 |                           效果                           |               名称               |  版本   |
@@ -60,6 +61,7 @@
 |   ![appbar](resource/gif/uvmaterialtoggleswitch.gif)   |         uvtoggleswitch         | 1.0.1 |
 |    ![appbar](resource/gif/uvmaterialmessagebar.gif)    | uvmessagebar & uvawesomebutton | 1.0.1 |
 |     ![appbar](resource/gif/uvmaterialcombobox.gif)     |           uvcombobox           | 1.0.1 |
+|       ![appbar](resource/gif/uvstackwidget.gif)        |         uvstackwidget          | 1.0.1 |
 
 # 提取须知
 上述所有组件都是导出的动态库。

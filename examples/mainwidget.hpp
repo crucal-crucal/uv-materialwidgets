@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStackedLayout>
 
+class CUVStackWidgetSettingsEditor;
 class CUVComboBoxSettingsEditor;
 class CUVMessageBtnSettingsEditor;
 class CUVToggleSwitchSettingsEditor;
@@ -72,4 +73,5 @@ private:
 	CUVToggleSwitchSettingsEditor* m_pToggleSwitchSettingsEditor{ nullptr };
 	CUVMessageBtnSettingsEditor* m_pMessageBarSettingsEditor{ nullptr };
 	CUVComboBoxSettingsEditor* m_pComboxBoxSettingsEditor{ nullptr };
+	CUVStackWidgetSettingsEditor* m_pStackWidgetSettingsEditor{ nullptr };
 };

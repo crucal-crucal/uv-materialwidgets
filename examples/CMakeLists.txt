@@ -54,6 +54,7 @@ target_link_libraries(${TARGET_NAME}
         uvtoggleswitcheditor
         uvmessagebtnsettingseditor
         uvcomboboxsettingseditor
+        uvstackwidgetsettingseditor
 )
 
 install(TARGETS ${TARGET_NAME}
@@ -83,6 +84,7 @@ add_subdirectory(uvtogglesettingseditor)
 add_subdirectory(uvtoggleswitchsettingseditor)
 add_subdirectory(uvwatingwidgetsettingseditor)
 add_subdirectory(uvmessagebtnsettingseditor)
+add_subdirectory(uvstackwidgetsettingseditor)
 
 #copy rcc file to execute directory
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD

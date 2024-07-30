@@ -32,6 +32,7 @@
 | uvmessagebar               |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 | uvawesomebutton            |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 | uvcombobox                 |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
+| uvstackwidget              |  1.0.1  | ![checked](docs/resource/svg/finished_16px.svg) |                       Qt5::Widgets                       |
 
 |                           effect                            |              name              | version |
 |:-----------------------------------------------------------:|:------------------------------:|:-------:|
@@ -58,6 +59,7 @@
 |   ![appbar](docs/resource/gif/uvmaterialtoggleswitch.gif)   |         uvtoggleswitch         |  1.0.1  |
 |    ![appbar](docs/resource/gif/uvmaterialmessagebar.gif)    | uvmessagebar & uvawesomebutton |  1.0.1  |
 |     ![appbar](docs/resource/gif/uvmaterialcombobox.gif)     |           uvcombobox           |  1.0.1  |
+|       ![appbar](docs/resource/gif/uvstackwidget.gif)        |         uvstackwidget          |  1.0.1  |
 
 
 # Extraction instructions
