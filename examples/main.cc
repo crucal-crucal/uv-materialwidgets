@@ -20,12 +20,14 @@ bool loadResources(const QString& strPath);
 bool unloadResources(const QString& strPath);
 
 int main(int argc, char* argv[]) {
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-	QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-	QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-#endif
+	// 启用高 DPI 缩放
+	qputenv("QT_ENABLE_HIGHDPI_SCALING", "1");
+
+	// 设置高 DPI 将缩放因子四舍五入到最接近的整数
+	QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);
+#else
+#warning "The current Qt version does not support QT_ENABLE_HIGHDPI_SCALING or HighDpiScaleFactorRoundingPolicy. Please ensure you are using Qt 5.14 or newer."
 #endif
 	QApplication app(argc, argv);
 	const QFileInfo appFile(QApplication::applicationFilePath());

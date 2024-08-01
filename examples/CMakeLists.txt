@@ -1,4 +1,4 @@
-﻿set(TARGET_NAME examples)
+﻿set(TARGET_NAME example)
 
 #add_definitions(-DQT_NO_DEBUG_OUTPUT)
 #add_definitions(-DQT_NO_INFO_OUTPUT)
