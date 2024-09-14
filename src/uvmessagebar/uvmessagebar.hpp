@@ -13,7 +13,7 @@ class CUVMESSAGEBAR_EXPORT CUVMessageBar final : public QWidget {
 
 public:
 	explicit CUVMessageBar(const UVMessageBarType::PositionPolicy& policy, const UVMessageBarType::MessageMode& messageMode,
-	                               const QString& title, const QString& message, int displayMsec, QWidget* parent = nullptr);
+	                       const QString& title, const QString& message, int displayMsec, QWidget* parent = nullptr);
 	~CUVMessageBar() override;
 
 	/**

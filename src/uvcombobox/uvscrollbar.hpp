@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <QAbstractScrollArea>
 #include <QScrollBar>
 
 class CUVScrollBarPrivate;
@@ -14,6 +15,7 @@ class CUVScrollBar final : public QScrollBar {
 public:
 	explicit CUVScrollBar(QWidget* parent = nullptr);
 	explicit CUVScrollBar(Qt::Orientation orientation, QWidget* parent = nullptr);
+	explicit CUVScrollBar(QScrollBar* originScrollBar, QAbstractScrollArea* parent = nullptr);
 	~CUVScrollBar() override;
 
 	void setIsAnimation(bool isAnimation);
@@ -21,6 +23,7 @@ public:
 
 signals:
 	void isAnimationChanged();
+	void rangeAnimationFinished();
 
 protected:
 	QScopedPointer<CUVScrollBarPrivate> d_ptr{ nullptr };
@@ -30,4 +33,6 @@ protected:
 	void mouseMoveEvent(QMouseEvent* event) override;
 	void wheelEvent(QWheelEvent* event) override;
 	void contextMenuEvent(QContextMenuEvent* event) override;
+	bool event(QEvent* event) override;
+	bool eventFilter(QObject* watched, QEvent* event) override;
 };

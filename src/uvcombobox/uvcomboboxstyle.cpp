@@ -76,18 +76,29 @@ void CUVComboBoxStyle::drawControl(const ControlElement element, const QStyleOpt
 				path.addRoundedRect(optionRect, 5, 5);
 				if (option->state & QStyle::State_Selected) {
 					if (option->state & QStyle::State_MouseOver) {
-						// 选中时覆盖
+						// 选中且鼠标悬停时
 						painter->setBrush(mouseHoverColor);
 						painter->drawPath(path);
 					} else {
-						// 选中
+						// 选中但鼠标未悬停
 						painter->setBrush(mouseSelectedColor);
 						painter->drawPath(path);
 					}
-					// 选中Mark
-					painter->setPen(Qt::NoPen);
-					painter->setBrush(selectedMarkColor);
-					painter->drawRoundedRect(QRectF(optionRect.x() + 3, optionRect.y() + optionRect.height() * 0.2, 3, optionRect.height() - +optionRect.height() * 0.4), 2, 2);
+					painter->save();
+					painter->setPen(QPen(selectedMarkColor, 2)); // 设置画笔颜色和宽度
+					// 计算勾选图标的绘制区域
+					const int checkSize = static_cast<int>(qMin(optionRect.width(), optionRect.height()) * 0.5); // 图标大小为项目高度的一半
+					const auto checkRect = QRect(optionRect.x() + 5,
+					                       optionRect.y() + (optionRect.height() - checkSize) / 2,
+					                       checkSize,
+					                       checkSize);
+					// 绘制勾选图标
+					QPainterPath checkPath;
+					checkPath.moveTo(checkRect.left() + checkRect.width() * 0.2, checkRect.top() + checkRect.height() * 0.5);
+					checkPath.lineTo(checkRect.left() + checkRect.width() * 0.4, checkRect.bottom() - checkRect.height() * 0.25);
+					checkPath.lineTo(checkRect.right() - checkRect.width() * 0.2, checkRect.top() + checkRect.height() * 0.3);
+					painter->drawPath(checkPath);
+					painter->restore();
 				} else {
 					if (option->state & QStyle::State_MouseOver) {
 						// 覆盖时颜色
@@ -97,7 +108,7 @@ void CUVComboBoxStyle::drawControl(const ControlElement element, const QStyleOpt
 				}
 				// 文字绘制
 				painter->setPen(Qt::white);
-				painter->drawText(QRect(option->rect.x() + 15, option->rect.y(), option->rect.width() - 15, option->rect.height()), Qt::AlignVCenter, vopt->text);
+				painter->drawText(QRect(option->rect.x() + 25, option->rect.y(), option->rect.width() - 25, option->rect.height()), Qt::AlignVCenter, vopt->text);
 				painter->restore();
 			}
 			return;

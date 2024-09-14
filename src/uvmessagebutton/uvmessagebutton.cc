@@ -29,7 +29,7 @@ void CUVMessageButtonPrivate::init() {
 }
 
 /*!
- *  \class CUVMessageBarPrivate
+ *  \class CUVMessageButton
  */
 CUVMessageButton::CUVMessageButton(QWidget* parent): QPushButton(parent), d_ptr(new CUVMessageButtonPrivate(this)) {
 	Q_D(CUVMessageButton);

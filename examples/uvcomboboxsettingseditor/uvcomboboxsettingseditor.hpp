@@ -3,6 +3,7 @@
 #include <QWidget>
 
 class CUVComboBox;
+class CUVMultiSelectComboBox;
 class QVBoxLayout;
 class QHBoxLayout;
 class QLabel;
@@ -73,10 +74,11 @@ private:
 	QHBoxLayout* m_pExpansionIndicatorColorHLayout{ nullptr };
 
 
-	QVBoxLayout* m_pCanvasVLayout{ nullptr };
+	QHBoxLayout* m_pCanvasVLayout{ nullptr };
 	QVBoxLayout* m_pCenterVLayout{ nullptr };
 	// lib
 	CUVComboBox* m_pComboBox{ nullptr };
+	CUVMultiSelectComboBox* m_pMultiSelectComboBox{ nullptr };
 
 	int m_nLabelWidth{ 120 };
 };

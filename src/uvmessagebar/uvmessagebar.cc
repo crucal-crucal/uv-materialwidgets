@@ -65,7 +65,7 @@ void CUVMessageBarPrivate::messageBarStartAnimation(const int displayMsec) {
 	q->setFont(font);
 	const int textWidth = q->fontMetrics().horizontalAdvance(this->text);
 	const int fixedWidth = this->closeButtonLeftRightMargin + this->leftPadding + this->titleLeftSpacing * 2 + this->closeButtonWidth
-		+ titleWidth + textWidth + 2 * this->shadowBorderWidth;
+	                       + titleWidth + textWidth + 2 * this->shadowBorderWidth;
 	q->setFixedWidth(fixedWidth > 600 ? 600 : fixedWidth);
 	updateActiveMap(true); // 计算坐标前增加
 	int startX, startY, endX, endY;
@@ -279,7 +279,7 @@ int CUVMessageBarPrivate::calculateMinimumHeightTotal(const bool isJudgeIndex) {
 	int minimumHeightTotal = 0;
 	const auto messageBarList = CUVMessageBarPrivate::messageBarActiveMap[this->policy];
 	if (isJudgeIndex) {
-		for (const auto& messageBar : *messageBarList) {
+		for (const auto& messageBar: *messageBarList) {
 			if (messageBar == q) {
 				continue;
 			}
@@ -288,7 +288,7 @@ int CUVMessageBarPrivate::calculateMinimumHeightTotal(const bool isJudgeIndex) {
 			}
 		}
 	} else {
-		for (const auto& messageBar : *messageBarList) {
+		for (const auto& messageBar: *messageBarList) {
 			if (messageBar == q) {
 				continue;
 			}
@@ -300,7 +300,7 @@ int CUVMessageBarPrivate::calculateMinimumHeightTotal(const bool isJudgeIndex) {
 }
 
 void CUVMessageBarPrivate::drawMessage(QPainter* painter, const QColor& backgroundColor, const QColor& iconColor, const QString& iconText,
-                                               const QColor& textColor, const int iconPixelSize, const int iconX, const QColor& penColor) {
+                                       const QColor& textColor, const int iconPixelSize, const int iconX, const QColor& penColor) {
 	Q_Q(CUVMessageBar);
 	// 背景颜色
 	painter->setBrush(backgroundColor);
@@ -315,7 +315,7 @@ void CUVMessageBarPrivate::drawMessage(QPainter* painter, const QColor& backgrou
 	painter->setClipPath(textPath);
 	painter->fillPath(textPath, iconColor);
 
-	auto iconFont = QFont("ElaAwesome");
+	auto iconFont = QFont("CUVAwesome");
 	iconFont.setPixelSize(iconPixelSize);
 	painter->setFont(iconFont);
 	painter->drawText(iconX, 0, q->width(), q->height(), Qt::AlignVCenter, iconText);
@@ -344,12 +344,12 @@ void CUVMessageBarPrivate::drawInfo(QPainter* painter) {
 }
 
 void CUVMessageBarPrivate::showMessageBar(const UVMessageBarType::PositionPolicy& positionPolicy,
-                                                  const UVMessageBarType::MessageMode& messageMode,
-                                                  const QString& title, const QString& message,
-                                                  const int displayMsec, QWidget* parent) {
+                                          const UVMessageBarType::MessageMode& messageMode,
+                                          const QString& title, const QString& message,
+                                          const int displayMsec, QWidget* parent) {
 	if (!parent) {
 		const auto widgetList = QApplication::topLevelWidgets();
-		for (const auto& widget : widgetList) {
+		for (const auto& widget: widgetList) {
 			if (widget->property("CUVBaseClassName").toString() == "CUVWindow") {
 				parent = widget;
 			}
@@ -397,7 +397,7 @@ void CUVMessageBarPrivate::onOtherMessageBarClosed(const UVMessageBarType::Posit
  *  \class CUVMessageBar
  */
 CUVMessageBar::CUVMessageBar(const UVMessageBarType::PositionPolicy& policy, const UVMessageBarType::MessageMode& messageMode,
-                                             const QString& title, const QString& message, const int displayMsec, QWidget* parent)
+                             const QString& title, const QString& message, const int displayMsec, QWidget* parent)
 : QWidget(parent), d_ptr(new CUVMessageBarPrivate(this)) {
 	d_func()->init();
 	Q_D(CUVMessageBar);
@@ -453,7 +453,7 @@ CUVMessageBar::CUVMessageBar(const UVMessageBarType::PositionPolicy& policy, con
 	d->messageBarStartAnimation(displayMsec);
 
 	const auto messageBarList = CUVMessageBarPrivate::messageBarActiveMap.value(d->policy);
-	for (const auto& otherMessageBar : *messageBarList) {
+	for (const auto& otherMessageBar: *messageBarList) {
 		connect(otherMessageBar->d_func(), &CUVMessageBarPrivate::messageBarClosed, d,
 		        &CUVMessageBarPrivate::onOtherMessageBarClosed);
 	}
@@ -462,22 +462,22 @@ CUVMessageBar::CUVMessageBar(const UVMessageBarType::PositionPolicy& policy, con
 CUVMessageBar::~CUVMessageBar() = default;
 
 void CUVMessageBar::success(const QString& title, const QString& message,
-                                    const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
+                            const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
 	CUVMessageBarPrivate::showMessageBar(positionPolicy, UVMessageBarType::Success, title, message, displayMsec, parent);
 }
 
 void CUVMessageBar::warning(const QString& title, const QString& message,
-                                    const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
+                            const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
 	CUVMessageBarPrivate::showMessageBar(positionPolicy, UVMessageBarType::Warning, title, message, displayMsec, parent);
 }
 
 void CUVMessageBar::infomation(const QString& title, const QString& message,
-                                       const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
+                               const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
 	CUVMessageBarPrivate::showMessageBar(positionPolicy, UVMessageBarType::Info, title, message, displayMsec, parent);
 }
 
 void CUVMessageBar::error(const QString& title, const QString& message,
-                                  const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
+                          const int displayMsec, const UVMessageBarType::PositionPolicy& positionPolicy, QWidget* parent) {
 	CUVMessageBarPrivate::showMessageBar(positionPolicy, UVMessageBarType::Error, title, message, displayMsec, parent);
 }
 
@@ -541,11 +541,11 @@ void CUVMessageBar::paintEvent(QPaintEvent* event) {
 	painter.setFont(font);
 	painter.drawText(QRect(d->leftPadding + d->titleLeftSpacing + titleTextWidth + d->textLeftSpacing, 0,
 	                       width() - (d->leftPadding + d->titleLeftSpacing + titleTextWidth + d->textLeftSpacing + d->closeButtonWidth +
-		                       d->closeButtonLeftRightMargin / 2), height()), textFlags, d->text);
+	                                  d->closeButtonLeftRightMargin / 2), height()), textFlags, d->text);
 	if (const int textHeight = painter.fontMetrics().boundingRect(QRect(d->leftPadding + d->titleLeftSpacing + titleTextWidth + d->textLeftSpacing, 0,
 	                                                                    width() - (d->leftPadding + d->titleLeftSpacing + titleTextWidth + d->
-		                                                                    textLeftSpacing
-		                                                                    + d->closeButtonWidth + d->closeButtonLeftRightMargin),
+	                                                                               textLeftSpacing
+	                                                                               + d->closeButtonWidth + d->closeButtonLeftRightMargin),
 	                                                                    height()), textFlags, d->text).height(); textHeight >= minimumHeight() - 20) {
 		setMinimumHeight(textHeight + 20);
 	}

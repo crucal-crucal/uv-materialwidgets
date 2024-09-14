@@ -9,6 +9,8 @@
 CUVMenuStyle::CUVMenuStyle(QStyle* style): QProxyStyle(style) {
 	_pMenuItemHeight = 32;
 	_windowLinearGradient = new QLinearGradient(0, 0, 100, 100);
+	_windowLinearGradient->setColorAt(0,  QColor(0x2D, 0x2D, 0x2D));
+	_windowLinearGradient->setColorAt(1,  QColor(0x3D, 0x3D, 0x3D));
 }
 
 CUVMenuStyle::~CUVMenuStyle() = default;
@@ -32,7 +34,6 @@ void CUVMenuStyle::drawPrimitive(const PrimitiveElement element, const QStyleOpt
 				painter->setPen(color);
 				painter->drawPath(painter_path);
 			}
-			painter->restore();
 			// 背景绘制
 			const QRect foregroundRect(_shadowBorderWidth, _shadowBorderWidth, option->rect.width() - 2 * _shadowBorderWidth, option->rect.height() - 2 * _shadowBorderWidth);
 			painter->setPen(QColor(0x52, 0x50, 0x52));
@@ -86,10 +87,10 @@ void CUVMenuStyle::drawControl(const ControlElement element, const QStyleOption*
 					if (mopt->menuHasCheckableItems) {
 						// painter->save();
 						// painter->setPen(!mopt->state.testFlag(QStyle::State_Enabled) ? Qt::gray : Qt::white);
-						// QFont iconFont = QFont("ElaAwesome");
+						// QFont iconFont = QFont("CUVAwesome");
 						// iconFont.setPixelSize(_pMenuItemHeight * 0.57);
 						// painter->setFont(iconFont);
-						// painter->drawText(QRectF(menuRect.x() + contentPadding, menuRect.y(), _iconWidth, menuRect.height()), Qt::AlignCenter, mopt->checked ? QChar((unsigned short) ElaIconType::Check) : QChar((unsigned short) ElaIconType::None));
+						// painter->drawText(QRectF(menuRect.x() + contentPadding, menuRect.y(), _iconWidth, menuRect.height()), Qt::AlignCenter, mopt->checked ? QChar((unsigned short) CUVIconType::Check) : QChar((unsigned short) ElaIconType::None));
 						// painter->restore();
 					} else {
 						if (!menuIcon.isNull()) {
@@ -122,10 +123,10 @@ void CUVMenuStyle::drawControl(const ControlElement element, const QStyleOption*
 					if (mopt->menuItemType == QStyleOptionMenuItem::SubMenu) {
 						painter->save();
 						painter->setPen(!mopt->state.testFlag(QStyle::State_Enabled) ? Qt::gray : Qt::white);
-						// QFont iconFont = QFont("ElaAwesome");
+						// QFont iconFont = QFont("CUVAwesome");
 						// iconFont.setPixelSize(18);
 						// painter->setFont(iconFont);
-						// painter->drawText(QRect(menuRect.right() - 25, menuRect.y(), 25, menuRect.height()), Qt::AlignVCenter, QChar((unsigned short) ElaIconType::AngleRight));
+						// painter->drawText(QRect(menuRect.right() - 25, menuRect.y(), 25, menuRect.height()), Qt::AlignVCenter, QChar((unsigned short) CUVIconType::AngleRight));
 						painter->drawPixmap(QRect(menuRect.right() - 25, menuRect.y(), 25, menuRect.height()), QPixmap());
 						painter->restore();
 					}

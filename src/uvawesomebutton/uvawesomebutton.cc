@@ -32,7 +32,7 @@ CUVAwesomeButton::CUVAwesomeButton(const CUVIconType& iconType, QWidget* parent)
 	Q_D(CUVAwesomeButton);
 
 	d->init();
-	auto iconFont = QFont("ElaAwesome");
+	auto iconFont = QFont("CUVAwesome");
 	iconFont.setPixelSize(15);
 	this->setFont(iconFont);
 	d->iconType = iconType;
@@ -47,7 +47,7 @@ CUVAwesomeButton::CUVAwesomeButton(const CUVIconType& iconType, const int pixelS
 	Q_D(CUVAwesomeButton);
 
 	d->init();
-	auto iconFont = QFont("ElaAwesome");
+	auto iconFont = QFont("CUVAwesome");
 	iconFont.setPixelSize(pixelSize);
 	this->setFont(iconFont);
 	d->iconType = iconType;
@@ -63,7 +63,7 @@ CUVAwesomeButton::CUVAwesomeButton(const CUVIconType& iconType, const int pixelS
 	Q_D(CUVAwesomeButton);
 
 	d->init();
-	auto iconFont = QFont("ElaAwesome");
+	auto iconFont = QFont("CUVAwesome");
 	iconFont.setPixelSize(pixelSize);
 	this->setFont(iconFont);
 	d->iconType = iconType;

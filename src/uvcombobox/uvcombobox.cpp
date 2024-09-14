@@ -174,7 +174,7 @@ void CUVComboBox::showPopup() {
 			fixedSizeAnimation->setStartValue(1);
 			fixedSizeAnimation->setEndValue(containerHeight);
 			fixedSizeAnimation->setEasingCurve(QEasingCurve::OutCubic);
-			fixedSizeAnimation->setDuration(400);
+			fixedSizeAnimation->setDuration(200);
 			fixedSizeAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 
 			const auto viewPosAnimation = new QPropertyAnimation(view(), "pos");
@@ -186,7 +186,7 @@ void CUVComboBox::showPopup() {
 			viewPosAnimation->setStartValue(QPoint(viewPos.x(), viewPos.y() - view()->height()));
 			viewPosAnimation->setEndValue(viewPos);
 			viewPosAnimation->setEasingCurve(QEasingCurve::OutCubic);
-			viewPosAnimation->setDuration(400);
+			viewPosAnimation->setDuration(200);
 			viewPosAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 		}
 		// 指示器动画
@@ -194,13 +194,13 @@ void CUVComboBox::showPopup() {
 		connect(rotateAnimation, &QPropertyAnimation::valueChanged, this, [=](const QVariant& value) {
 			update();
 		});
-		rotateAnimation->setDuration(300);
+		rotateAnimation->setDuration(200);
 		rotateAnimation->setEasingCurve(QEasingCurve::InOutSine);
 		rotateAnimation->setStartValue(d->_comboBoxStyle->getExpandIconRotate());
 		rotateAnimation->setEndValue(-180);
 		rotateAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 		const auto markAnimation = new QPropertyAnimation(d->_comboBoxStyle, "pExpandMarkWidth");
-		markAnimation->setDuration(300);
+		markAnimation->setDuration(200);
 		markAnimation->setEasingCurve(QEasingCurve::InOutSine);
 		markAnimation->setStartValue(d->_comboBoxStyle->getExpandMarkWidth());
 		markAnimation->setEndValue(width() / 2 - d->_pBorderRadius - 6);
@@ -212,9 +212,8 @@ void CUVComboBox::hidePopup() {
 	Q_D(CUVComboBox);
 
 	if (d->_isAllowHidePopup) {
-		QWidget* container = this->findChild<QFrame*>();
-		const int containerHeight = container->height();
-		if (container) { // NOLINT
+		if (QWidget* container = this->findChild<QFrame*>()) {
+			const int containerHeight = container->height();
 			QLayout* layout = container->layout();
 			while (layout->count()) {
 				layout->takeAt(0);

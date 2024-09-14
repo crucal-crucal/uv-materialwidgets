@@ -1,7 +1,10 @@
 ﻿#pragma once
 
+#include <QAbstractScrollArea>
 #include <QObject>
+#include <QScrollBar>
 
+class QTimer;
 class QPropertyAnimation;
 class CUVScrollBar;
 
@@ -28,13 +31,22 @@ protected:
 	CUVScrollBar* const q_ptr{ nullptr };
 
 private:
+	QScrollBar* _originScrollBar{ nullptr };
+	QAbstractScrollArea* _originScrollArea{ nullptr };
+	QTimer* _expandTimer{ nullptr };
+	QPropertyAnimation* _slideSmoothAnimation{ nullptr };
+	bool _isExpand{ false };
 	bool _pIsAnimation{};
 	int _pTargetMaximum{};
-	QPropertyAnimation* _slideSmoothAnimation{ nullptr };
-	int _scrollValue{ 0 };
+	int _scrollValue{ -1 };
 	int _lastHorizontalDeltaAngle{ -120 };
 	int _lastVerticalDeltaAngle{ -120 };
 
-	void _scroll(int value);
+	void _scroll(Qt::KeyboardModifiers modifiers, int value);
 	[[nodiscard]] int _pixelPosToRangeValue(int pos) const;
+
+	void _initAllConfig();
+	static void _handleScrollBarValueChanged(QScrollBar* scrollBar, int value);
+	void _handleScrollBarRangeChanged(int min, int max);
+	void _handleScrollBarGeometry();
 };

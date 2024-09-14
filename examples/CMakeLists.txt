@@ -6,8 +6,6 @@
 #add_definitions(-DQT_NO_CRITICAL_OUTPUT)
 #add_definitions(-DQT_NO_FATAL_OUTPUT)
 
-option(INSTALL_WITH_WINDOWS "Add WIN32 flag for executable during install" ON)
-
 include_directories(.)
 include_directories(../src)
 
@@ -16,18 +14,10 @@ set(examples_SOURCES
         mainwidget.cc
 )
 
-if (INSTALL_WITH_WINDOWS)
-    add_executable(${TARGET_NAME}
-            WIN32
-            main.cc
-            ${examples_SOURCES}
-    )
-else ()
-    add_executable(${TARGET_NAME}
-            main.cc
-            ${examples_SOURCES}
-    )
-endif ()
+add_executable(${TARGET_NAME}
+        main.cc
+        ${examples_SOURCES}
+)
 
 target_link_libraries(${TARGET_NAME} Qt5::Widgets)
 target_link_libraries(${TARGET_NAME}
@@ -91,4 +81,8 @@ add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${CMAKE_SOURCE_DIR}/resource/resources.rcc
         $<TARGET_FILE_DIR:${TARGET_NAME}>
+)
+
+set_target_properties(${TARGET_NAME} PROPERTIES
+        WIN32_EXECUTABLE FALSE
 )

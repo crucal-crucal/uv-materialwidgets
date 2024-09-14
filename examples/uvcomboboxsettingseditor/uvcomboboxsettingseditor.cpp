@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 
 #include "uvcombobox/uvcombobox.hpp"
+#include "uvcombobox/uvmultiselectcombobox.hpp"
 
 CUVComboBoxSettingsEditor::CUVComboBoxSettingsEditor(QWidget* parent): QWidget(parent) {
 	createCtrl();
@@ -78,6 +79,7 @@ void CUVComboBoxSettingsEditor::createCtrl() {
 	m_pcanvas->setStyleSheet("#Canvas { background-color: white; }");
 
 	m_pComboBox = new CUVComboBox(this);
+	m_pMultiSelectComboBox = new CUVMultiSelectComboBox(this);
 
 	m_pBorderRadiusHLayout = new QHBoxLayout;
 	m_pNormalColorHLayout = new QHBoxLayout;
@@ -88,7 +90,7 @@ void CUVComboBoxSettingsEditor::createCtrl() {
 	m_pItemHoverColorHLayout = new QHBoxLayout;
 	m_pExpansionIndicatorColorHLayout = new QHBoxLayout;
 
-	m_pCanvasVLayout = new QVBoxLayout(m_pcanvas);
+	m_pCanvasVLayout = new QHBoxLayout(m_pcanvas);
 	m_pCenterVLayout = new QVBoxLayout;
 
 	this->setLayout(m_pCenterVLayout);
@@ -145,6 +147,7 @@ void CUVComboBoxSettingsEditor::customLayout() const {
 	m_pCenterVLayout->addWidget(m_pcanvas);
 
 	m_pCanvasVLayout->addWidget(m_pComboBox);
+	m_pCanvasVLayout->addWidget(m_pMultiSelectComboBox);
 	m_pCanvasVLayout->setAlignment(m_pComboBox, Qt::AlignCenter);
 }
 
@@ -160,8 +163,9 @@ void CUVComboBoxSettingsEditor::initConnection() {
 }
 
 void CUVComboBoxSettingsEditor::initData() const {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 50; i++) {
 		m_pComboBox->addItem(QString("Item %1").arg(i));
+		m_pMultiSelectComboBox->addItem(QString("Item %1").arg(i));
 	}
 }
 

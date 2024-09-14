@@ -40,7 +40,7 @@ public:
 	void drawInfo(QPainter* painter);
 
 	static void showMessageBar(const UVMessageBarType::PositionPolicy& positionPolicy, const UVMessageBarType::MessageMode& messageMode,
-						   const QString& title, const QString& message, int displayMsec, QWidget* parent = nullptr);
+	                           const QString& title, const QString& message, int displayMsec, QWidget* parent = nullptr);
 
 public slots:
 	void onCloseButtonClicked();
