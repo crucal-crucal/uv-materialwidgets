@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 }
 
 bool loadResources(const QString& strPath) {
-	qDebug() << ("Resource filePath:\t" + strPath);
+	qDebug() << ("Resource filePath: " + strPath);
 	return QResource::registerResource(strPath);
 }
 

@@ -42,4 +42,5 @@ public:
 	QColor selectedMarkColor{};
 	QColor itemHoverColor{};
 	QColor expansionIndicatorColor{};
+	QColor unselectedMarkColor{};
 };
