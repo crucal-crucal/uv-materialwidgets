@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QPropertyAnimation>
+#include <QDebug>
 
 #include "uvmaterialprogress_internal.hpp"
 #include "uvmaterialprogress_p.hpp"
@@ -21,7 +22,7 @@ void CUVMaterialProgressPrivate::init() {
 	Q_Q(CUVMaterialProgress);
 
 	delegate = new CUVMaterialProgressDelegate(q);
-	progressType = Material::IndeterminateProgress;
+	progressType = Material::DeterminateProgress;
 	useThemeColors = true;
 
 	const auto animation = new QPropertyAnimation(q);
@@ -130,7 +131,7 @@ void CUVMaterialProgress::paintEvent(QPaintEvent* event) {
 	painter.setPen(Qt::NoPen);
 
 	QPainterPath path;
-	path.addRoundedRect(0, static_cast<qreal>(height()) / 2 - 3, width(), 6, 3, 3);
+	path.addRoundedRect(0, 0, width(), height(), 5, 5);
 	painter.setClipPath(path);
 
 	painter.drawRect(0, 0, width(), height());
@@ -146,4 +147,25 @@ void CUVMaterialProgress::paintEvent(QPaintEvent* event) {
 			painter.drawRect(0, 0, p, height()); // NOLINT
 		}
 	}
+
+	QPen pen(Qt::black);
+	pen.setWidth(1);
+	painter.setPen(pen);
+	const QString curValue = QString("%1%").arg(qMax(0, value() * 100 / (maximum() - minimum())));
+	// 设置字体
+	QFont font = painter.font();
+	font.setPointSize(10); // 可根据需求调整字号
+	painter.setFont(font);
+
+	// 获取文本尺寸
+	QFontMetrics fm(painter.font());
+	int textWidth = fm.horizontalAdvance(curValue);
+	int textHeight = fm.height();
+
+	// 计算文本绘制位置（居中）
+	int textX = (width() - textWidth) / 2;
+	int textY = (height() + textHeight) / 2 - fm.descent(); // 考虑到文本基线偏移
+
+	// 绘制文本
+	painter.drawText(textX, textY, curValue);
 }

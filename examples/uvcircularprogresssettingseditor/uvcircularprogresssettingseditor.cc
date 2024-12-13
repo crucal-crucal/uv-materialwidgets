@@ -121,7 +121,9 @@ void CUVCircularProgressSettingsEditor::initData() const {
 	m_pSlProgress->setRange(0, 100);
 
 	m_pCbProgressType->addItem("DeterminateProgress");
-	m_pCbProgressType->addItem("IndeterminateProgress");
+	m_pCbProgressType->addItem("IndeterminateProgress");;
+	m_pCbProgressType->addItem("DiscontinuousLoading");;
+	m_pCbProgressType->addItem("ContinuousLoading");
 }
 
 void CUVCircularProgressSettingsEditor::setupForm() const {
@@ -132,6 +134,14 @@ void CUVCircularProgressSettingsEditor::setupForm() const {
 		}
 		case Material::IndeterminateProgress: {
 			m_pCbProgressType->setCurrentIndex(1);
+			break;
+		}
+		case Material::DiscontinuousLoading: {
+			m_pCbProgressType->setCurrentIndex(2);
+			break;
+		}
+		case Material::ContinuousLoading: {
+			m_pCbProgressType->setCurrentIndex(3);
 			break;
 		}
 		default: break;
@@ -152,6 +162,14 @@ void CUVCircularProgressSettingsEditor::updateWidget() const {
 		}
 		case 1: {
 			m_pProgress->setProgressType(Material::IndeterminateProgress);
+			break;
+		}
+		case 2: {
+			m_pProgress->setProgressType(Material::DiscontinuousLoading);
+			break;
+		}
+		case 3: {
+			m_pProgress->setProgressType(Material::ContinuousLoading);
 			break;
 		}
 		default: break;

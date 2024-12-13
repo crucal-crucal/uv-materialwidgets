@@ -34,8 +34,10 @@ enum ButtonIconPlacement {
 };
 
 enum ProgressType {
-	DeterminateProgress,
-	IndeterminateProgress
+	DeterminateProgress,   // 确定进度
+	IndeterminateProgress, // 不确定进度
+	DiscontinuousLoading,  // 间断加载动画(win11开机动画
+	ContinuousLoading      // 连续加载动画
 };
 
 enum AvatarType {

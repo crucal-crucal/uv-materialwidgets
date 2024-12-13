@@ -1,9 +1,12 @@
 ﻿#include "uvmaterialcircularprogress.hpp"
 
+#include <QFontDatabase>
 #include <QPainter>
 #include <QPainterPath>
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
+#include <QDebug>
+#include <QTimer>
 
 #include "uvmaterialcircularprogress_internal.hpp"
 #include "uvmaterialcircularprogress_p.hpp"
@@ -13,7 +16,7 @@
  *  \class CUVMaterialCircularProgressPrivate
  *  \internal
  */
-CUVMaterialCircularProgressPrivate::CUVMaterialCircularProgressPrivate(CUVMaterialCircularProgress* q): q_ptr(q) {
+CUVMaterialCircularProgressPrivate::CUVMaterialCircularProgressPrivate(CUVMaterialCircularProgress* q, QObject* parent): QObject(parent), q_ptr(q) {
 }
 
 CUVMaterialCircularProgressPrivate::~CUVMaterialCircularProgressPrivate() = default;
@@ -21,11 +24,17 @@ CUVMaterialCircularProgressPrivate::~CUVMaterialCircularProgressPrivate() = defa
 void CUVMaterialCircularProgressPrivate::init() {
 	Q_Q(CUVMaterialCircularProgress);
 
+	QFontDatabase::addApplicationFont(":/fonts/segoe_slboot_EX");
+	QFontDatabase::addApplicationFont(":/fonts/segoen_slboot_EX");
+
 	delegate = new CUVMaterialCircularProgressDelegate(q);
-	progressType = Material::IndeterminateProgress;
+	progressType = Material::DeterminateProgress;
 	penWidth = 6.25;
 	size = 64;
 	useThemeColors = true;
+	showValue = true;
+	timer = new QTimer(q);
+	connect(timer, &QTimer::timeout, this, &CUVMaterialCircularProgressPrivate::_updateAnimation);
 
 	q->setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding));
 
@@ -70,18 +79,140 @@ void CUVMaterialCircularProgressPrivate::init() {
 	group->start();
 }
 
+void CUVMaterialCircularProgressPrivate::_updateAnimation() {
+	Q_Q(CUVMaterialCircularProgress);
+
+	switch (progressType) {
+		case Material::DiscontinuousLoading: {
+			if (++currentIndex1 >= endIndex1) {
+				currentIndex1 = startIndex1;
+			}
+			break;
+		}
+		case Material::ContinuousLoading: {
+			if (++currentIndex2 > endIndex2) {
+				currentIndex2 = startIndex2;
+			}
+		}
+		default: break;
+	}
+	q->update();
+}
+
+void CUVMaterialCircularProgressPrivate::drawIndeterminate(QPainter& painter, QPen& pen) {
+	Q_Q(CUVMaterialCircularProgress);
+
+	painter.save();
+
+	QVector<qreal> pattern;
+	pattern << delegate->dashLength() * size / 50 << 30.0 * size / 50; // NOLINT
+	pen.setDashOffset(delegate->dashOffset() * size / 50);
+	pen.setDashPattern(pattern);
+	painter.setPen(pen);
+	painter.drawEllipse(QPoint(0, 0), size / 2, size / 2);
+
+	painter.restore();
+}
+
+void CUVMaterialCircularProgressPrivate::drawDeterminate(QPainter& painter, const QPen& pen) {
+	Q_Q(CUVMaterialCircularProgress);
+
+	painter.save();
+
+	painter.setPen(pen);
+	const qreal x = static_cast<qreal>(q->width() - size) / 2;
+	const qreal y = static_cast<qreal>(q->height() - size) / 2;
+	const qreal a = -static_cast<qreal>(360) * (q->value() - q->minimum()) / (q->maximum() - q->minimum());
+	QPainterPath path;
+	path.arcMoveTo(x, y, size, size, 0);
+	path.arcTo(x, y, size, size, 0, a);
+	painter.drawPath(path);
+
+	painter.restore();
+}
+
+void CUVMaterialCircularProgressPrivate::drawDiscontinuous(QPainter& painter, const QPen& pen) {
+	Q_Q(CUVMaterialCircularProgress);
+
+	painter.save();
+
+	painter.setPen(pen);
+	QFont font("Segoe Boot Semilight");
+	font.setPixelSize(80);
+	painter.setFont(font);
+	const QFontMetrics fm(font);
+	const int textX = (q->width() - fm.horizontalAdvance(QChar(currentIndex1))) / 2;
+	const int textY = (q->height() + fm.height()) / 2 - fm.ascent() / 4;
+	painter.drawText(textX, textY, QChar(currentIndex1));
+
+	painter.restore();
+}
+
+void CUVMaterialCircularProgressPrivate::drawContinuous(QPainter& painter, const QPen& pen) {
+	Q_Q(CUVMaterialCircularProgress);
+
+	painter.save();
+
+	painter.setPen(pen);
+	QFont font("Segoe Boot Semilight");
+	font.setPixelSize(80);
+	painter.setFont(font);
+	const QFontMetrics fm(font);
+	const int textX = (q->width() - fm.horizontalAdvance(QChar(currentIndex2))) / 2;
+	const int textY = (q->height() + fm.height()) / 2 - fm.ascent() / 4;
+	painter.drawText(textX, textY, QChar(currentIndex2));
+
+	painter.restore();
+}
+
+void CUVMaterialCircularProgressPrivate::drawValue(QPainter& painter, QPen& pen) {
+	Q_Q(CUVMaterialCircularProgress);
+
+	painter.save();
+
+	painter.resetTransform();
+	pen.setCapStyle(Qt::FlatCap);
+	pen.setColor(Qt::black);
+	pen.setWidthF(1.0);
+	painter.setPen(pen);
+	const QString curValue = QString("%1").arg(qMax(0, q->value() * 100 / (q->maximum() - q->minimum())));
+	QFont font = painter.font();
+	font.setPointSize(10);
+	painter.setFont(font);
+	const QFontMetrics fm(painter.font());
+	const int textX = (q->width() - fm.horizontalAdvance(curValue)) / 2;
+	const int textY = (q->height() + fm.height()) / 2 - fm.descent(); // 考虑到文本基线偏移
+	painter.drawText(textX, textY, curValue);
+
+	painter.restore();
+}
+
 /*!
  *  \class CUVMaterialCircularProgress
  */
 CUVMaterialCircularProgress::CUVMaterialCircularProgress(QWidget* parent)
 : QProgressBar(parent), d_ptr(new CUVMaterialCircularProgressPrivate(this)) {
 	d_func()->init();
+
+	this->setFixedSize(200, 200);
 }
 
 CUVMaterialCircularProgress::~CUVMaterialCircularProgress() = default;
 
 void CUVMaterialCircularProgress::setProgressType(const Material::ProgressType type) {
 	Q_D(CUVMaterialCircularProgress);
+
+	switch (type) {
+		case Material::DiscontinuousLoading:
+		case Material::ContinuousLoading: {
+			d->timer->start(20);
+			break;
+		}
+		default: {
+			d->timer->stop();
+			break;
+		}
+	}
 
 	d->progressType = type;
 	update();
@@ -171,6 +302,7 @@ void CUVMaterialCircularProgress::paintEvent(QPaintEvent* event) {
 
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
+	painter.save();
 
 	if (!isEnabled()) {
 		QPen pen;
@@ -193,28 +325,29 @@ void CUVMaterialCircularProgress::paintEvent(QPaintEvent* event) {
 	pen.setWidthF(d->penWidth);
 	pen.setColor(color());
 
-	if (Material::IndeterminateProgress == d->progressType) {
-		QVector<qreal> pattern;
-		pattern << d->delegate->dashLength() * d->size / 50 << 30 * d->size / 50; // NOLINT
-
-		pen.setDashOffset(d->delegate->dashOffset() * d->size / 50);
-		pen.setDashPattern(pattern);
-
-		painter.setPen(pen);
-
-		painter.drawEllipse(QPoint(0, 0), d->size / 2, d->size / 2);
-	} else {
-		painter.setPen(pen);
-
-		const qreal x = static_cast<qreal>(width() - d->size) / 2;
-		const qreal y = static_cast<qreal>(height() - d->size) / 2;
-
-		const qreal a = static_cast<qreal>(360) * (value() - minimum()) / (maximum() - minimum());
-
-		QPainterPath path;
-		path.arcMoveTo(x, y, d->size, d->size, 0);
-		path.arcTo(x, y, d->size, d->size, 0, a);
-
-		painter.drawPath(path);
+	switch (d->progressType) {
+		case Material::IndeterminateProgress: {
+			d->drawIndeterminate(painter, pen);
+			break;
+		}
+		case Material::DeterminateProgress: {
+			d->drawDeterminate(painter, pen);
+			break;
+		}
+		case Material::DiscontinuousLoading: {
+			d->drawDiscontinuous(painter, pen);
+			break;
+		}
+		case Material::ContinuousLoading: {
+			d->drawContinuous(painter, pen);
+			break;
+		}
+		default: break;
 	}
+
+	if (d->showValue) {
+		d->drawValue(painter, pen);
+	}
+
+	painter.restore();
 }
